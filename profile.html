@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Suppress favicon error-->
+    <link rel="icon" href="data:,">
+    
+    <link rel="stylesheet" href="stylesheet.css">
+
+    <title>My Garden</title>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div style="flex-grow: 2">Logo</div>
+        <div style="flex-grow: 2">Slogan</div>
+        <div style="flex-grow: 4">
+            <!--when you click your profile image in the top right, dropdown to edit profile, radius preference, see trade history, etc.!-->
+            <img src="harwell.png" float="right" width=50px alt="Profile Pic">
+        </div>
+    </header>
+
+    <!-- also put alert container for new gardens that pop up within specified radius-->
+    <div class="profile-grid">
+        <div class="profile">Current Veggies</div> <!--put a grid here that can be dynamically updated-->
+        <div class="profile">Click to add more veggies or delete</div>
+        <div class="profile">Nearby veggies for trade</div>
+        <div class="profile">What my neighbors are growing</div>
+        <div class="profile">Click to flag 'for trade'</div>
+
+    </div>
+
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>

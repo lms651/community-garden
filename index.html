@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Supress favicon error-->
+    <link rel="icon" href="data:,">
+    
+    <link rel="stylesheet" href="stylesheet.css">
+
+    <title>Community Garden | A new way to grow together</title>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div style="flex-grow: 2">Logo</div>
+        <div style="flex-grow: 2">Slogan</div>
+        <div style="flex-grow: 4">
+            <form id="name-input">
+                <input type="string" id="name-box" placeholder="Enter name">
+                <input id="submit-button" type="Submit" value="Submit">
+            </form>
+        </div>
+    </header>
+
+    <div class="homepage-grid">
+        <div class="carousel">1</div>
+        <div class="intro">2</div>
+        <div class="about">3</div>
+        <div class="welcome-user" id="welcome-user"></div>
+    </div>
+
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
