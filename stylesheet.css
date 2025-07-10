@@ -1,55 +1,62 @@
-.site-header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  background-color: rgba(95, 158, 160, 0.597);
+/* DROPDOWN TO ADD GARDEN VEG */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
 }
 
-.site-header > div {
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  z-index: 9999;
+  padding-top: 8px;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover {
   background-color: #f1f1f1;
-  margin: 6px;
-  padding: 20px;
-  font-size: 20px;
 }
 
-.homepage-grid {
-    display: grid;
-    height: 100%;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 1em;
+.show {
+  display: block;
 }
 
-.homepage-grid > div {
-  background-color: #82d9d2a6;
-  margin: 6px;
-  padding: 20px;
-  font-size: 20px;
+#myInput {
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
 }
 
-.carousel {
-    grid-row-start: 2;
-    grid-row-end: 6;
-    grid-column-start: 2;
-    grid-column-end: 5;
-}
-
-#name-input {
-  float: right;
-}
-
-.profile-grid {
-    display: grid;
-    height: 100%;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 1em;
-}
-
-.profile-grid > div {
-  background-color: #4ce295a6;
-  margin: 6px;
-  padding: 20px;
-  font-size: 20px;
+#myInput:focus {
+  outline: 3px solid #ddd;
 }
