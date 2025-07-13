@@ -1,6 +1,5 @@
 import { plantInventory, findPlant } from './plant-inventory.js';
 
-
 // My current vegetables that are put into my grid
 const myGarden = new Map();
 
@@ -43,7 +42,6 @@ function filter() {
   });
 }
 
-
 // Adds plant from dropdown into my map
 function addVegToGrid(title) {
   const plant = findPlant(title);
@@ -52,6 +50,7 @@ function addVegToGrid(title) {
     myGarden.set(title, plant);
 
     // Update display grid
+    saveGarden();
     renderGrid();
   }
 }
@@ -73,4 +72,31 @@ function renderGrid() {
 
     gridContainer.appendChild(button);
   });
+}
+
+// Save to local storage
+function saveGarden() {
+  // Convert the map to an array of entries, then to JSON
+  const gardenArray = Array.from(myGarden.entries());
+  localStorage.setItem("myGarden", JSON.stringify(gardenArray));
+}
+
+function loadGarden() {
+  const saved = localStorage.getItem("myGarden");
+  if (saved) {
+    const entries = JSON.parse(saved);
+
+    myGarden.clear();
+    for (const [key, value] of entries) {
+      myGarden.set(key, value);
+    }
+    renderGrid();
+  }
+}
+
+export {
+  renderGrid,
+  saveGarden,
+  loadGarden,
+  myGarden
 }

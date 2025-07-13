@@ -8,8 +8,8 @@ function login_init() {
 }
 
 function trySaveName() {
-    const input = document.getElementById('name-box').value
-    console.log(input)
+    const input = document.getElementById('name-box').value;
+    console.log(input);
     if (!localStorage.getItem('name')) {
         localStorage.setItem('name', input);
     } 
