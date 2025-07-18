@@ -134,11 +134,64 @@
   </div>
 </section>
 
+<!--Edit Modal-->
+<div
+  id="edit-modal"
+  class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+>
+  <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+    <div class="flex items-start justify-between">
+      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Update Plant</h2><br><br>
+
+      <button
+        type="button"
+        id="exit-edit-modal"
+        class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none"
+        aria-label="Close"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div id="flag-trade">
+    <p>Flag for trade:</p>
+    <input type="checkbox" class="peer sr-only opacity-0" id="toggle" />
+    <label for="toggle" class="relative flex h-6 w-11 cursor-pointer items-center rounded-full bg-gray-400 px-0.5 outline-gray-400 transition-colors before:h-5 before:w-5 before:rounded-full before:bg-white before:shadow before:transition-transform before:duration-300 peer-checked:bg-green-500 peer-checked:before:translate-x-full peer-focus-visible:outline peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gray-400 peer-checked:peer-focus-visible:outline-green-500" for="toggle ">
+          <span class="sr-only">Enable</span>
+    </label>
+    </div>
+    <br>
+
+    <div id="delete-btn">
+      <button
+      type="button"
+      id="save-edit"
+      class="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-800"
+      >Delete Plant</button>
+    </div>
+  </div>
+</div>
+
 
 <script type="module" src="app.js"></script>
 <script type="module" src="my-garden.js"></script>
 <script type="module" src="plant-inventory.js"></script>
-
 
 
 </body>
