@@ -71,15 +71,20 @@ function showPlantModal(title: string): void {
   let modalTitle = document.getElementById("modal-title")!;
   modalTitle.textContent = plant.title;
 
+  const flagToggle = document.getElementById("toggle") as HTMLInputElement;
+  if (plant && flagToggle) {
+    flagToggle.checked = plant.forTrade; // pre-fill toggle state
+    flagToggle.onchange = () => handleFlag(title); // attach or replace listener
+  }
+
   const editModal = document.getElementById("edit-modal") as HTMLElement;
   editModal.classList.remove("hidden");
 
   const exitModal = document.getElementById("exit-edit-modal") as HTMLElement;
-  exitModal.addEventListener("click", () => closePlantModal());
+  exitModal.onclick = () => closePlantModal();
 
   const deletePlant = document.getElementById("delete-btn") as HTMLElement;
-  deletePlant.addEventListener("click", () => handleDelete(title));
-
+  deletePlant.onclick = () => handleDelete(title);
 }
 
 function closePlantModal(): void {
@@ -87,7 +92,16 @@ function closePlantModal(): void {
   editModal.classList.add("hidden");
 }
 
-function handleFlag(title: string): void {}
+function handleFlag(title: string): void {
+  const plant = myGarden.get(title);
+  const toggleInput = document.getElementById("toggle") as HTMLInputElement;
+
+  if (plant && toggleInput) {
+    plant.forTrade = toggleInput.checked;
+    saveGarden();
+    // no alert, just silent update
+  }
+}
 
 function handleDelete(title: string): void {
   myGarden.delete(title);

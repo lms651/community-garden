@@ -56,18 +56,31 @@ function showPlantModal(title) {
     const plant = myGarden.get(title);
     let modalTitle = document.getElementById("modal-title");
     modalTitle.textContent = plant.title;
+    const flagToggle = document.getElementById("toggle");
+    if (plant && flagToggle) {
+        flagToggle.checked = plant.forTrade; // pre-fill toggle state
+        flagToggle.onchange = () => handleFlag(title); // attach or replace listener
+    }
     const editModal = document.getElementById("edit-modal");
     editModal.classList.remove("hidden");
     const exitModal = document.getElementById("exit-edit-modal");
-    exitModal.addEventListener("click", () => closePlantModal());
+    exitModal.onclick = () => closePlantModal();
     const deletePlant = document.getElementById("delete-btn");
-    deletePlant.addEventListener("click", () => handleDelete(title));
+    deletePlant.onclick = () => handleDelete(title);
 }
 function closePlantModal() {
     const editModal = document.getElementById("edit-modal");
     editModal.classList.add("hidden");
 }
-function handleEdit(title) { }
+function handleFlag(title) {
+    const plant = myGarden.get(title);
+    const toggleInput = document.getElementById("toggle");
+    if (plant && toggleInput) {
+        plant.forTrade = toggleInput.checked;
+        saveGarden();
+        // no alert, just silent update
+    }
+}
 function handleDelete(title) {
     myGarden.delete(title);
     saveGarden();
