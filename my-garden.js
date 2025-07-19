@@ -42,10 +42,11 @@ function renderGrid() {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40";
+        const titleWithStar = plant.forTrade ? `<i class="fas fa-star text-yellow-400 text-3xl animate-pulse" style="text-shadow: 0 0 5px black;"></i> ${plant.title}` : plant.title;
         button.innerHTML = `
       <img src="${plant.img}" class="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
       <div class="absolute inset-0 bg-gradient-to-b from-gray-900/25 to-gray-900/5"></div>
-      <h3 class="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4">${plant.title}</h3>
+      <h3 class="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4">${titleWithStar}</h3>
     `;
         gridContainer.appendChild(button);
         button.addEventListener("click", () => showPlantModal(plant.title));
@@ -78,7 +79,7 @@ function handleFlag(title) {
     if (plant && toggleInput) {
         plant.forTrade = toggleInput.checked;
         saveGarden();
-        // no alert, just silent update
+        renderGrid();
     }
 }
 function handleDelete(title) {
