@@ -153,18 +153,20 @@
 
     <!-- Signup Form -->
     <form id="signup-form" class="mt-6 space-y-4">
-      <input type="text" id="name" name="name" pattern="[A-Za-z\s]+" placeholder="Name" required class="w-full border p-2 rounded" />
-      <input type="text" id="username" name="username" pattern="[A-Za-z\s]+" placeholder="Username" required class="w-full border p-2 rounded" />
-      <input type="email" id="email" name="email" placeholder="Email" required class="w-full border p-2 rounded" />
-      <input type="password" id="password" name="password" placeholder="Password" required class="w-full border p-2 rounded" />
-      <input type="text" id="street" name="street" placeholder="Street Address" required class="w-full border p-2 rounded" />
-      <input type="text" id="city" name="city" placeholder="City" pattern="[A-Za-z\s]+" required class="w-full border p-2 rounded" />
-      <input type="text" id="state" name="state" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" required class="w-full border p-2 rounded" />
-      <input type="text" id="zip" name="zip" placeholder="ZIP Code" pattern="\d{5}" maxlength="5" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-name" name="name" pattern="[A-Za-z\s]+" autocomplete="Name" placeholder="Name" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-username" name="username" autocomplete="Username" placeholder="Username"required class="w-full border p-2 rounded" />
+      <input type="email" id="signup-email" name="email" autocomplete="email" placeholder="Email" required class="w-full border p-2 rounded" />
+      <input type="password" id="signup-password" name="password" placeholder="Password" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-street" name="street" placeholder="Street Address" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-city" name="city" placeholder="City" pattern="[A-Za-z\s]+" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-state" name="state" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-zip" name="zip" placeholder="ZIP Code" pattern="\d{5}" maxlength="5" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" required class="w-full border p-2 rounded" />
 
       <!-- Submit Button -->
       <button
         type="submit"
+        id="signup-submit"
         class="w-full rounded bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800"
       >
         Submit
@@ -322,6 +324,7 @@
     </footer>
 
         <script type="module" src="app.js"></script>
+
 
     </body>
 </html>

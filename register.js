@@ -4,14 +4,13 @@ function register_init() {
         showRegisterModal();
         console.log("register button clicked");
     });
-    // const form = document.getElementById("signup-form") as HTMLElement;
-    // form.addEventListener('submit', function(event) {
-    //     event.preventDefault();
-    //     console.log('got data!');
-    // });
 }
 function showRegisterModal() {
     const registerModal = document.getElementById("signup-modal");
     registerModal.classList.remove("hidden");
 }
-export { register_init };
+function closeRegisterModal() {
+    const registerModal = document.getElementById("signup-modal");
+    registerModal.classList.add("hidden");
+}
+export { register_init, closeRegisterModal };
