@@ -159,9 +159,9 @@
       <input type="password" id="signup-password" name="password" placeholder="Password" required class="w-full border p-2 rounded" />
       <input type="text" id="signup-street" name="street" placeholder="Street Address" required class="w-full border p-2 rounded" />
       <input type="text" id="signup-city" name="city" placeholder="City" pattern="[A-Za-z\s]+" required class="w-full border p-2 rounded" />
-      <input type="text" id="signup-state" name="state" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-state" name="state" autocapitalize="characters" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" required class="w-full border p-2 rounded" />
       <input type="text" id="signup-zip" name="zip" placeholder="ZIP Code" pattern="\d{5}" maxlength="5" required class="w-full border p-2 rounded" />
-      <input type="text" id="signup-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" placeholder="3-Letter Country code" required class="w-full border p-2 rounded" />
 
       <!-- Submit Button -->
       <button
@@ -172,17 +172,59 @@
         Submit
       </button>
     </form>
+  </div>
+</div>
 
-    <!-- Cancel Button -->
-    <div id="cancel-signup-button" class="mt-4">
+<!--Login Modal-->
+<div
+  id="login-modal"
+  class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+>
+  <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+    <div class="flex items-start justify-between">
+      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Login Here</h2>
+
       <button
         type="button"
-        id="cancel-signup"
-        class="w-full rounded bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-800"
+        id="exit-login-modal"
+        class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none"
+        aria-label="Close"
       >
-        Cancel
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
       </button>
     </div>
+
+    <!-- Login Form -->
+    <form id="login-form" class="mt-6 space-y-4">
+      <input type="text" id="login-username" name="username" autocomplete="Username" placeholder="Username"required class="w-full border p-2 rounded" />
+      <input type="password" id="login-password" name="password" placeholder="Password" required class="w-full border p-2 rounded" />
+      <p class="text-center">Forgot password?</p>
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        id="login-submit"
+        class="w-full rounded bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800"
+      >
+        Submit
+      </button>
+    </form>
+
   </div>
 </div>
 

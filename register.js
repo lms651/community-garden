@@ -2,7 +2,10 @@ function register_init() {
     const registerBtn = document.getElementById("register-button");
     registerBtn.addEventListener('click', () => {
         showRegisterModal();
-        console.log("register button clicked");
+    });
+    const exitRegister = document.getElementById("exit-signup-modal");
+    exitRegister.addEventListener('click', () => {
+        closeRegisterModal();
     });
 }
 function showRegisterModal() {

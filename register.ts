@@ -1,10 +1,12 @@
-import { newUser_init } from "./new-user";
-
 function register_init(): void {
-    const registerBtn = document.getElementById("register-button") as HTMLElement;
+    const registerBtn = document.getElementById("register-button") as HTMLButtonElement;
     registerBtn.addEventListener('click', () => {
         showRegisterModal();
-        console.log("register button clicked");
+    })
+
+    const exitRegister = document.getElementById("exit-signup-modal") as HTMLButtonElement;
+    exitRegister.addEventListener('click', () => {
+        closeRegisterModal();
     })
 }
 
@@ -17,7 +19,6 @@ function closeRegisterModal(): void {
     const registerModal = document.getElementById("signup-modal") as HTMLElement;
     registerModal.classList.add("hidden");
 }
-
 
 
 export {
