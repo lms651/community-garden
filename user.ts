@@ -13,7 +13,7 @@ class User {
     country: string;
     password: string;
     gardenMap: Map<string, MyPlant>;
-    garden: Record<string, MyPlant> = {};
+    // garden: Record<string, MyPlant> = {};
 
 
   constructor(name: string, username: string, email: string, street: string, city: string, state: string,  zip: string, country: string, password: string) {
@@ -40,15 +40,15 @@ class User {
         localStorage.setItem("userNextId", id.toString());
     }
 
-    // Convert garden map to object for saving to localstorage
-    mapToObj(map: Map<string, MyPlant>): Record<string, MyPlant> {
-    return Object.fromEntries(map);
-    }
+    // // Convert garden map to object for saving to localstorage
+    // mapToObj(map: Map<string, MyPlant>): Record<string, MyPlant> {
+    // return Object.fromEntries(map);
+    // }
 
-    // Convert object to garden map for loading
-    objToMap(obj: Record<string, MyPlant>): Map<string, MyPlant> {
-    return new Map(Object.entries(obj));
-    }
+    // // Convert object to garden map for loading
+    // objToMap(obj: Record<string, MyPlant>): Map<string, MyPlant> {
+    // return new Map(Object.entries(obj));
+    // }
 
 }
 
