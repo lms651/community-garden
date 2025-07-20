@@ -8,5 +8,4 @@ window.addEventListener("DOMContentLoaded", () => {
     login_init();
     register_init();
     newUser_init();
-    // profile_init();
 })
