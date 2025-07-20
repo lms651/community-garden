@@ -1,12 +1,16 @@
 function register_init() {
     const registerBtn = document.getElementById("register-button");
-    registerBtn.addEventListener('click', () => {
-        showRegisterModal();
-    });
+    if (registerBtn) {
+        registerBtn.addEventListener('click', () => {
+            showRegisterModal();
+        });
+    }
     const exitRegister = document.getElementById("exit-signup-modal");
-    exitRegister.addEventListener('click', () => {
-        closeRegisterModal();
-    });
+    if (exitRegister) {
+        exitRegister.addEventListener('click', () => {
+            closeRegisterModal();
+        });
+    }
 }
 function showRegisterModal() {
     const registerModal = document.getElementById("signup-modal");

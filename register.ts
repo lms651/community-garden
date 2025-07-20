@@ -1,13 +1,17 @@
 function register_init(): void {
-    const registerBtn = document.getElementById("register-button") as HTMLButtonElement;
-    registerBtn.addEventListener('click', () => {
-        showRegisterModal();
-    })
+    const registerBtn = document.getElementById("register-button") as HTMLButtonElement | null;
+    if (registerBtn) {
+        registerBtn.addEventListener('click', () => {
+            showRegisterModal();
+        })
+    }
 
-    const exitRegister = document.getElementById("exit-signup-modal") as HTMLButtonElement;
-    exitRegister.addEventListener('click', () => {
-        closeRegisterModal();
-    })
+    const exitRegister = document.getElementById("exit-signup-modal") as HTMLButtonElement | null;
+    if (exitRegister) {
+        exitRegister.addEventListener('click', () => {
+            closeRegisterModal();
+        })
+    }
 }
 
 function showRegisterModal(): void {

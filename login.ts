@@ -2,17 +2,22 @@ import { closeRegisterModal } from "./register";
 import { User } from "./user";
 
 function login_init(): void {
-    const loginBtn = document.getElementById("login-button") as HTMLButtonElement;
-    loginBtn.addEventListener('click', () => {
+    const loginBtn = document.getElementById("login-button") as HTMLButtonElement | null;
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
         showLoginModal();
     })
+    }
 
-    const exitLogin = document.getElementById("exit-login-modal") as HTMLButtonElement;
-    exitLogin.addEventListener('click', () => {
-        closeLoginModal();
-    })
+    const exitLogin = document.getElementById("exit-login-modal") as HTMLButtonElement | null;
+    if (exitLogin) {
+        exitLogin.addEventListener('click', () => {
+            closeLoginModal();
+        })
+    }
 
-    const loginForm = document.getElementById("login-form") as HTMLFormElement;
+    const loginForm = document.getElementById("login-form") as HTMLFormElement | null;
+    if (loginForm) {
     loginForm.addEventListener("submit", (event) => {
         event.preventDefault();
         
@@ -30,6 +35,7 @@ function login_init(): void {
 
     })
 
+    }
 }
 
 function showLoginModal(): void {

@@ -1,26 +1,32 @@
 function login_init() {
     const loginBtn = document.getElementById("login-button");
-    loginBtn.addEventListener('click', () => {
-        showLoginModal();
-    });
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+            showLoginModal();
+        });
+    }
     const exitLogin = document.getElementById("exit-login-modal");
-    exitLogin.addEventListener('click', () => {
-        closeLoginModal();
-    });
-    const loginForm = document.getElementById("login-form");
-    loginForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const usernameInput = document.getElementById("login-username").value.trim();
-        const passwordInput = document.getElementById("login-password").value.trim();
-        const success = tryLoginUser(usernameInput, passwordInput);
-        if (success) {
-            window.location.href = "profile.html";
-        }
-        else {
-            alert("Invalid username or password.");
+    if (exitLogin) {
+        exitLogin.addEventListener('click', () => {
             closeLoginModal();
-        }
-    });
+        });
+    }
+    const loginForm = document.getElementById("login-form");
+    if (loginForm) {
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const usernameInput = document.getElementById("login-username").value.trim();
+            const passwordInput = document.getElementById("login-password").value.trim();
+            const success = tryLoginUser(usernameInput, passwordInput);
+            if (success) {
+                window.location.href = "profile.html";
+            }
+            else {
+                alert("Invalid username or password.");
+                closeLoginModal();
+            }
+        });
+    }
 }
 function showLoginModal() {
     const loginModal = document.getElementById("login-modal");
