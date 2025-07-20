@@ -47,9 +47,16 @@ function addVegToGrid(title: string) {
 // Adds map items to display grid
 function renderGrid(): void {
   const gridContainer = document.getElementById("myGrid")!; // asserts non-null
+  if (!gridContainer) return; // Skip if not on the right page
+
   gridContainer.innerHTML = ""; // Clear existing
 
-  myGarden.forEach((plant) => {
+  // Sort plants so flagged ones come first
+  const sortedPlants = Array.from(myGarden.values()).sort((a, b) => {
+    return (b.forTrade ? 1 : 0) - (a.forTrade ? 1 : 0);
+  });
+
+  sortedPlants.forEach((plant) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40";

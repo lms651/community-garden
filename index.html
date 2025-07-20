@@ -50,21 +50,20 @@
 
         <div class="flex items-center gap-4">
             <div class="sm:flex sm:gap-4">
-            <a
+            <button
                 class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
-                href="#"
+                id="login-button"
             >
                 Login
-            </a>
+            </button>
 
-            <a
+            <button
                 class="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
-                href="#"
+                id="register-button"
             >
                 Register
-            </a>
+            </button>
             </div>
-
         </div>
         </div>
     </div>
@@ -116,6 +115,74 @@
         </dl>
     </div>
     </div>
+
+<!--Signup Modal-->
+<div
+  id="signup-modal"
+  class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+>
+  <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+    <div class="flex items-start justify-between">
+      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Signup Here</h2>
+
+      <button
+        type="button"
+        id="exit-signup-modal"
+        class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none"
+        aria-label="Close"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Signup Form -->
+    <form id="signup-form" class="mt-6 space-y-4">
+      <input type="text" id="name" name="name" pattern="[A-Za-z\s]+" placeholder="Name" required class="w-full border p-2 rounded" />
+      <input type="text" id="username" name="username" pattern="[A-Za-z\s]+" placeholder="Username" required class="w-full border p-2 rounded" />
+      <input type="email" id="email" name="email" placeholder="Email" required class="w-full border p-2 rounded" />
+      <input type="password" id="password" name="password" placeholder="Password" required class="w-full border p-2 rounded" />
+      <input type="text" id="street" name="street" placeholder="Street Address" required class="w-full border p-2 rounded" />
+      <input type="text" id="city" name="city" placeholder="City" pattern="[A-Za-z\s]+" required class="w-full border p-2 rounded" />
+      <input type="text" id="state" name="state" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" required class="w-full border p-2 rounded" />
+      <input type="text" id="zip" name="zip" placeholder="ZIP Code" pattern="\d{5}" maxlength="5" required class="w-full border p-2 rounded" />
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full rounded bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800"
+      >
+        Submit
+      </button>
+    </form>
+
+    <!-- Cancel Button -->
+    <div id="cancel-signup-button" class="mt-4">
+      <button
+        type="button"
+        id="cancel-signup"
+        class="w-full rounded bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-800"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
 
     <footer class="bg-white">
     <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
