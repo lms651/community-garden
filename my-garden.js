@@ -1,8 +1,16 @@
 import { filter, findPlant } from './plant-inventory.js';
 import { MyPlant } from './myPlant.js';
+import { getCurrentUserMap } from './render-profile.js';
 // My current vegetables that are put into my grid
-let myGarden = new Map();
+// let myGarden: Map<string, MyPlant> = new Map();
+let myGarden = getCurrentUserMap();
+// function garden_init(gardenMap: Map<string, MyPlant>): void {
+//   myGarden = gardenMap;
+//   renderGrid();
+// }
 window.addEventListener("DOMContentLoaded", () => {
+    renderGrid(); //ADDED
+    console.log("Rendering garden:", Array.from(myGarden.entries()));
     const dropDownBtn = document.getElementById("add-dropdown");
     const dropDownMenu = document.getElementById("myDropdown");
     const input = document.getElementById("myInput");
@@ -95,20 +103,36 @@ function handleDelete(title) {
     closePlantModal();
 }
 // Save to local storage
+// function saveGarden(): void {
+//   // Convert the map to an array of entries, then to JSON
+//   const gardenArray = Array.from(myGarden.entries()).map(([key, plant]) => [key, plant.toJson()]);
+//   localStorage.setItem("myGarden", JSON.stringify(gardenArray));
+// }
 function saveGarden() {
-    // Convert the map to an array of entries, then to JSON
+    const currentUserRaw = localStorage.getItem("currentUser");
+    if (!currentUserRaw)
+        return;
+    const currentUser = JSON.parse(currentUserRaw);
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
     const gardenArray = Array.from(myGarden.entries()).map(([key, plant]) => [key, plant.toJson()]);
-    localStorage.setItem("myGarden", JSON.stringify(gardenArray));
+    const userIndex = users.findIndex((u) => u.id === currentUser.id);
+    if (userIndex === -1)
+        return;
+    users[userIndex].garden = gardenArray;
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("currentUser", JSON.stringify(users[userIndex])); // Keep currentUser up to date
 }
-function loadGarden() {
-    const saved = localStorage.getItem("myGarden");
-    if (saved) {
-        const entries = JSON.parse(saved);
-        myGarden.clear();
-        for (const [key, obj] of entries) {
-            myGarden.set(key, MyPlant.fromJson(obj));
-        }
-        renderGrid();
-    }
-}
-export { renderGrid, saveGarden, loadGarden, myGarden };
+// function loadGarden(): void {
+//   const saved = localStorage.getItem("myGarden");
+//   if (saved) {
+//     const entries: [string, any][] = JSON.parse(saved);
+//     myGarden.clear();
+//     for (const [key, obj] of entries) {
+//       myGarden.set(key, MyPlant.fromJson(obj));
+//     }
+//     renderGrid();
+//   }
+// }
+export { renderGrid, saveGarden, 
+// loadGarden,
+myGarden, };

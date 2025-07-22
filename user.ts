@@ -40,15 +40,35 @@ class User {
         localStorage.setItem("userNextId", id.toString());
     }
 
-    // // Convert garden map to object for saving to localstorage
-    // mapToObj(map: Map<string, MyPlant>): Record<string, MyPlant> {
-    // return Object.fromEntries(map);
-    // }
+    // Convert garden map to object for saving to localstorage
+    mapToObj(map: Map<string, MyPlant>): Record<string, MyPlant> {
+    return Object.fromEntries(map);
+    }
 
-    // // Convert object to garden map for loading
-    // objToMap(obj: Record<string, MyPlant>): Map<string, MyPlant> {
-    // return new Map(Object.entries(obj));
-    // }
+    objToMap(obj: Record<string, MyPlant> | null | undefined): Map<string, MyPlant> {
+      if (!obj) return new Map(); // Return empty map if null/undefined
+      return new Map(Object.entries(obj));
+    }
+    
+    
+static fromJson(obj: any): User {
+  const user = new User(
+    obj.name,
+    obj.username,
+    obj.email,
+    obj.street,
+    obj.city,
+    obj.state,
+    obj.zip,
+    obj.country,
+    obj.password
+  );
+  // Restore garden if present
+  if (obj.garden) {
+    user.gardenMap = user.objToMap(obj.garden);
+  }
+  return user;
+  }
 
 }
 
