@@ -1,5 +1,5 @@
 import { closeRegisterModal } from "./register";
-import { User } from "./user";
+import { User } from "./user.js";
 
 function login_init(): void {
     const loginBtn = document.getElementById("login-button") as HTMLButtonElement | null;
@@ -49,21 +49,42 @@ function closeLoginModal(): void {
 }
 
 
-// Locates user based on entered username and password and saves the current user to localstorage
+// Locates user based on entered username and password and saves user's index in memory
+// function tryLoginUser(username: string, password: string): boolean {
+//   const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
+
+//   const userIndex = users.findIndex(u => u.username === username && u.password === password);
+
+//   if (userIndex !== -1) {
+//     localStorage.setItem("currentUserIndex", userIndex.toString());
+//     console.log("Login successful:", users[userIndex]);
+//     return true;
+//   } else {
+//     console.log("Login failed: invalid credentials");
+//     return false;
+//   }
+// }
+
 function tryLoginUser(username: string, password: string): boolean {
-    const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
+  const usersRaw = localStorage.getItem("users") || "[]";
+  const rawUsers = JSON.parse(usersRaw);
 
-    const matchedUser = users.find(u => u.username === username && u.password === password);
+  // Find user index first
+  const userIndex = rawUsers.findIndex((u: any) => u.username === username && u.password === password);
 
-    if (matchedUser) {
-        localStorage.setItem("currentUser", JSON.stringify(matchedUser));
-        console.log("Login successful:", matchedUser);
-        return true;
-    } else {
-        console.log("Login failed: invalid credentials");
-        return false;
-    }
-    
+  if (userIndex !== -1) {
+    // Convert raw user object to User instance
+    const user = User.fromJson(rawUsers[userIndex]);
+
+    // Save current user index for session
+    localStorage.setItem("currentUserIndex", userIndex.toString());
+
+    console.log("Login successful:", user);
+    return true;
+  } else {
+    console.log("Login failed: invalid credentials");
+    return false;
+  }
 }
 
 

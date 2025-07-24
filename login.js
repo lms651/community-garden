@@ -1,3 +1,4 @@
+import { User } from "./user.js";
 function login_init() {
     const loginBtn = document.getElementById("login-button");
     if (loginBtn) {
@@ -36,13 +37,30 @@ function closeLoginModal() {
     const loginModal = document.getElementById("login-modal");
     loginModal.classList.add("hidden");
 }
-// Locates user based on entered username and password and saves the current user to localstorage
+// Locates user based on entered username and password and saves user's index in memory
+// function tryLoginUser(username: string, password: string): boolean {
+//   const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
+//   const userIndex = users.findIndex(u => u.username === username && u.password === password);
+//   if (userIndex !== -1) {
+//     localStorage.setItem("currentUserIndex", userIndex.toString());
+//     console.log("Login successful:", users[userIndex]);
+//     return true;
+//   } else {
+//     console.log("Login failed: invalid credentials");
+//     return false;
+//   }
+// }
 function tryLoginUser(username, password) {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const matchedUser = users.find(u => u.username === username && u.password === password);
-    if (matchedUser) {
-        localStorage.setItem("currentUser", JSON.stringify(matchedUser));
-        console.log("Login successful:", matchedUser);
+    const usersRaw = localStorage.getItem("users") || "[]";
+    const rawUsers = JSON.parse(usersRaw);
+    // Find user index first
+    const userIndex = rawUsers.findIndex((u) => u.username === username && u.password === password);
+    if (userIndex !== -1) {
+        // Convert raw user object to User instance
+        const user = User.fromJson(rawUsers[userIndex]);
+        // Save current user index for session
+        localStorage.setItem("currentUserIndex", userIndex.toString());
+        console.log("Login successful:", user);
         return true;
     }
     else {

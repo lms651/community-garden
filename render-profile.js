@@ -1,15 +1,12 @@
-import { User } from "./user.js";
-function getCurrentUserMap() {
-    const currentUserJson = localStorage.getItem("currentUser");
-    if (currentUserJson) {
-        const parsedUser = JSON.parse(currentUserJson);
-        const user = User.fromJson(parsedUser);
-        const gardenMap = user.objToMap(parsedUser.garden);
-        return gardenMap;
-    }
-    else {
-        return new Map();
-    }
-    ;
+import { loadCurrentUser } from "./user-utils.js";
+import { gardent_init } from "./my-garden.js";
+import { renderGrid } from "./my-garden.js";
+function render_profile_init() {
+    const result = loadCurrentUser();
+    if (!result)
+        return;
+    const currentUserMap = result.user.gardenMap;
+    gardent_init(currentUserMap);
+    renderGrid(currentUserMap);
 }
-export { getCurrentUserMap };
+export { render_profile_init };

@@ -1,4 +1,4 @@
-import { MyPlant } from "./myPlant";
+import { MyPlant } from "./myPlant.js";
 
 class User {
     static nextId = User.loadNextId();
@@ -13,7 +13,6 @@ class User {
     country: string;
     password: string;
     gardenMap: Map<string, MyPlant>;
-    // garden: Record<string, MyPlant> = {};
 
 
   constructor(name: string, username: string, email: string, street: string, city: string, state: string,  zip: string, country: string, password: string) {
@@ -51,6 +50,29 @@ class User {
     }
     
     
+// static fromJson(obj: any): User {
+//   const user = new User(
+//     obj.name,
+//     obj.username,
+//     obj.email,
+//     obj.street,
+//     obj.city,
+//     obj.state,
+//     obj.zip,
+//     obj.country,
+//     obj.password
+//   );
+
+//   if (obj.garden) {
+//     // Convert garden array back to Map with MyPlant instances
+//     user.gardenMap = new Map(
+//       obj.garden.map(([key, value]: [string, any]) => [key, MyPlant.fromJson(value)])
+//     );
+//   }
+
+//   return user;
+// }
+
 static fromJson(obj: any): User {
   const user = new User(
     obj.name,
@@ -63,11 +85,32 @@ static fromJson(obj: any): User {
     obj.country,
     obj.password
   );
-  // Restore garden if present
+
+  user.id = obj.id; // VERY important!
+
   if (obj.garden) {
-    user.gardenMap = user.objToMap(obj.garden);
+    user.gardenMap = new Map(
+      obj.garden.map(([key, value]: [string, any]) => [key, MyPlant.fromJson(value)])
+    );
   }
+
   return user;
+}
+
+  toJson() {
+    return {
+      id: this.id,
+      name: this.name,
+      username: this.username,
+      email: this.email,
+      street: this.street,
+      city: this.city,
+      state: this.state,
+      zip: this.zip,
+      country: this.country,
+      password: this.password,
+      garden: Array.from(this.gardenMap.entries()).map(([key, plant]) => [key, plant.toJson()]),
+    };
   }
 
 }

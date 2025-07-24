@@ -1,19 +1,18 @@
-import { MyPlant } from "./myPlant";
-import { User } from "./user.js";
 
-function getCurrentUserMap(): Map<string, MyPlant> {
-const currentUserJson = localStorage.getItem("currentUser");
+import { loadCurrentUser } from "./user-utils.js";
+import { gardent_init } from "./my-garden.js";
+import { renderGrid } from "./my-garden.js";
 
-if (currentUserJson) {
-  const parsedUser = JSON.parse(currentUserJson);
-  const user = User.fromJson(parsedUser);
-  const gardenMap = user.objToMap(parsedUser.garden);
-  return gardenMap;
-} else {
-    return new Map(); 
-};
+function render_profile_init() {
+  const result = loadCurrentUser();
+  if (!result) return;
+
+  const currentUserMap = result.user.gardenMap;
+  gardent_init(currentUserMap);
+  renderGrid(currentUserMap);
+
 }
 
 export {
-    getCurrentUserMap
+  render_profile_init
 }

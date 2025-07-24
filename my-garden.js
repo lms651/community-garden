@@ -1,20 +1,15 @@
 import { filter, findPlant } from './plant-inventory.js';
 import { MyPlant } from './myPlant.js';
-import { getCurrentUserMap } from './render-profile.js';
-// My current vegetables that are put into my grid
-// let myGarden: Map<string, MyPlant> = new Map();
-let myGarden = getCurrentUserMap();
-// function garden_init(gardenMap: Map<string, MyPlant>): void {
-//   myGarden = gardenMap;
-//   renderGrid();
-// }
-window.addEventListener("DOMContentLoaded", () => {
-    renderGrid(); //ADDED
-    console.log("Rendering garden:", Array.from(myGarden.entries()));
+import { User } from './user.js';
+import { loadCurrentUser } from './user-utils.js';
+// listeners for dropdown menu functions on profile page
+// to be implemented on render-profile.ts 
+// will pass in current user's map
+function gardent_init(currentUserMap) {
     const dropDownBtn = document.getElementById("add-dropdown");
     const dropDownMenu = document.getElementById("myDropdown");
     const input = document.getElementById("myInput");
-    // null checks for ts
+    // null checks
     if (!dropDownBtn || !dropDownMenu || !input) {
         return;
     }
@@ -26,30 +21,30 @@ window.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", () => {
             console.log('a dropdown item was clicked');
             const title = btn.textContent;
-            addVegToGrid(title);
+            addVegToGrid(title, currentUserMap);
         });
     });
-});
-// Adds plant from dropdown into my map
-function addVegToGrid(title) {
+}
+// Adds plant from dropdown into user's map
+function addVegToGrid(title, currentUserMap) {
     const basePlant = findPlant(title);
-    if (basePlant && !myGarden.has(title)) {
-        // defaults to false for status
+    if (basePlant && !currentUserMap.has(title)) {
         const myPlant = new MyPlant(basePlant.title, basePlant.img);
-        myGarden.set(title, myPlant);
-        // Update display grid
-        saveGarden();
-        renderGrid();
+        currentUserMap.set(title, myPlant);
+        // Update user in memory
+        // Update profile display grid
+        saveGarden(currentUserMap);
+        renderGrid(currentUserMap);
     }
 }
-// Adds map items to display grid
-function renderGrid() {
-    const gridContainer = document.getElementById("myGrid"); // asserts non-null
+// Adds map items to display grid from currentuser's map
+function renderGrid(currentUserMap) {
+    const gridContainer = document.getElementById("myGrid"); // asserting non-null.
     if (!gridContainer)
         return; // Skip if not on the right page
     gridContainer.innerHTML = ""; // Clear existing
     // Sort plants so flagged ones come first
-    const sortedPlants = Array.from(myGarden.values()).sort((a, b) => {
+    const sortedPlants = Array.from(currentUserMap.values()).sort((a, b) => {
         return (b.forTrade ? 1 : 0) - (a.forTrade ? 1 : 0);
     });
     sortedPlants.forEach((plant) => {
@@ -63,76 +58,70 @@ function renderGrid() {
       <h3 class="z-10 text-2xl font-medium text-white absolute top-0 left-0 p-4">${titleWithStar}</h3>
     `;
         gridContainer.appendChild(button);
-        button.addEventListener("click", () => showPlantModal(plant.title));
+        // Listener added here for the grid buttons
+        button.addEventListener("click", () => showPlantModal(plant.title, currentUserMap));
     });
 }
-function showPlantModal(title) {
-    // fetch instance of myPlant. use title as key in map
-    const plant = myGarden.get(title);
+// Modal holds functions on the instance of user's myPlant
+// Flag for trade slider
+// Option to delete plant from their map
+function showPlantModal(title, currentUserMap) {
+    // fetch instance of myPlant in current user's map. 
+    // use plant title as key in map
+    const plant = currentUserMap.get(title); // asserts non-null
     let modalTitle = document.getElementById("modal-title");
+    // Adds plant's name to modal
     modalTitle.textContent = plant.title;
     const flagToggle = document.getElementById("toggle");
     if (plant && flagToggle) {
         flagToggle.checked = plant.forTrade; // pre-fill toggle state
-        flagToggle.onchange = () => handleFlag(title); // attach or replace listener
+        flagToggle.onchange = () => handleFlag(title, currentUserMap); // attach or replace listener
     }
     const editModal = document.getElementById("edit-modal");
     editModal.classList.remove("hidden");
     const exitModal = document.getElementById("exit-edit-modal");
     exitModal.onclick = () => closePlantModal();
     const deletePlant = document.getElementById("delete-btn");
-    deletePlant.onclick = () => handleDelete(title);
+    deletePlant.onclick = () => handleDelete(title, currentUserMap);
 }
 function closePlantModal() {
     const editModal = document.getElementById("edit-modal");
     editModal.classList.add("hidden");
 }
-function handleFlag(title) {
-    const plant = myGarden.get(title);
+// Updates value of flag toggle in plant
+// Updates user garden map in memory
+function handleFlag(title, currentUserMap) {
+    const plant = currentUserMap.get(title);
     const toggleInput = document.getElementById("toggle");
     if (plant && toggleInput) {
         plant.forTrade = toggleInput.checked;
-        saveGarden();
-        renderGrid();
+        saveGarden(currentUserMap);
+        renderGrid(currentUserMap);
     }
 }
-function handleDelete(title) {
-    myGarden.delete(title);
-    saveGarden();
-    renderGrid();
+// Deletes map entry from current user's map
+// Updates user garden map in memory
+function handleDelete(title, currentUserMap) {
+    currentUserMap.delete(title);
+    saveGarden(currentUserMap);
+    renderGrid(currentUserMap);
     closePlantModal();
 }
-// Save to local storage
-// function saveGarden(): void {
-//   // Convert the map to an array of entries, then to JSON
-//   const gardenArray = Array.from(myGarden.entries()).map(([key, plant]) => [key, plant.toJson()]);
-//   localStorage.setItem("myGarden", JSON.stringify(gardenArray));
-// }
-function saveGarden() {
-    const currentUserRaw = localStorage.getItem("currentUser");
-    if (!currentUserRaw)
+function saveGarden(currentUserMap) {
+    const currentUserData = loadCurrentUser();
+    if (!currentUserData)
         return;
-    const currentUser = JSON.parse(currentUserRaw);
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const gardenArray = Array.from(myGarden.entries()).map(([key, plant]) => [key, plant.toJson()]);
-    const userIndex = users.findIndex((u) => u.id === currentUser.id);
-    if (userIndex === -1)
-        return;
-    users[userIndex].garden = gardenArray;
+    const { user, index } = currentUserData;
+    // Update user's gardenMap with the current map passed in
+    user.gardenMap = currentUserMap;
+    // Load all users from localStorage
+    const usersRaw = localStorage.getItem("users") || "[]";
+    const users = JSON.parse(usersRaw).map((u) => User.fromJson(u));
+    // Replace the user at current index
+    users[index] = user;
+    // Save the updated users array back to localStorage
     localStorage.setItem("users", JSON.stringify(users));
-    localStorage.setItem("currentUser", JSON.stringify(users[userIndex])); // Keep currentUser up to date
+    // Update the stored currentUserIndex if needed
+    localStorage.setItem("currentUserIndex", String(index));
 }
-// function loadGarden(): void {
-//   const saved = localStorage.getItem("myGarden");
-//   if (saved) {
-//     const entries: [string, any][] = JSON.parse(saved);
-//     myGarden.clear();
-//     for (const [key, obj] of entries) {
-//       myGarden.set(key, MyPlant.fromJson(obj));
-//     }
-//     renderGrid();
-//   }
-// }
-export { renderGrid, saveGarden, 
-// loadGarden,
-myGarden, };
+export { renderGrid, saveGarden, gardent_init };
