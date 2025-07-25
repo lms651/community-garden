@@ -51,10 +51,7 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
     const dropdownContent = document.getElementById("trade-dropdown-content");
     const dropdownInput = document.getElementById("trade-dropdown-input");
     dropdownContent.innerHTML = "";
-    //   console.log("GardenMap contents:");
-    // currentUser.gardenMap.forEach((plant) => {
-    //   console.log(plant.title, plant.forTrade);
-    // });
+    dropdownContent.classList.add("hidden"); // Start hidden
     currentUser.gardenMap.forEach((plant) => {
         if (plant.forTrade) {
             const button = document.createElement("button");
@@ -62,8 +59,13 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
             dropdownContent.appendChild(button);
             button.addEventListener("click", () => {
                 dropdownInput.value = plant.title;
+                dropdownContent.classList.add("hidden"); // Hide after selection
             });
         }
+    });
+    // Show dropdown when input is focused
+    dropdownInput.addEventListener("focus", () => {
+        dropdownContent.classList.remove("hidden");
     });
     // Attach filter
     dropdownInput.addEventListener("keyup", filterTradeDropdown);
@@ -90,5 +92,8 @@ function filterTradeDropdown() {
 function closeTradeModal() {
     const tradeModal = document.getElementById("trade-modal");
     tradeModal.classList.add("hidden");
+    const dropdownInput = document.getElementById("trade-dropdown-input");
+    if (dropdownInput)
+        dropdownInput.value = "";
 }
 export { renderNeighborGrid };

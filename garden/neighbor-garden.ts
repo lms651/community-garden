@@ -44,7 +44,6 @@ function renderNeighborGrid(neighborUser: User): void {
 
 // Modal allows user to propose a trade
 
-
 function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
   const plant = neighborUser.gardenMap.get(neighborPlantTitle);
   if (!plant) return;
@@ -59,7 +58,7 @@ function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
   const modalTitle = document.getElementById("trade-modal-title")!;
   modalTitle.textContent = `${plant.title}`;
 
-    // Show modal
+  // Show modal
   const tradeModal = document.getElementById("trade-modal") as HTMLElement;
   tradeModal.classList.remove("hidden");
 
@@ -67,11 +66,7 @@ function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
   const dropdownContent = document.getElementById("trade-dropdown-content")!;
   const dropdownInput = document.getElementById("trade-dropdown-input") as HTMLInputElement;
   dropdownContent.innerHTML = "";
-
-//   console.log("GardenMap contents:");
-// currentUser.gardenMap.forEach((plant) => {
-//   console.log(plant.title, plant.forTrade);
-// });
+  dropdownContent.classList.add("hidden"); // Start hidden
 
   currentUser.gardenMap.forEach((plant) => {
     if (plant.forTrade) {
@@ -81,8 +76,14 @@ function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
 
       button.addEventListener("click", () => {
         dropdownInput.value = plant.title;
+        dropdownContent.classList.add("hidden"); // Hide after selection
       });
     }
+  });
+
+  // Show dropdown when input is focused
+  dropdownInput.addEventListener("focus", () => {
+    dropdownContent.classList.remove("hidden");
   });
 
   // Attach filter
@@ -91,7 +92,6 @@ function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
   const exitTradeModal = document.getElementById("exit-trade-modal") as HTMLElement;
   exitTradeModal.onclick = () => closeTradeModal();
 }
-
 
 
 // Filter function for trade modal dropdown
@@ -116,6 +116,8 @@ function filterTradeDropdown() {
 function closeTradeModal(): void {
   const tradeModal = document.getElementById("trade-modal") as HTMLElement;
   tradeModal.classList.add("hidden");
+  const dropdownInput = document.getElementById("trade-dropdown-input") as HTMLInputElement | null;
+  if (dropdownInput) dropdownInput.value = "";
 }
 
 
