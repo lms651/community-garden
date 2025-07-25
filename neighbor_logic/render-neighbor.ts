@@ -8,6 +8,12 @@ function render_neighbor_init() {
 
   const neighbor = result.user;
 
+  // Set the neighbor's name in the title
+  const neighborTitle = document.getElementById("neighbor-title");
+  if (neighborTitle) {
+    neighborTitle.textContent = `${neighbor.username}'s Garden`;
+  }
+
   renderNeighborGrid(neighbor);
 
 }
