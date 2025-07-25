@@ -74,7 +74,7 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
 }
 // Filter function for trade modal dropdown
 function filterTradeDropdown() {
-    const userInput = document.getElementById("tradeDropdownInput");
+    const userInput = document.getElementById("trade-dropdown-input");
     if (!userInput) {
         console.error("Input element not found!");
         return; // or handle gracefully

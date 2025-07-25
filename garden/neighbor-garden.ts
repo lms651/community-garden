@@ -96,7 +96,7 @@ function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
 
 // Filter function for trade modal dropdown
 function filterTradeDropdown() {
-  const userInput = document.getElementById("tradeDropdownInput") as HTMLInputElement;
+  const userInput = document.getElementById("trade-dropdown-input") as HTMLInputElement;
   if (!userInput) {
   console.error("Input element not found!");
   return; // or handle gracefully
