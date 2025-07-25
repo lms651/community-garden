@@ -6,8 +6,7 @@ function newUser_init() {
     if (signUpForm) {
         signUpForm.addEventListener("submit", (event) => {
             event.preventDefault();
-
-            const nameInput = (document.getElementById("signup-name") as HTMLInputElement).value.trim();
+            
             const usernameInput = (document.getElementById("signup-username") as HTMLInputElement).value.trim();
             const emailInput = (document.getElementById("signup-email") as HTMLInputElement).value.trim();
             const streetInput = (document.getElementById("signup-street") as HTMLInputElement).value.trim();
@@ -17,7 +16,7 @@ function newUser_init() {
             const countryInput = (document.getElementById("signup-country") as HTMLInputElement).value.trim();
             const passwordInput = (document.getElementById("signup-password") as HTMLInputElement).value.trim();
 
-            const newUser = new User(nameInput, usernameInput, emailInput, streetInput, cityInput, stateInput, zipInput, countryInput, passwordInput)
+            const newUser = new User(User.getNextId(), usernameInput, emailInput, streetInput, cityInput, stateInput, zipInput, countryInput, passwordInput)
             saveUser(newUser);
             closeRegisterModal();
     });
@@ -29,7 +28,6 @@ function saveUser(newUser: User): void {
     let users = JSON.parse(localStorage.getItem("users") || "[]");
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
-    console.log("User created:", newUser);
 }
 
 export {

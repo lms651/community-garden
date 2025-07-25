@@ -1,9 +1,7 @@
 import { MyPlant } from "./myPlant.js";
 
 class User {
-    static nextId = User.loadNextId();
     id: number;
-    name: string;
     username: string;
     email: string;
     street: string;
@@ -14,11 +12,9 @@ class User {
     password: string;
     gardenMap: Map<string, MyPlant>;
 
-
-  constructor(name: string, username: string, email: string, street: string, city: string, state: string,  zip: string, country: string, password: string) {
-    this.id = User.nextId++;
-    User.saveNextId(User.nextId); // Save the updated ID
+  constructor(id: number, username: string, email: string, street: string, city: string, state: string,  zip: string, country: string, password: string) {
     this.username = username;
+    this.id = id;
     this.email = email;
     this.street = street;
     this.city = city;
@@ -27,17 +23,17 @@ class User {
     this.country = country;
     this.password = password;
     this.gardenMap = new Map(); // empty garden
-
+    console.log(`Instance of user created with ID: ${this.id}, username: ${this.username}`);
   }
 
-    static loadNextId(): number {
-        const stored = localStorage.getItem("userNextId");
-        return stored ? parseInt(stored) : 1;
-    }
+  static getNextId(): number {
+      const stored = localStorage.getItem("userNextId");
+      return stored ? parseInt(stored) + 1 : 1;
+  }
 
-    static saveNextId(id: number): void {
-        localStorage.setItem("userNextId", id.toString());
-    }
+  static saveNextId(id: number): void {
+      localStorage.setItem("userNextId", id.toString());
+  }
 
     // Convert garden map to object for saving to localstorage
     mapToObj(map: Map<string, MyPlant>): Record<string, MyPlant> {
@@ -49,58 +45,32 @@ class User {
       return new Map(Object.entries(obj));
     }
     
-    
-// static fromJson(obj: any): User {
-//   const user = new User(
-//     obj.name,
-//     obj.username,
-//     obj.email,
-//     obj.street,
-//     obj.city,
-//     obj.state,
-//     obj.zip,
-//     obj.country,
-//     obj.password
-//   );
-
-//   if (obj.garden) {
-//     // Convert garden array back to Map with MyPlant instances
-//     user.gardenMap = new Map(
-//       obj.garden.map(([key, value]: [string, any]) => [key, MyPlant.fromJson(value)])
-//     );
-//   }
-
-//   return user;
-// }
 
 static fromJson(obj: any): User {
   const user = new User(
-    obj.name,
+    obj.id,
     obj.username,
     obj.email,
     obj.street,
     obj.city,
-    obj.state,
+    obj.state, 
     obj.zip,
     obj.country,
     obj.password
-  );
-
-  user.id = obj.id; // VERY important!
+  ) 
 
   if (obj.garden) {
     user.gardenMap = new Map(
       obj.garden.map(([key, value]: [string, any]) => [key, MyPlant.fromJson(value)])
     );
   }
-
+  console.log('a user instance was restored using fromjson')
   return user;
 }
 
-  toJson() {
+  toJSON() {
     return {
       id: this.id,
-      name: this.name,
       username: this.username,
       email: this.email,
       street: this.street,

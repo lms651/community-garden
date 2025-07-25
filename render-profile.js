@@ -5,8 +5,8 @@ function render_profile_init() {
     const result = loadCurrentUser();
     if (!result)
         return;
-    const currentUserMap = result.user.gardenMap;
-    gardent_init(currentUserMap);
-    renderGrid(currentUserMap);
+    const user = result.user;
+    gardent_init(user);
+    renderGrid(user);
 }
 export { render_profile_init };

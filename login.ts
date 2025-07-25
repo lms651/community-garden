@@ -48,30 +48,12 @@ function closeLoginModal(): void {
     loginModal.classList.add("hidden");
 }
 
-
-// Locates user based on entered username and password and saves user's index in memory
-// function tryLoginUser(username: string, password: string): boolean {
-//   const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
-
-//   const userIndex = users.findIndex(u => u.username === username && u.password === password);
-
-//   if (userIndex !== -1) {
-//     localStorage.setItem("currentUserIndex", userIndex.toString());
-//     console.log("Login successful:", users[userIndex]);
-//     return true;
-//   } else {
-//     console.log("Login failed: invalid credentials");
-//     return false;
-//   }
-// }
-
 function tryLoginUser(username: string, password: string): boolean {
   const usersRaw = localStorage.getItem("users") || "[]";
   const rawUsers = JSON.parse(usersRaw);
 
   // Find user index first
   const userIndex = rawUsers.findIndex((u: any) => u.username === username && u.password === password);
-
   if (userIndex !== -1) {
     // Convert raw user object to User instance
     const user = User.fromJson(rawUsers[userIndex]);

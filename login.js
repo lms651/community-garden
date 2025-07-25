@@ -37,19 +37,6 @@ function closeLoginModal() {
     const loginModal = document.getElementById("login-modal");
     loginModal.classList.add("hidden");
 }
-// Locates user based on entered username and password and saves user's index in memory
-// function tryLoginUser(username: string, password: string): boolean {
-//   const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
-//   const userIndex = users.findIndex(u => u.username === username && u.password === password);
-//   if (userIndex !== -1) {
-//     localStorage.setItem("currentUserIndex", userIndex.toString());
-//     console.log("Login successful:", users[userIndex]);
-//     return true;
-//   } else {
-//     console.log("Login failed: invalid credentials");
-//     return false;
-//   }
-// }
 function tryLoginUser(username, password) {
     const usersRaw = localStorage.getItem("users") || "[]";
     const rawUsers = JSON.parse(usersRaw);
