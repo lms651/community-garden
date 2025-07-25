@@ -14,6 +14,7 @@ function render_neighbor_init() {
     neighborTitle.textContent = `${neighbor.username}'s Garden`;
   }
 
+  // Render garden
   renderNeighborGrid(neighbor);
 
 }

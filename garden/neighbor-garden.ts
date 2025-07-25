@@ -1,11 +1,12 @@
 import { User } from '../user_logic/user.js';
+import { loadCurrentUser } from '../user_logic/user-utils.js';
 
 
 // Adds map items to display grid from neighbor's map
 // listeners for flagged veggies that can be clicked on to offer trade will go here
 
 
-function renderNeighborGrid(user: User): void {
+function renderNeighborGrid(neighborUser: User): void {
   const gridContainer = document.getElementById("neighbor-grid");
   if (!gridContainer) return;
 
@@ -13,7 +14,7 @@ function renderNeighborGrid(user: User): void {
 
   // Sort plants so flagged ones come first
 
-  const sortedPlants = Array.from(user.gardenMap.values()).sort((a, b) => {
+  const sortedPlants = Array.from(neighborUser.gardenMap.values()).sort((a, b) => {
     return (b.forTrade ? 1 : 0) - (a.forTrade ? 1 : 0);
   });
 
@@ -35,7 +36,7 @@ function renderNeighborGrid(user: User): void {
     gridContainer.appendChild(button);
 
     if (plant.forTrade) {
-        button.addEventListener("click", () => showTradeModal(plant.title, user));
+        button.addEventListener("click", () => showTradeModal(plant.title, neighborUser));
     } else {
         button.classList.add("cursor-default");
     }  });
@@ -43,27 +44,79 @@ function renderNeighborGrid(user: User): void {
 
 // Modal allows user to propose a trade
 
-function showTradeModal(title: string, user: User): void {
-  const plant = user.gardenMap.get(title);
+
+function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
+  const plant = neighborUser.gardenMap.get(neighborPlantTitle);
   if (!plant) return;
 
+  // Load the current user
+  const result = loadCurrentUser();
+  if (!result) return;
+
+  const currentUser = result.user;
+
+  // Set modal title
   const modalTitle = document.getElementById("trade-modal-title")!;
-  modalTitle.textContent = plant.title;
+  modalTitle.textContent = `${plant.title}`;
 
-  const editModal = document.getElementById("trade-modal") as HTMLElement;
-  editModal.classList.remove("hidden");
+    // Show modal
+  const tradeModal = document.getElementById("trade-modal") as HTMLElement;
+  tradeModal.classList.remove("hidden");
 
-  const exitModal = document.getElementById("exit-trade-modal") as HTMLElement;
-  exitModal.onclick = () => closeTradeModal();
+  // Populate dropdown
+  const dropdownContent = document.getElementById("trade-dropdown-content")!;
+  const dropdownInput = document.getElementById("trade-dropdown-input") as HTMLInputElement;
+  dropdownContent.innerHTML = "";
+
+//   console.log("GardenMap contents:");
+// currentUser.gardenMap.forEach((plant) => {
+//   console.log(plant.title, plant.forTrade);
+// });
+
+  currentUser.gardenMap.forEach((plant) => {
+    if (plant.forTrade) {
+      const button = document.createElement("button");
+      button.textContent = plant.title;
+      dropdownContent.appendChild(button);
+
+      button.addEventListener("click", () => {
+        dropdownInput.value = plant.title;
+      });
+    }
+  });
+
+  // Attach filter
+  dropdownInput.addEventListener("keyup", filterTradeDropdown);
+
+  const exitTradeModal = document.getElementById("exit-trade-modal") as HTMLElement;
+  exitTradeModal.onclick = () => closeTradeModal();
+}
 
 
+
+// Filter function for trade modal dropdown
+function filterTradeDropdown() {
+  const userInput = document.getElementById("tradeDropdownInput") as HTMLInputElement;
+  if (!userInput) {
+  console.error("Input element not found!");
+  return; // or handle gracefully
+  }
+  const userInputLowerCase = userInput.value.toLowerCase();
+  
+  const dropDownList = document.getElementById("trade-dropdown-content");
+  if (!dropDownList) return;
+
+  const items = Array.from(dropDownList.getElementsByTagName("button"));
+  items.forEach(item => {
+    const txtValue = item.textContent || "";
+    item.style.display = txtValue.toLowerCase().includes(userInputLowerCase) ? "" : "none";
+  });
 }
 
 function closeTradeModal(): void {
-  const editModal = document.getElementById("trade-modal") as HTMLElement;
-  editModal.classList.add("hidden");
+  const tradeModal = document.getElementById("trade-modal") as HTMLElement;
+  tradeModal.classList.add("hidden");
 }
-
 
 
 export {

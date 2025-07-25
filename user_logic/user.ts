@@ -23,7 +23,6 @@ class User {
     this.country = country;
     this.password = password;
     this.gardenMap = new Map(); // empty garden
-    console.log(`Instance of user created with ID: ${this.id}, username: ${this.username}`);
   }
 
   static getNextId(): number {
@@ -64,7 +63,6 @@ static fromJson(obj: any): User {
       obj.garden.map(([key, value]: [string, any]) => [key, MyPlant.fromJson(value)])
     );
   }
-  console.log('a user instance was restored using fromjson')
   return user;
 }
 

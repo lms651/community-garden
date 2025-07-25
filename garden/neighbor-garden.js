@@ -1,12 +1,13 @@
+import { loadCurrentUser } from '../user_logic/user-utils.js';
 // Adds map items to display grid from neighbor's map
 // listeners for flagged veggies that can be clicked on to offer trade will go here
-function renderNeighborGrid(user) {
+function renderNeighborGrid(neighborUser) {
     const gridContainer = document.getElementById("neighbor-grid");
     if (!gridContainer)
         return;
     gridContainer.innerHTML = "";
     // Sort plants so flagged ones come first
-    const sortedPlants = Array.from(user.gardenMap.values()).sort((a, b) => {
+    const sortedPlants = Array.from(neighborUser.gardenMap.values()).sort((a, b) => {
         return (b.forTrade ? 1 : 0) - (a.forTrade ? 1 : 0);
     });
     sortedPlants.forEach((plant) => {
@@ -23,7 +24,7 @@ function renderNeighborGrid(user) {
     `;
         gridContainer.appendChild(button);
         if (plant.forTrade) {
-            button.addEventListener("click", () => showTradeModal(plant.title, user));
+            button.addEventListener("click", () => showTradeModal(plant.title, neighborUser));
         }
         else {
             button.classList.add("cursor-default");
@@ -31,19 +32,63 @@ function renderNeighborGrid(user) {
     });
 }
 // Modal allows user to propose a trade
-function showTradeModal(title, user) {
-    const plant = user.gardenMap.get(title);
+function showTradeModal(neighborPlantTitle, neighborUser) {
+    const plant = neighborUser.gardenMap.get(neighborPlantTitle);
     if (!plant)
         return;
+    // Load the current user
+    const result = loadCurrentUser();
+    if (!result)
+        return;
+    const currentUser = result.user;
+    // Set modal title
     const modalTitle = document.getElementById("trade-modal-title");
-    modalTitle.textContent = plant.title;
-    const editModal = document.getElementById("trade-modal");
-    editModal.classList.remove("hidden");
-    const exitModal = document.getElementById("exit-trade-modal");
-    exitModal.onclick = () => closeTradeModal();
+    modalTitle.textContent = `${plant.title}`;
+    // Show modal
+    const tradeModal = document.getElementById("trade-modal");
+    tradeModal.classList.remove("hidden");
+    // Populate dropdown
+    const dropdownContent = document.getElementById("trade-dropdown-content");
+    const dropdownInput = document.getElementById("trade-dropdown-input");
+    dropdownContent.innerHTML = "";
+    //   console.log("GardenMap contents:");
+    // currentUser.gardenMap.forEach((plant) => {
+    //   console.log(plant.title, plant.forTrade);
+    // });
+    currentUser.gardenMap.forEach((plant) => {
+        if (plant.forTrade) {
+            const button = document.createElement("button");
+            button.textContent = plant.title;
+            dropdownContent.appendChild(button);
+            button.addEventListener("click", () => {
+                dropdownInput.value = plant.title;
+            });
+        }
+    });
+    // Attach filter
+    dropdownInput.addEventListener("keyup", filterTradeDropdown);
+    const exitTradeModal = document.getElementById("exit-trade-modal");
+    exitTradeModal.onclick = () => closeTradeModal();
+}
+// Filter function for trade modal dropdown
+function filterTradeDropdown() {
+    const userInput = document.getElementById("tradeDropdownInput");
+    if (!userInput) {
+        console.error("Input element not found!");
+        return; // or handle gracefully
+    }
+    const userInputLowerCase = userInput.value.toLowerCase();
+    const dropDownList = document.getElementById("trade-dropdown-content");
+    if (!dropDownList)
+        return;
+    const items = Array.from(dropDownList.getElementsByTagName("button"));
+    items.forEach(item => {
+        const txtValue = item.textContent || "";
+        item.style.display = txtValue.toLowerCase().includes(userInputLowerCase) ? "" : "none";
+    });
 }
 function closeTradeModal() {
-    const editModal = document.getElementById("trade-modal");
-    editModal.classList.add("hidden");
+    const tradeModal = document.getElementById("trade-modal");
+    tradeModal.classList.add("hidden");
 }
 export { renderNeighborGrid };

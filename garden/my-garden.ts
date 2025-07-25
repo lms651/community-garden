@@ -8,7 +8,7 @@ import { User } from '../user_logic/user.js';
 // user gets passed in in hopes it will get updated in memory correctly
 
 
-function gardent_init(user: User): void {
+function garden_init(user: User): void {
   const dropDownBtn = document.getElementById("add-dropdown");
   const dropDownMenu = document.getElementById("myDropdown");
   const input = document.getElementById("myInput");
@@ -148,7 +148,7 @@ function saveGarden(user: User): void {
 }
 
 export {
-  gardent_init,
+  garden_init,
   renderGrid,
   saveGarden
 };

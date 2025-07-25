@@ -11,7 +11,6 @@ class User {
         this.country = country;
         this.password = password;
         this.gardenMap = new Map(); // empty garden
-        console.log(`Instance of user created with ID: ${this.id}, username: ${this.username}`);
     }
     static getNextId() {
         const stored = localStorage.getItem("userNextId");
@@ -34,7 +33,6 @@ class User {
         if (obj.garden) {
             user.gardenMap = new Map(obj.garden.map(([key, value]) => [key, MyPlant.fromJson(value)]));
         }
-        console.log('a user instance was restored using fromjson');
         return user;
     }
     toJSON() {

@@ -153,17 +153,28 @@
       </button>
     </div>
 
-    <div id="offer-trade">
-        <label for="Trade">
-        <span class="text-sm font-medium text-gray-700">I offer you my:</span>
-        <input
-            type="email"
-            id="Email"
-            class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm"
-            />
-        </label>
-    </div>
-    <br>
+    <!-- Trade Dropdown -->
+<div class="trade-dropdown-container relative w-full max-w-xs mx-auto mt-4">
+  <p>Choose one of your plants to offer:</p><br>
+
+  <input 
+    type="text" 
+    placeholder="Start typing your crop..." 
+    id="trade-dropdown-input" 
+    class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+  />
+
+  <div 
+    id="trade-dropdown-content" 
+    class="trade-dropdown-content mt-1 border border-gray-200 rounded-md shadow bg-white max-h-60 overflow-y-auto z-50"
+    style="position: absolute; width: 100%;"
+  >
+    <!-- <button class="block w-full text-left px-4 py-2 hover:bg-gray-100">Test Veg 1</button> -->
+  </div>
+</div>
+    <br><br>
+
+    
 
     <div id="offer-btn">
       <button

@@ -3,7 +3,7 @@ import { MyPlant } from './myPlant.js';
 // listeners for dropdown menu functions on profile page
 // to be implemented on render-profile.ts 
 // user gets passed in in hopes it will get updated in memory correctly
-function gardent_init(user) {
+function garden_init(user) {
     const dropDownBtn = document.getElementById("add-dropdown");
     const dropDownMenu = document.getElementById("myDropdown");
     const input = document.getElementById("myInput");
@@ -112,4 +112,4 @@ function saveGarden(user) {
     console.log(user.toJSON());
     localStorage.setItem("users", JSON.stringify(usersArray));
 }
-export { gardent_init, renderGrid, saveGarden };
+export { garden_init, renderGrid, saveGarden };

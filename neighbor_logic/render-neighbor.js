@@ -10,6 +10,7 @@ function render_neighbor_init() {
     if (neighborTitle) {
         neighborTitle.textContent = `${neighbor.username}'s Garden`;
     }
+    // Render garden
     renderNeighborGrid(neighbor);
 }
 export { render_neighbor_init };
