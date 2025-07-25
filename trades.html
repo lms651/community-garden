@@ -15,10 +15,10 @@
     <!--Font awesome star-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-    <title>My Garden</title>
+    <title>My Trades</title>
 </head>
 
-<body class="neighbor-page">
+<body class="trades-page">
 
     <header class="bg-white">
     <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -109,83 +109,42 @@
       </div>
     </header>
 
+<div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
 
-  <h2 class="text-4xl font-bold text-gray-900 mb-8 flex justify-center" id="neighbor-title">Neighbor's Garden</h2><br>
+  <h2 class="text-4xl font-bold text-gray-900 mb-8 flex justify-center">My Trades</h2>
+  <p class="font-medium text-gray-800 flex justify-center"><i>Accept Offers & View History</i></p><br>
 
-<!--Empty Garden Grid Container-->
-<section class="bg-white">
-  <div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
-    <div id="neighbor-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+
+  <section class="my-6">
+  <h2 class="text-xl font-semibold mb-2">Current Offers</h2>
+  <div class="bg-white shadow p-4 rounded mb-3">
+    📅 07/18/2025 — You offered <strong>BT</strong>: 🍅 Tomatoes for 🍆 Eggplant
   </div>
 </section>
 
-<!--Trade Modal-->
-<div
-  id="trade-modal"
-  class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="modalTitle"
->
-  <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-    <div class="flex items-start justify-between">
-      <h2 id="trade-modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Set up a trade!</h2><br><br>
-
-      <button
-        type="button"
-        id="exit-trade-modal"
-        class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none"
-        aria-label="Close"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Trade Dropdown -->
-<div class="trade-dropdown-container relative w-full max-w-xs mx-auto mt-4">
-  <p>Choose one of your plants to offer:</p><br>
-
-  <input 
-    type="text" 
-    placeholder="Start typing your crop..." 
-    id="trade-dropdown-input" 
-    class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-  />
-
-  <div 
-    id="trade-dropdown-content" 
-    class="trade-dropdown-content mt-1 border border-gray-200 rounded-md shadow bg-white max-h-60 overflow-y-auto z-50"
-    style="position: absolute; width: 100%;"
-  >
-    <!-- <button class="block w-full text-left px-4 py-2 hover:bg-gray-100">Test Veg 1</button> -->
-  </div>
-</div>
-    <br><br>
-
-    
-
-    <div id="offer-btn">
-      <button
-      type="button"
-      id="save-edit"
-      class="rounded bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800"
-      >Submit Trade Offer</button>
+<section class="my-6">
+  <h2 class="text-xl font-semibold mb-2">Incoming Requests</h2>
+  <div class="bg-white shadow p-4 rounded mb-3">
+    📅 09/12/2025 — <strong>Sarah</strong> wants to trade 🥬 Lettuce for 🍍 Pineapple
+    <div class="mt-2">
+      <button class="bg-green-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-green-700 transition">
+Accept</button>
+      <button class="bg-red-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-red-700 transition ml-2">Decline</button>
     </div>
   </div>
+</section>
+
+<section class="my-6">
+  <h2 class="text-xl font-semibold mb-2">Trade History</h2>
+  <div class="bg-gray-100 p-4 rounded mb-2">
+    ✅ 09/02/2025 — You traded <strong>Joe</strong>: 🥬 Kale for 🥕 Parsnips
+  </div>
+  <div class="bg-gray-100 p-4 rounded mb-2">
+    📅 08/22/2025 — You traded <strong>Sarah</strong>: 🌶️ Peppers for 🍆 Eggplant
+  </div>
+</section>
 </div>
+
 
 
 <script type="module" src="app.js"></script>
