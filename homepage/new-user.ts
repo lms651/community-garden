@@ -1,4 +1,4 @@
-import { User } from "./user.js";
+import { User } from "../user_logic/user.js";
 import { closeRegisterModal } from "./register.js";
 
 function newUser_init() {

@@ -1,4 +1,4 @@
-import { User } from "./user.js";
+import { User } from "../user_logic/user.js";
 function login_init() {
     const loginBtn = document.getElementById("login-button");
     if (loginBtn) {

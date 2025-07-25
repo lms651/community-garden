@@ -1,4 +1,4 @@
-import { MyPlant } from "./myPlant.js";
+import { MyPlant } from "../garden/myPlant.js";
 
 class User {
     id: number;

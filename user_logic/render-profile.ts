@@ -1,7 +1,7 @@
 
 import { loadCurrentUser } from "./user-utils.js";
-import { gardent_init } from "./my-garden.js";
-import { renderGrid } from "./my-garden.js";
+import { gardent_init } from "../garden/my-garden.js";
+import { renderGrid } from "../garden/my-garden.js";
 
 function render_profile_init() {
   const result = loadCurrentUser();

@@ -1,6 +1,6 @@
 import { filter, findPlant } from './plant-inventory.js';
 import { MyPlant } from './myPlant.js';
-import { User } from './user.js';
+import { User } from '../user_logic/user.js';
 
 
 // listeners for dropdown menu functions on profile page

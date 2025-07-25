@@ -1,8 +1,7 @@
-// import { myGarden, saveGarden, loadGarden, renderGrid } from "./my-garden.js";
-import { register_init } from "./register.js";
-import { newUser_init } from "./new-user.js";
-import { login_init } from "./login.js";
-import { render_profile_init } from "./render-profile.js";
+import { register_init } from "./homepage/register.js";
+import { newUser_init } from "./homepage/new-user.js";
+import { login_init } from "./homepage/login.js";
+import { render_profile_init } from "./user_logic/render-profile.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
