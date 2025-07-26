@@ -1,6 +1,6 @@
 class Trade {
     constructor(fromUser, toUser, offeredPlant, requestedPlant, status) {
-        this.date = new Date().toISOString();
+        this.date = new Date().toLocaleString();
         this.fromUser = fromUser;
         this.toUser = toUser;
         this.offeredPlant = offeredPlant;

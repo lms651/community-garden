@@ -72,6 +72,7 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
     dropdownInput.addEventListener("keyup", filterTradeDropdown);
     const exitTradeModal = document.getElementById("exit-trade-modal");
     exitTradeModal.onclick = () => closeTradeModal();
+    // Handle submit trade
     const submitTradeBtn = document.getElementById("submit-trade");
     submitTradeBtn.onclick = () => {
         handleTrade(neighborUser, neighborPlantTitle, dropdownInput.value);

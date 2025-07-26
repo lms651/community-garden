@@ -14,7 +14,7 @@ class Trade {
     status: "pending" | "accepted" | "rejected" | "completed"
   )
   {
-    this.date = new Date().toISOString();
+    this.date = new Date().toLocaleString();
     this.fromUser = fromUser;
     this.toUser = toUser;
     this.offeredPlant = offeredPlant;

@@ -93,6 +93,7 @@ function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
   const exitTradeModal = document.getElementById("exit-trade-modal") as HTMLElement;
   exitTradeModal.onclick = () => closeTradeModal();
 
+  // Handle submit trade
   const submitTradeBtn = document.getElementById("submit-trade") as HTMLButtonElement;
   submitTradeBtn.onclick = () => { 
     handleTrade(neighborUser, neighborPlantTitle, dropdownInput.value);

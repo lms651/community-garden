@@ -3,6 +3,7 @@ import { newUser_init } from "./homepage/new-user.js";
 import { login_init } from "./homepage/login.js";
 import { render_profile_init } from "./user_logic/render-profile.js"
 import { render_neighbor_init } from "./neighbor_logic/render-neighbor.js";
+import { render_trades_init } from "./trade_logic/render-trades.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
@@ -20,5 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (body.classList.contains("neighbor-page")) {
         render_neighbor_init();
     }
+
+    if (body.classList.contains("trades-page")) {
+        render_trades_init();
+    }
+
 
 })
