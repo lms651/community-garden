@@ -1,5 +1,5 @@
 import { loadNeighbor } from "../user_logic/user-utils.js";
-import { renderNeighborGrid } from "../garden/neighbor-garden.js";
+import { renderNeighborGrid } from "./neighbor-garden.js";
 function render_neighbor_init() {
     const result = loadNeighbor();
     if (!result)

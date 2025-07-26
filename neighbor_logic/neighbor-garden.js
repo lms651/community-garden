@@ -1,4 +1,5 @@
 import { loadCurrentUser } from '../user_logic/user-utils.js';
+import { handleTrade } from '../trade_logic/trades.js';
 // Adds map items to display grid from neighbor's map
 // listeners for flagged veggies that can be clicked on to offer trade will go here
 function renderNeighborGrid(neighborUser) {
@@ -71,6 +72,12 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
     dropdownInput.addEventListener("keyup", filterTradeDropdown);
     const exitTradeModal = document.getElementById("exit-trade-modal");
     exitTradeModal.onclick = () => closeTradeModal();
+    const submitTradeBtn = document.getElementById("submit-trade");
+    submitTradeBtn.onclick = () => {
+        handleTrade(neighborUser, neighborPlantTitle, dropdownInput.value);
+        closeTradeModal();
+        window.alert('trade offer sent!');
+    };
 }
 // Filter function for trade modal dropdown
 function filterTradeDropdown() {

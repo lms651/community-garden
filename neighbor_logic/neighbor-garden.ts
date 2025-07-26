@@ -1,5 +1,6 @@
 import { User } from '../user_logic/user.js';
 import { loadCurrentUser } from '../user_logic/user-utils.js';
+import { handleTrade } from '../trade_logic/trades.js';
 
 
 // Adds map items to display grid from neighbor's map
@@ -91,6 +92,14 @@ function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
 
   const exitTradeModal = document.getElementById("exit-trade-modal") as HTMLElement;
   exitTradeModal.onclick = () => closeTradeModal();
+
+  const submitTradeBtn = document.getElementById("submit-trade") as HTMLButtonElement;
+  submitTradeBtn.onclick = () => { 
+    handleTrade(neighborUser, neighborPlantTitle, dropdownInput.value);
+    closeTradeModal();
+    window.alert('trade offer sent!');
+  }
+
 }
 
 
