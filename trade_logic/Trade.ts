@@ -4,14 +4,14 @@ class Trade {
     toUser: string;   // neighborUser.username
     offeredPlant: string;  // from currentUser dropdown input
     requestedPlant: string; // neighborPlantTitle
-    status: "pending" | "accepted" | "rejected" | "completed";
+    status: "pending" | "accepted" | "rejected" | "completed" | "canceled";
 
   constructor(
     fromUser: string,
     toUser: string,
     offeredPlant: string,
     requestedPlant: string,
-    status: "pending" | "accepted" | "rejected" | "completed"
+    status: "pending" | "accepted" | "rejected" | "completed" | "canceled"
   )
   {
     this.date = new Date().toLocaleString();

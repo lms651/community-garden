@@ -25,7 +25,22 @@ function loadTrades(): Trade[] {
   return tradesArray.map((trade: any) => Trade.fromJSON(trade));
 }
 
+function removeTrade(trade: Trade, allTrades: Trade[]): void {
+
+  // Find index by unique date (if unique)
+  const index = allTrades.findIndex(t => t.date === trade.date);
+
+  if (index !== -1) {
+    allTrades.splice(index, 1);
+    localStorage.setItem("trades", JSON.stringify(allTrades));
+    console.log("Trade removed, new length:", allTrades.length);
+  } else {
+    console.warn("Trade not found for deletion:", trade);
+  }
+}
+
 export {
     handleTrade,
-    loadTrades
+    loadTrades,
+    removeTrade
 }
