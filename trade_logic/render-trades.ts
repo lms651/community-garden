@@ -17,14 +17,15 @@ function render_trades_init(): void {
 
   // loop through all trades and check for those pertaining to current user
   // i.e., check fromUser and toUser fields
-
   for (const trade of allTrades) {
-    if (trade.fromUser === currentUser.username) {
-    // This is a trade I initiated and goes in "Current Offers"
-    renderTradeOffer(trade, currentUser);
+    if (trade.status === "completed") {
+      renderCompletedTrade(trade, currentUser);
+    } else if (trade.status === "accepted") {
+      renderAcceptedTrade(trade, currentUser);
+    } else if (trade.fromUser === currentUser.username) {
+      renderTradeOffer(trade, currentUser);
     } else if (trade.toUser === currentUser.username) {
-    // Someone sent me a trade and goes in "Incoming Requests"
-    renderTradeRequest(trade, currentUser);
+      renderTradeRequest(trade, currentUser);
     }
   }
 }
@@ -91,11 +92,14 @@ function renderAcceptedTrade(trade: Trade, currentUser: User): void {
   const container = document.getElementById("accepted-trades");
   if (!container) return;
 
+  // Determine if you are from or to user
+  const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
+
   const div = document.createElement("div");
   div.className = "bg-white shadow p-4 rounded mb-3";
 
   div.innerHTML = `
-    📅 ${trade.date} — Trade between <strong>${trade.fromUser}</strong> and you:
+    📅 ${trade.date} — Trade between <strong>${userType}</strong> and you:
     ${trade.offeredPlant} ↔ ${trade.requestedPlant}
     <div class="mt-2">
       <button class="complete-btn bg-blue-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-blue-700 transition">Mark Complete</button>
@@ -103,6 +107,37 @@ function renderAcceptedTrade(trade: Trade, currentUser: User): void {
 
   container.appendChild(div);
 
+    const completeBtn = div.querySelector(".complete-btn") as HTMLButtonElement;
+    completeBtn.addEventListener("click", () => {
+    // Mark as completed — update trade object
+    trade.status = "completed"; 
+    div.remove(); // Remove from current list
+    // Add to Completed section
+    renderCompletedTrade(trade, currentUser); 
+    // update local storage
+    localStorage.setItem("trades", JSON.stringify(allTrades));
+  });
+
+
+
+}
+
+function renderCompletedTrade(trade: Trade, currentUser: User): void {
+  const container = document.getElementById("completed-trades");
+  if (!container) return;
+
+    // Determine if you are from or to user
+  const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
+
+  const div = document.createElement("div");
+  div.className = "bg-white shadow p-4 rounded mb-3";
+
+  div.innerHTML = `
+    ✅ ${trade.date} — Trade between <strong>${userType}</strong> and you:
+    ${trade.offeredPlant} ↔ ${trade.requestedPlant}
+    `;
+
+  container.appendChild(div);
 }
 
 export {
