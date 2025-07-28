@@ -1,10 +1,11 @@
-import { loadUsers } from "./user_logic/user-utils.js";
+import { loadUsers } from "../user_logic/user-utils.js";
 /// <reference types="google.maps" />
 let map;
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
     const { Autocomplete } = await google.maps.importLibrary("places");
+    //   await google.maps.importLibrary("places");
     map = new Map(document.getElementById("map"), {
         center: { lat: 42.3601, lng: -71.0589 }, // Boston
         zoom: 8,
@@ -12,7 +13,7 @@ async function initMap() {
     });
     const users = loadUsers(); // Get all users from localStorage
     await placeAllUserMarkers(users);
-    //   // Autocomplete element logic. Let visitors search zip
+    // Autocomplete element logic. Let visitors search zip
     //   const autocompleteEl = document.getElementById("autocomplete") as HTMLElement;
     //   autocompleteEl.addEventListener("gmpx-placeautocomplete-placeviewed", (event: any) => {
     //   const place = event.detail.place;
@@ -21,6 +22,18 @@ async function initMap() {
     //     map.setCenter({ lat: loc.lat(), lng: loc.lng() });
     //     map.setZoom(12);
     //  }
+    // });
+    // const autocompleteEl = document.getElementById("autocomplete") as HTMLElement;
+    // autocompleteEl.addEventListener("gmpx-placeautocomplete-placeviewed", (event: any) => {
+    //   const place = event.detail.place;
+    //   if (place.geometry?.location) {
+    //     const location = place.geometry.location;
+    //     // Do something with the selected place location
+    //     console.log("Selected place location:", location.lat(), location.lng());
+    //     // e.g., center your map on this location:
+    //     map.setCenter({ lat: location.lat(), lng: location.lng() });
+    //     map.setZoom(14);
+    //   }
     // });
     // }
     // Allow visitor to enter zip and see pins nearby
@@ -87,4 +100,4 @@ async function addUserMarker(user) {
         content: pin.element,
     });
 }
-export { initMap };
+export { initMap, geocodeAddress };

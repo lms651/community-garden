@@ -4,7 +4,8 @@ import { login_init } from "./homepage/login.js";
 import { render_profile_init } from "./user_logic/render-profile.js"
 import { render_neighbor_init } from "./neighbor_logic/render-neighbor.js";
 import { render_trades_init } from "./trade_logic/render-trades.js";
-import { initMap } from "./map.js";
+import { initMap } from "./maps/map.js";
+import { init_profile_map } from "./maps/profile-map.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (body.classList.contains("profile-page")) {
         render_profile_init();
+        init_profile_map();
     }
 
     if (body.classList.contains("neighbor-page")) {

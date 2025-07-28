@@ -1,6 +1,7 @@
-import { User } from "./user_logic/user";
-import { loadUsers } from "./user_logic/user-utils.js";
+import { User } from "../user_logic/user.js";
+import { loadUsers } from "../user_logic/user-utils.js";
 /// <reference types="google.maps" />
+
 
 
 let map: google.maps.Map;
@@ -10,6 +11,8 @@ async function initMap(): Promise<void> {
 
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
   const { Autocomplete } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
+//   await google.maps.importLibrary("places");
+
 
 
   map = new Map(document.getElementById("map") as HTMLElement, {
@@ -21,7 +24,7 @@ async function initMap(): Promise<void> {
   const users = loadUsers(); // Get all users from localStorage
   await placeAllUserMarkers(users);
 
-//   // Autocomplete element logic. Let visitors search zip
+  // Autocomplete element logic. Let visitors search zip
 //   const autocompleteEl = document.getElementById("autocomplete") as HTMLElement;
 
 //   autocompleteEl.addEventListener("gmpx-placeautocomplete-placeviewed", (event: any) => {
@@ -31,6 +34,20 @@ async function initMap(): Promise<void> {
 //     map.setCenter({ lat: loc.lat(), lng: loc.lng() });
 //     map.setZoom(12);
 //  }
+// });
+
+// const autocompleteEl = document.getElementById("autocomplete") as HTMLElement;
+
+// autocompleteEl.addEventListener("gmpx-placeautocomplete-placeviewed", (event: any) => {
+//   const place = event.detail.place;
+//   if (place.geometry?.location) {
+//     const location = place.geometry.location;
+//     // Do something with the selected place location
+//     console.log("Selected place location:", location.lat(), location.lng());
+//     // e.g., center your map on this location:
+//     map.setCenter({ lat: location.lat(), lng: location.lng() });
+//     map.setZoom(14);
+//   }
 // });
 
 // }
@@ -110,5 +127,6 @@ async function addUserMarker(user: User) {
 
 
 export {
-    initMap
+    initMap,
+    geocodeAddress
 }
