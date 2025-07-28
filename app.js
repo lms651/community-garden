@@ -4,14 +4,18 @@ import { login_init } from "./homepage/login.js";
 import { render_profile_init } from "./user_logic/render-profile.js"
 import { render_neighbor_init } from "./neighbor_logic/render-neighbor.js";
 import { render_trades_init } from "./trade_logic/render-trades.js";
+import { initMap } from "./map.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
 
+
     if (body.classList.contains("homepage")) {
+        initMap();
         login_init();
         register_init();
         newUser_init();
+
     }
     
     if (body.classList.contains("profile-page")) {
