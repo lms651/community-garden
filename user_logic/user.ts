@@ -34,15 +34,19 @@ class User {
       localStorage.setItem("userNextId", id.toString());
   }
 
-    // Convert garden map to object for saving to localstorage
-    mapToObj(map: Map<string, MyPlant>): Record<string, MyPlant> {
-    return Object.fromEntries(map);
-    }
+  getFullAddress(): string {
+    return `${this.street}, ${this.city}, ${this.state}, ${this.zip} ${this.country}`;
+  }
 
-    objToMap(obj: Record<string, MyPlant> | null | undefined): Map<string, MyPlant> {
-      if (!obj) return new Map(); // Return empty map if null/undefined
-      return new Map(Object.entries(obj));
-    }
+  // Convert garden map to object for saving to localstorage
+  mapToObj(map: Map<string, MyPlant>): Record<string, MyPlant> {
+    return Object.fromEntries(map);
+  }
+
+  objToMap(obj: Record<string, MyPlant> | null | undefined): Map<string, MyPlant> {
+    if (!obj) return new Map(); // Return empty map if null/undefined
+    return new Map(Object.entries(obj));
+  }
     
 
 static fromJson(obj: any): User {

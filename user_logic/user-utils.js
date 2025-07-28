@@ -38,4 +38,11 @@ function loadNeighbor() {
     const user = User.fromJson(rawUser);
     return { user, index };
 }
-export { loadCurrentUser, loadNeighbor };
+function loadUsers() {
+    const usersRaw = localStorage.getItem("users");
+    if (!usersRaw)
+        return [];
+    const parsed = JSON.parse(usersRaw);
+    return parsed.map((rawUser) => User.fromJson(rawUser));
+}
+export { loadCurrentUser, loadNeighbor, loadUsers };

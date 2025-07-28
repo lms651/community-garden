@@ -19,6 +19,9 @@ class User {
     static saveNextId(id) {
         localStorage.setItem("userNextId", id.toString());
     }
+    getFullAddress() {
+        return `${this.street}, ${this.city}, ${this.state}, ${this.zip} ${this.country}`;
+    }
     // Convert garden map to object for saving to localstorage
     mapToObj(map) {
         return Object.fromEntries(map);

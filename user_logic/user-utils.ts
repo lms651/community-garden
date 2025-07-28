@@ -46,8 +46,17 @@ function loadNeighbor(): { user: User, index: number } | null {
   return { user, index };
 }
 
+function loadUsers(): User[] {
+  const usersRaw = localStorage.getItem("users");
+  if (!usersRaw) return [];
+
+  const parsed = JSON.parse(usersRaw);
+  return parsed.map((rawUser: any) => User.fromJson(rawUser));
+}
+
 export {
     loadCurrentUser,
-    loadNeighbor
+    loadNeighbor,
+    loadUsers
 }
 
