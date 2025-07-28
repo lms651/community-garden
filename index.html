@@ -117,13 +117,30 @@
     </div>
   </div>
 
-<!--Map Container-->
-<div style="max-width: 900px; margin: 0 auto; text-align: center;">
+<!-- Map Container -->
+<!-- <div style="max-width: 900px; margin: 0 auto; text-align: center;">
   <div id="map" style="height: 500px; width: 80%; margin: 0 auto; border: 1px solid #ccc;"></div>
   
   <div style="margin-top: 1rem; width: 80%; margin-left: auto; margin-right: auto; margin-bottom: 1rem;">
-    <label for="address-input" style="display: block; margin-bottom: 0.5rem; text-align: center;">What's sprouting near you?</label>
-    <input id="address-input" type="text" placeholder="Enter zip..." style="width: 30%; padding: 0.5rem;" />
+    <label for="autocomplete" style="display: block; margin-bottom: 0.5rem; text-align: center;">What's sprouting near you?</label>
+    <gmpx-placeautocomplete
+      id="autocomplete"
+      style="width: 300px;"
+      placeholder="Enter zip...">
+    </gmpx-placeautocomplete>  
+    </div>
+</div> -->
+
+<!-- Map Container -->
+<div style="max-width: 900px; margin: 0 auto; text-align: center;">
+  <div id="map" style="height: 500px; width: 80%; margin: 0 auto; border: 1px solid #ccc;"></div>
+
+  <div style="margin-top: 1rem; width: 80%; margin: 1rem auto;">
+    <label for="zip-input" style="display: block; margin-bottom: 0.5rem;">What's sprouting near you?</label>
+    
+    <input id="zip-input" type="text" placeholder="Enter zip..." style="width: 30%; padding: 0.5rem;" />
+
+
   </div>
 </div>
 
@@ -376,9 +393,10 @@
     </div>
     </footer>
 
-        <!-- prettier-ignore -->
+    
+        <!-- Maps -->
     <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyAbXMbdECIT2pMB0FYHsm67E8oVnvwOzpU", v: "weekly"});</script>
+        ({key: "AIzaSyAbXMbdECIT2pMB0FYHsm67E8oVnvwOzpU", v: "weekly", libraries: "maps,marker,places", experimental: "placeautocomplete" });</script>
 
         <script type="module" src="app.js"></script>
 
