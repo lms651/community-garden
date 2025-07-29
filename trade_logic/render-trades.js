@@ -123,7 +123,7 @@ function renderCompletedTrade(trade, currentUser) {
     // Determine if you are from or to user
     const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
     const div = document.createElement("div");
-    div.className = "bg-white shadow p-4 rounded mb-3";
+    div.className = "bg-white shadow p-5 rounded mb-3";
     div.innerHTML = `
     ✅ ${trade.date} — Trade between <strong>${userType}</strong> and you:
     ${trade.offeredPlant} ↔ ${trade.requestedPlant}

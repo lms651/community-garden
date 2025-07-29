@@ -1,3 +1,19 @@
+/* @media (max-width: 639px) {
+  .header-padding-adjust {
+    padding-left: 1rem; 
+    padding-right: 2rem; 
+  }
+}
+
+@media (max-width: 639px) {
+  .notification-user-wrapper {
+    position: static !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 0.5rem;
+  }
+} */
 /* DROPDOWN TO ADD GARDEN VEG */
 .dropbtn {
   background-color: #04AA6D;
