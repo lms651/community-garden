@@ -14,15 +14,21 @@ function render_messages_init(): void {
     const messagesContainer = document.getElementById("messagesContainer");
     if (!messagesContainer) return;
 
-  // Clear container
+    // Clear container
     messagesContainer.innerHTML = "";
 
-    // loop through all trades and check for those pertaining to current user and marked "accepted"
-    // i.e., check fromUser and toUser fields
-    for (const trade of allTrades) {
-        if (trade.status === "accepted" && (trade.fromUser === currentUser.username || trade.toUser === currentUser.username)) {
-            renderAcceptedMessage(trade, currentUser);
-        }
+    // Filter accepted trades related to current user
+    const relevantTrades = allTrades.filter(trade =>
+        trade.status === "accepted" &&
+        (trade.fromUser === currentUser.username || trade.toUser === currentUser.username)
+    );
+
+    // Sort by date descending
+    relevantTrades.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    // Render in sorted order
+    for (const trade of relevantTrades) {
+        renderAcceptedMessage(trade, currentUser);
     }
 }
 

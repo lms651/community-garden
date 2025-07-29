@@ -1,19 +1,16 @@
 var _a;
 import { loadCurrentUser } from "../user_logic/user-utils.js";
-import { loadTrades } from "./trades.js";
-import { removeTrade } from "./trades.js";
+import { loadTrades, saveTrades, removeTrade } from "./trades.js";
 const allTrades = (_a = loadTrades()) !== null && _a !== void 0 ? _a : [];
 function render_trades_init() {
-    // load current user's trades bc we are only ever rendering the current user's trades
-    // users cannot view another user's trades
     const result = loadCurrentUser();
     if (!result)
         return;
     const currentUser = result.user;
-    console.log("current user is:" + currentUser.username);
-    // loop through all trades and check for those pertaining to current user
-    // i.e., check fromUser and toUser fields
-    for (const trade of allTrades) {
+    // Sort allTrades by descending date
+    const sortedTrades = [...allTrades].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // Loop through sorted trades
+    for (const trade of sortedTrades) {
         if (trade.status === "completed") {
             renderCompletedTrade(trade, currentUser);
         }
@@ -43,7 +40,7 @@ function renderTradeOffer(trade, currentUser) {
         // update local storage
         trade.status = "canceled";
         removeTrade(trade, allTrades);
-        localStorage.setItem("trades", JSON.stringify(allTrades));
+        saveTrades(allTrades);
     });
 }
 function renderTradeRequest(trade, currentUser) {
@@ -68,14 +65,14 @@ function renderTradeRequest(trade, currentUser) {
         // Add to Accepted section
         renderAcceptedTrade(trade, currentUser);
         // update local storage
-        localStorage.setItem("trades", JSON.stringify(allTrades));
+        saveTrades(allTrades);
     });
     declineBtn.addEventListener("click", () => {
         trade.status = "rejected";
         div.remove(); // Simply remove from view
         // update local storage
         removeTrade(trade, allTrades);
-        localStorage.setItem("trades", JSON.stringify(allTrades));
+        saveTrades(allTrades);
     });
 }
 function renderAcceptedTrade(trade, currentUser) {
@@ -90,10 +87,19 @@ function renderAcceptedTrade(trade, currentUser) {
     📅 ${trade.date} — Trade between <strong>${userType}</strong> and you:
     ${trade.offeredPlant} ↔ ${trade.requestedPlant}
     <div class="mt-2">
-      <button class="complete-btn bg-blue-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-blue-700 transition">Mark Complete</button>
-      <button class="message-btn bg-yellow-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-yellow-700 transition">Send Message</button>
-    </div>`;
+      <button class="complete-btn bg-green-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-green-700 transition">Mark Complete</button>
+      <button class="message-btn bg-blue-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-blue-700 transition">Send Message</button>
+      <button class="cancel-btn bg-red-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-red-700 transition ml-2">Cancel</button>
+      </div>`;
     container.appendChild(div);
+    const cancelBtn = div.querySelector(".cancel-btn");
+    cancelBtn.addEventListener("click", () => {
+        div.remove(); // Simply remove from view
+        // update local storage
+        trade.status = "canceled";
+        removeTrade(trade, allTrades);
+        saveTrades(allTrades);
+    });
     const messageBtn = div.querySelector(".message-btn");
     messageBtn.addEventListener("click", () => {
         window.location.href = "messages.html";
@@ -103,10 +109,11 @@ function renderAcceptedTrade(trade, currentUser) {
         // Mark as completed — update trade object
         trade.status = "completed";
         div.remove(); // Remove from current list
+        trade.messages = []; // Remove from active messages
         // Add to Completed section
         renderCompletedTrade(trade, currentUser);
         // update local storage
-        localStorage.setItem("trades", JSON.stringify(allTrades));
+        saveTrades(allTrades);
     });
 }
 function renderCompletedTrade(trade, currentUser) {
