@@ -25,6 +25,9 @@ function garden_init(user: User): void {
     btn.addEventListener("click", () => {
       const title = btn.textContent!;
       addVegToGrid(title, user);
+
+      // Close the dropdown modal
+      dropDownMenu.classList.remove("show");
     });
   });
 }

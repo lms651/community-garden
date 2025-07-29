@@ -48,7 +48,7 @@ async function addProfileUserMarker(user) {
     const hasTradePlant = Array.from(user.gardenMap.values()).some(plant => plant.forTrade);
     const pin = new PinElement({
         background: hasTradePlant ? "#34c759" : "#FF5E5E", // green for trade, red otherwise
-        glyph: user.username[0].toUpperCase(),
+        glyph: isCurrentUser ? "★" : user.username[0].toUpperCase(),
         glyphColor: "#fff",
         borderColor: hasTradePlant ? "#0a773f" : "#8b0000",
         scale: isCurrentUser ? 1.5 : 1.0, // make current user’s marker slightly bigger
