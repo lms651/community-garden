@@ -1,9 +1,12 @@
 import { User } from "../user_logic/user.js";
 import { loadUsers, loadCurrentUser } from "../user_logic/user-utils.js";
 import { geocodeAddress } from "./map.js";
+import { filterForMap } from "../garden/plant-inventory.js";
 /// <reference types="google.maps" />
 
 let map: google.maps.Map;
+// NEW Saves user markers for easy filtering if needed
+const userMarkers: { user: User, marker: google.maps.marker.AdvancedMarkerElement }[] = [];
 
 async function init_profile_map(): Promise<void> {
   const result = loadCurrentUser();
@@ -78,6 +81,8 @@ async function addProfileUserMarker(user: User) {
     content: pin.element,
     gmpClickable: !isCurrentUser,
   });
+    // NEW -- FOR SAVING MARKER to filter later
+    userMarkers.push({ user, marker });
 
   if (!isCurrentUser) {
     pin.element.style.cursor = "pointer";
@@ -96,8 +101,46 @@ async function addProfileUserMarker(user: User) {
       }
     });
   }
+
+}
+
+// NEW - TO FILTER FOR DROPDOWN
+function filterMarkersByCrop(cropTitle: string): void {
+  userMarkers.forEach(({ user, marker }) => {
+    const hasCrop = Array.from(user.gardenMap.values()).some(
+      plant => plant.title === cropTitle
+    );
+
+    marker.map = hasCrop ? map : null;
+  });
+}
+
+// NEW - LISTENERS FOR MAP FILTER
+function filter_map_init(): void {
+  const filterDropDownBtn = document.getElementById("map-dropdown");
+  const filterDropDownMenu = document.getElementById("filter-map-dropdown");
+  const mapInput = document.getElementById("myMapInput");
+
+  if (!filterDropDownBtn || !filterDropDownMenu || !mapInput) return;
+
+  filterDropDownBtn.addEventListener("click", () => {
+    filterDropDownMenu.classList.toggle("show");
+  });
+
+  mapInput.addEventListener("keyup", filterForMap);
+
+  document.querySelectorAll(".map-dropdown-content button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const title = btn.textContent!;
+      filterMarkersByCrop(title);
+
+      // Close the dropdown modal
+      filterDropDownMenu.classList.remove("show");
+    });
+  });
 }
 
 export {
-    init_profile_map
+    init_profile_map,
+    filter_map_init
 }

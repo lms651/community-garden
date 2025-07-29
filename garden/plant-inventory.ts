@@ -38,9 +38,28 @@ function filter(): void {
   });
 }
 
+// dropdown for map filter by veg
+function filterForMap(): void { 
+  const userInput = document.getElementById("myMapInput") as HTMLInputElement;
+  const userInputLowerCase = userInput.value.toLowerCase();
+  const dropDownList = document.getElementById("filter-map-dropdown") as HTMLInputElement;
+  const items: HTMLButtonElement[]  = Array.from(dropDownList.getElementsByTagName("button"));
+
+  items.forEach(item => {
+    const txtValue = item.textContent!;
+    if (txtValue.toLowerCase().indexOf(userInputLowerCase) > -1) {
+      item.style.display = "";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
+
+
 export {
     findPlant,
     plantInventory,
     Plant,
-    filter
+    filter,
+    filterForMap
 }

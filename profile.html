@@ -42,24 +42,8 @@
         </nav>
 
     
-        
+        <!--Right side of header-->
         <div class="flex items-center gap-4">
-          <!--Search Bar-->
-          <i>Search for more gardens near you!</i>
-          <div class="bg-teal-600 flex justify-center items-center">
-          <div class="relative">
-          <input
-          type="text"
-          class="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none transition-all duration-300 ease-in-out w-12 focus:w-32"
-          placeholder="Enter zip...">
-          <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
-            <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z">
-                </path>
-            </svg>
-          </button>
-        </div>
-        </div>
         
         <!--Notifications-->
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -141,8 +125,27 @@
 <!-- Map Container -->
 <div style="max-width: 900px; margin: 4rem auto 0 auto; text-align: center;">
     <h2 class="text-4xl font-bold text-gray-900 mb-8 flex justify-center">My Community</h2>
-  <div id="map-profile" style="height: 500px; width: 80%; margin: 0 auto; border: 1px solid #ccc;"></div>
+      <!--Filter Map by Veg-->
+<div class="flex justify-center my-8">
+<div class="dropdownmap relative">
+  <button id="map-dropdown" class="dropbtnmap rounded-full">Find a Crop</button>
+  <div id="filter-map-dropdown" class="map-dropdown-content">
+    <input type="text" placeholder="Start typing your crop.." id="myMapInput">
+    <button>Apple, Green</button>
+    <button>Tomato, Heirloom</button>
+    <button>Squash, Butternut</button>
+    <button>Squash, Summer</button>
+    <button>Cucumber, English</button>
+    <button>Eggplant, Japanese</button>
+    <button>Lettuce, Romaine</button>
+  </div>
 </div>
+</div>
+
+  <div id="map-profile" style="height: 500px; width: 80%; margin: 0 auto 2.5rem; border: 1px solid #ccc;"></div>
+</div>
+
+
 
 <!--Edit Modal-->
 <div

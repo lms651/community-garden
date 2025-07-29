@@ -1,7 +1,10 @@
 import { loadUsers, loadCurrentUser } from "../user_logic/user-utils.js";
 import { geocodeAddress } from "./map.js";
+import { filterForMap } from "../garden/plant-inventory.js";
 /// <reference types="google.maps" />
 let map;
+// NEW Saves user markers for easy filtering if needed
+const userMarkers = [];
 async function init_profile_map() {
     const result = loadCurrentUser();
     if (!result)
@@ -60,6 +63,8 @@ async function addProfileUserMarker(user) {
         content: pin.element,
         gmpClickable: !isCurrentUser,
     });
+    // NEW -- FOR SAVING MARKER to filter later
+    userMarkers.push({ user, marker });
     if (!isCurrentUser) {
         pin.element.style.cursor = "pointer";
         pin.element.setAttribute("tabindex", "0");
@@ -76,4 +81,31 @@ async function addProfileUserMarker(user) {
         });
     }
 }
-export { init_profile_map };
+// NEW - TO FILTER FOR DROPDOWN
+function filterMarkersByCrop(cropTitle) {
+    userMarkers.forEach(({ user, marker }) => {
+        const hasCrop = Array.from(user.gardenMap.values()).some(plant => plant.title === cropTitle);
+        marker.map = hasCrop ? map : null;
+    });
+}
+// NEW - LISTENERS FOR MAP FILTER
+function filter_map_init() {
+    const filterDropDownBtn = document.getElementById("map-dropdown");
+    const filterDropDownMenu = document.getElementById("filter-map-dropdown");
+    const mapInput = document.getElementById("myMapInput");
+    if (!filterDropDownBtn || !filterDropDownMenu || !mapInput)
+        return;
+    filterDropDownBtn.addEventListener("click", () => {
+        filterDropDownMenu.classList.toggle("show");
+    });
+    mapInput.addEventListener("keyup", filterForMap);
+    document.querySelectorAll(".map-dropdown-content button").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const title = btn.textContent;
+            filterMarkersByCrop(title);
+            // Close the dropdown modal
+            filterDropDownMenu.classList.remove("show");
+        });
+    });
+}
+export { init_profile_map, filter_map_init };

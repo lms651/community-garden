@@ -29,4 +29,20 @@ function filter() {
         }
     });
 }
-export { findPlant, plantInventory, filter };
+// dropdown for map filter by veg
+function filterForMap() {
+    const userInput = document.getElementById("myMapInput");
+    const userInputLowerCase = userInput.value.toLowerCase();
+    const dropDownList = document.getElementById("filter-map-dropdown");
+    const items = Array.from(dropDownList.getElementsByTagName("button"));
+    items.forEach(item => {
+        const txtValue = item.textContent;
+        if (txtValue.toLowerCase().indexOf(userInputLowerCase) > -1) {
+            item.style.display = "";
+        }
+        else {
+            item.style.display = "none";
+        }
+    });
+}
+export { findPlant, plantInventory, filter, filterForMap };
