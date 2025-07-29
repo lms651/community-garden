@@ -20,6 +20,9 @@ function loadTrades() {
     const tradesArray = JSON.parse(tradesRaw);
     return tradesArray.map((trade) => Trade.fromJSON(trade));
 }
+function saveTrades(trades) {
+    localStorage.setItem("trades", JSON.stringify(trades));
+}
 function removeTrade(trade, allTrades) {
     // Find index by unique date (if unique)
     const index = allTrades.findIndex(t => t.date === trade.date);
@@ -32,4 +35,4 @@ function removeTrade(trade, allTrades) {
         console.warn("Trade not found for deletion:", trade);
     }
 }
-export { handleTrade, loadTrades, removeTrade };
+export { handleTrade, loadTrades, removeTrade, saveTrades };

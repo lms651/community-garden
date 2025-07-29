@@ -6,6 +6,7 @@ import { render_neighbor_init } from "./neighbor_logic/render-neighbor.js";
 import { render_trades_init } from "./trade_logic/render-trades.js";
 import { initMap } from "./maps/map.js";
 import { filter_map_init, init_profile_map } from "./maps/profile-map.js";
+import { render_messages_init } from "./messages_logic/render-messages.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
@@ -31,6 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (body.classList.contains("trades-page")) {
         render_trades_init();
+    }
+
+        if (body.classList.contains("messages-page")) {
+        render_messages_init();
     }
 
 

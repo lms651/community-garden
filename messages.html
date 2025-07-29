@@ -7,18 +7,19 @@
     <!--Suppress favicon error-->
     <link rel="icon" href="data:,">
 
-    <script src="https://cdn.tailwindcss.com"></script>
 
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="stylesheet" href="stylesheet.css">
 
     <!--Font awesome star-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-    <title>My Garden</title>
+
+    <title>My Messages</title>
 </head>
 
-<body class="profile-page">
+<body class="messages-page">
 
     <header class="bg-white">
     <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -40,9 +41,7 @@
             </li>
             </ul>
         </nav>
-
-    
-        <!--Right side of header-->
+        
         <div class="flex items-center gap-4">
         
         <!--Notifications-->
@@ -83,7 +82,7 @@
             <a href="trades.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">My Trades</a>
             <a href="messages.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">My Messages</a>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">Settings</a>
-            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">Log out</a>
+            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">Sign out</a>
           </div>
         </div>
 
@@ -95,118 +94,42 @@
     </header>
 
 
-  <h2 class="text-4xl font-bold text-gray-900 mb-8 flex justify-center">My Garden</h2>
-  <p class="font-medium text-gray-800 flex justify-center"><i>Click a crop to change its status or</i></p><br>
+<div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
+  <h2 class="text-4xl font-bold text-gray-900 mb-8 flex justify-center">My Messages</h2>
+  <p class="font-medium text-gray-800 flex justify-center"><i>Click on a trade to view or send messages</i></p><br>
 
-  <!--Add Vegetable-->
-  <div class="flex justify-center">
-
-  <div class="dropdown relative">
-  <button id="add-dropdown" class="dropbtn rounded-full">Add a Crop</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Start typing your crop.." id="myInput">
-    <button>Apple, Green</button>
-    <button>Tomato, Heirloom</button>
-    <button>Squash, Butternut</button>
-    <button>Squash, Summer</button>
-    <button>Cucumber, English</button>
-    <button>Eggplant, Japanese</button>
-    <button>Lettuce, Romaine</button>
-  </div>
-</div>
-</div>
-
-<!--Empty Garden Grid Container-->
-<section class="bg-white">
-  <div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
-    <div id="myGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
-  </div>
-</section>
-
-<!-- Map Container -->
-<div style="max-width: 900px; margin: 4rem auto 0 auto; text-align: center;">
-    <h2 class="text-4xl font-bold text-gray-900 mb-8 flex justify-center">My Community</h2>
-      <!--Filter Map by Veg-->
-<div class="flex justify-center my-8">
-<div class="dropdownmap relative">
-  <button id="map-dropdown" class="dropbtnmap rounded-full">Find a Crop</button>
-  <div id="filter-map-dropdown" class="map-dropdown-content">
-    <input type="text" placeholder="Start typing your crop.." id="myMapInput">
-    <button>Apple, Green</button>
-    <button>Tomato, Heirloom</button>
-    <button>Squash, Butternut</button>
-    <button>Squash, Summer</button>
-    <button>Cucumber, English</button>
-    <button>Eggplant, Japanese</button>
-    <button>Lettuce, Romaine</button>
-  </div>
-</div>
-</div>
-
-  <div id="map-profile" style="height: 500px; width: 80%; margin: 0 auto 2.5rem; border: 1px solid #ccc;"></div>
-</div>
-
-
-
-<!--Edit Modal-->
-<div
-  id="edit-modal"
-  class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="modalTitle"
->
-  <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-    <div class="flex items-start justify-between">
-      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Update Plant</h2><br><br>
-
-      <button
-        type="button"
-        id="exit-edit-modal"
-        class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none"
-        aria-label="Close"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-    </div>
-
-    <div id="flag-trade">
-    <p>Flag for trade:</p>
-    <input type="checkbox" class="peer sr-only opacity-0" id="toggle" />
-    <label for="toggle" class="relative flex h-6 w-11 cursor-pointer items-center rounded-full bg-gray-400 px-0.5 outline-gray-400 transition-colors before:h-5 before:w-5 before:rounded-full before:bg-white before:shadow before:transition-transform before:duration-300 peer-checked:bg-green-500 peer-checked:before:translate-x-full peer-focus-visible:outline peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gray-400 peer-checked:peer-focus-visible:outline-green-500">
-          <span class="sr-only">Enable</span>
-    </label>
-    </div>
-    <br>
-
-    <div id="delete-btn">
-      <button
+  <!--Tailwind collapsible-->
+  <!-- <div class="w-full max-w-xl mx-auto my-6">
+  <div class="border border-gray-300 rounded-xl overflow-hidden">
+    <button
       type="button"
-      id="save-edit"
-      class="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-800"
-      >Delete Plant</button>
+      class="w-full px-4 py-3 text-left font-semibold bg-gray-100 hover:bg-gray-200 transition"
+      onclick="document.getElementById('msgPanel1').classList.toggle('hidden')"
+    >
+      Trade with Alex: <span class="font-bold">Tomato for Cucumber</span>
+    </button>
+    <div id="msgPanel1" class="hidden px-4 py-3 bg-white">
+      <ul class="mb-3 space-y-2">
+        <li class="text-sm bg-gray-50 p-2 rounded">You: Hi! Want to swap tomorrow?</li>
+        <li class="text-sm bg-gray-100 p-2 rounded">Alex: Sure! Meet at the community garden?</li>
+      </ul>
+      <div class="flex gap-2">
+        <input
+          type="text"
+          class="flex-grow border border-gray-300 rounded px-3 py-2 text-sm"
+          placeholder="Send a message..."
+        />
+        <button class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">Send</button>
+      </div>
     </div>
   </div>
+</div> -->
+
+<div id="messagesContainer" class="w-full max-w-xl mx-auto my-6"></div>
+
+
+
 </div>
-
-<!--Google Map-->
- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyAbXMbdECIT2pMB0FYHsm67E8oVnvwOzpU", v: "weekly", libraries: "places", experimental: "placeautocomplete" });</script>
-
-
 <script type="module" src="app.js"></script>
 
 

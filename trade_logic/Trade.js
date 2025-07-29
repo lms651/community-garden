@@ -1,11 +1,12 @@
 class Trade {
-    constructor(fromUser, toUser, offeredPlant, requestedPlant, status) {
+    constructor(fromUser, toUser, offeredPlant, requestedPlant, status, messages = []) {
         this.date = new Date().toLocaleString();
         this.fromUser = fromUser;
         this.toUser = toUser;
         this.offeredPlant = offeredPlant;
         this.requestedPlant = requestedPlant;
         this.status = status;
+        this.messages = messages;
     }
     getFormattedDate() {
         return new Date(this.date).toLocaleDateString();
@@ -18,11 +19,14 @@ class Trade {
             toUser: this.toUser,
             offeredPlant: this.offeredPlant,
             requestedPlant: this.requestedPlant,
-            status: this.status
+            status: this.status,
+            messages: this.messages
         };
     }
     static fromJSON(data) {
-        const trade = new Trade(data.fromUser, data.toUser, data.offeredPlant, data.requestedPlant, data.status);
+        var _a;
+        const trade = new Trade(data.fromUser, data.toUser, data.offeredPlant, data.requestedPlant, data.status, (_a = data.messages) !== null && _a !== void 0 ? _a : [] // <-- default to [] if missing
+        );
         trade.date = data.date;
         return trade;
     }

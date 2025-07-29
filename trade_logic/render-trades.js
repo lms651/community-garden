@@ -91,8 +91,13 @@ function renderAcceptedTrade(trade, currentUser) {
     ${trade.offeredPlant} ↔ ${trade.requestedPlant}
     <div class="mt-2">
       <button class="complete-btn bg-blue-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-blue-700 transition">Mark Complete</button>
+      <button class="message-btn bg-yellow-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-yellow-700 transition">Send Message</button>
     </div>`;
     container.appendChild(div);
+    const messageBtn = div.querySelector(".message-btn");
+    messageBtn.addEventListener("click", () => {
+        window.location.href = "messages.html";
+    });
     const completeBtn = div.querySelector(".complete-btn");
     completeBtn.addEventListener("click", () => {
         // Mark as completed — update trade object

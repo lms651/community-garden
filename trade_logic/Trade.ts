@@ -5,13 +5,16 @@ class Trade {
     offeredPlant: string;  // from currentUser dropdown input
     requestedPlant: string; // neighborPlantTitle
     status: "pending" | "accepted" | "rejected" | "completed" | "canceled";
+    messages: { from: string; text: string }[]; // for messaging about accepted trades
+
 
   constructor(
     fromUser: string,
     toUser: string,
     offeredPlant: string,
     requestedPlant: string,
-    status: "pending" | "accepted" | "rejected" | "completed" | "canceled"
+    status: "pending" | "accepted" | "rejected" | "completed" | "canceled",
+    messages: { from: string; text: string }[] = [] 
   )
   {
     this.date = new Date().toLocaleString();
@@ -20,6 +23,7 @@ class Trade {
     this.offeredPlant = offeredPlant;
     this.requestedPlant = requestedPlant;
     this.status = status;
+    this.messages = messages;
   }
 
   getFormattedDate(): string {
@@ -34,7 +38,8 @@ class Trade {
       toUser: this.toUser,
       offeredPlant: this.offeredPlant,
       requestedPlant: this.requestedPlant,
-      status: this.status
+      status: this.status,
+      messages: this.messages
     };
   }
 
@@ -44,7 +49,8 @@ class Trade {
       data.toUser,
       data.offeredPlant,
       data.requestedPlant,
-      data.status
+      data.status,
+      data.messages ?? [] // <-- default to [] if missing
     );
     trade.date = data.date;
     return trade;

@@ -25,6 +25,10 @@ function loadTrades(): Trade[] {
   return tradesArray.map((trade: any) => Trade.fromJSON(trade));
 }
 
+function saveTrades(trades: Trade[]): void {
+  localStorage.setItem("trades", JSON.stringify(trades));
+}
+
 function removeTrade(trade: Trade, allTrades: Trade[]): void {
 
   // Find index by unique date (if unique)
@@ -42,5 +46,6 @@ function removeTrade(trade: Trade, allTrades: Trade[]): void {
 export {
     handleTrade,
     loadTrades,
-    removeTrade
+    removeTrade,
+    saveTrades
 }
