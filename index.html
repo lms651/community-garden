@@ -20,6 +20,13 @@
 
     <link rel="stylesheet" href="stylesheet.css">
 
+    <!--JQuery for Toastr-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!--Toastr CDN-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
     <title>Community Garden | A new way to grow together</title>
 
     <style>
@@ -151,7 +158,7 @@
 >
   <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
     <div class="flex items-start justify-between">
-      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Signup Here</h2>
+      <h2 id="modal-title" class="englebert-regular text-xl font-bold text-green-900 sm:text-2xl">Join Your Community!</h2>
 
       <button
         type="button"
@@ -178,7 +185,6 @@
 
     <!-- Signup Form -->
     <form id="signup-form" class="mt-6 space-y-4">
-      <input type="text" id="signup-name" name="name" pattern="[A-Za-z\s]+" autocomplete="Name" placeholder="Name" required class="w-full border p-2 rounded" />
       <input type="text" id="signup-username" name="username" autocomplete="Username" placeholder="Username"required class="w-full border p-2 rounded" />
       <input type="email" id="signup-email" name="email" autocomplete="email" placeholder="Email" required class="w-full border p-2 rounded" />
       <input type="password" id="signup-password" name="password" placeholder="Password" required class="w-full border p-2 rounded" />
@@ -186,7 +192,7 @@
       <input type="text" id="signup-city" name="city" placeholder="City" pattern="[A-Za-z\s]+" required class="w-full border p-2 rounded" />
       <input type="text" id="signup-state" name="state" autocapitalize="characters" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" required class="w-full border p-2 rounded" />
       <input type="text" id="signup-zip" name="zip" placeholder="ZIP Code" pattern="\d{5}" maxlength="5" required class="w-full border p-2 rounded" />
-      <input type="text" id="signup-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" placeholder="3-Letter Country code" required class="w-full border p-2 rounded" />
+      <input type="text" id="signup-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" placeholder="3-Letter Code (e.g. USA)" required class="w-full border p-2 rounded" />
 
       <!-- Submit Button -->
       <button
@@ -210,7 +216,7 @@
 >
   <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
     <div class="flex items-start justify-between">
-      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Welcome Back!</h2>
+      <h2 id="modal-title" class="englebert-regular text-xl font-bold text-green-900 sm:text-2xl">Welcome Back!</h2>
 
       <button
         type="button"
@@ -294,10 +300,16 @@
     </ul>
   </div>
 </footer>
-    
-        <!-- Maps -->
-    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyAbXMbdECIT2pMB0FYHsm67E8oVnvwOzpU", v: "weekly", libraries: "places", experimental: "placeautocomplete" });</script>
+
+<!-- Maps -->
+<script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+  ({key: "AIzaSyAbXMbdECIT2pMB0FYHsm67E8oVnvwOzpU", v: "weekly", libraries: "places", experimental: "placeautocomplete" });</script>
+
+<!--JQuery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--Toastr CDN-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
         <script type="module" src="app.js"></script>
 

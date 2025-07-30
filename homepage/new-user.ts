@@ -1,5 +1,9 @@
+import { loadUsers } from "../user_logic/user-utils.js";
 import { User } from "../user_logic/user.js";
 import { closeRegisterModal } from "./register.js";
+
+declare const toastr: any;
+
 
 function newUser_init() {
     const signUpForm = document.getElementById("signup-form") as HTMLFormElement | null;
@@ -8,6 +12,15 @@ function newUser_init() {
             event.preventDefault();
             
             const usernameInput = (document.getElementById("signup-username") as HTMLInputElement).value.trim();
+
+            const users = loadUsers(); // Load existing users from storage
+            const usernameExists = users.some((user: User) => user.username === usernameInput);
+
+            if (usernameExists) {
+                toastr.error("Username already exists!", "Error:");
+                return; // Don't continue with saving
+            }
+
             const emailInput = (document.getElementById("signup-email") as HTMLInputElement).value.trim();
             const streetInput = (document.getElementById("signup-street") as HTMLInputElement).value.trim();
             const cityInput = (document.getElementById("signup-city") as HTMLInputElement).value.trim();
