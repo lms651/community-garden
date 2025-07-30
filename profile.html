@@ -37,7 +37,7 @@
         <nav aria-label="Global" class="hidden md:block">
             <ul class="flex items-center gap-6 text-sm">
             <li>
-                <p class="englebert-regular text-gray-500 whitespace-nowrap"><i>Local Roots. Online Branches.</i></p>
+                <p class="englebert-regular text-gray-500 whitespace-nowrap">Local Roots. Online Branches.</p>
             </li>
             </ul>
         </nav>
@@ -46,14 +46,31 @@
     <div class="flex items-center justify-end w-full px-2">
         
         <!--Notifications-->
-      <div class="static flex items-center pr-2 sm:ml-6 sm:pr-0">
-        <button type="button" id="notifications-button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
-          <span class="absolute -inset-1.5"></span>
-          <span class="sr-only">View notifications</span>
-          <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-          </svg>
-        </button>
+    <div class="static flex items-center pr-2 sm:ml-6 sm:pr-0">
+
+      <a href="trades.html">
+      <button
+      type="button"
+      id="new-requests-button"
+      class="relative rounded-full bg-yellow-100 p-1 text-gray-700 hover:text-teal-600 focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:outline-none">
+      
+      <span class="absolute -inset-1.5"></span>
+      <span class="sr-only">View notifications</span>
+      <img src="images/new-notification.png" alt="Chat" class="h-8">
+      </button>
+      </a>
+
+      <a href="messages.html">
+      <button
+      type="button"
+      id="new-chat-button"
+      class="relative rounded-full bg-green-100 p-1 text-gray-700 hover:text-teal-600 focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:outline-none">
+      
+      <span class="absolute -inset-1.5"></span>
+      <span class="sr-only">View notifications</span>
+      <img src="images/new-chat.png" alt="Chat" class="h-9">
+      </button>
+      </a>
 
         <!-- Profile dropdown -->
         <div class="relative ml-3">

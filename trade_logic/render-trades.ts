@@ -43,7 +43,7 @@ function renderTradeOffer(trade: Trade, currentUser: User): void {
   const cancelBtn = div.querySelector(".cancel-btn") as HTMLButtonElement;
   cancelBtn.addEventListener("click", () => {
 
-    div.remove(); // Simply remove from view
+    div.remove(); // Remove from display
     // update local storage
     trade.status = "canceled";
     removeTrade(trade, allTrades);
@@ -65,7 +65,7 @@ function renderTradeRequest(trade: Trade, currentUser: User): void {
     </div>`;
   container.appendChild(div);
 
-  // Now select buttons and add listeners
+  // Button listeners
   const acceptBtn = div.querySelector(".accept-btn") as HTMLButtonElement;
   const declineBtn = div.querySelector(".decline-btn") as HTMLButtonElement;
 
@@ -81,7 +81,7 @@ function renderTradeRequest(trade: Trade, currentUser: User): void {
 
   declineBtn.addEventListener("click", () => {
     trade.status = "rejected";
-    div.remove(); // Simply remove from view
+    div.remove(); // Remove from display
     // update local storage
     removeTrade(trade, allTrades);
     saveTrades(allTrades);
@@ -113,7 +113,7 @@ function renderAcceptedTrade(trade: Trade, currentUser: User): void {
   const cancelBtn = div.querySelector(".cancel-btn") as HTMLButtonElement;
   cancelBtn.addEventListener("click", () => {
 
-    div.remove(); // Simply remove from view
+    div.remove(); // Remove from display
     // update local storage
     trade.status = "canceled";
     removeTrade(trade, allTrades);
@@ -142,7 +142,7 @@ function renderCompletedTrade(trade: Trade, currentUser: User): void {
   const container = document.getElementById("completed-trades");
   if (!container) return;
 
-    // Determine if you are from or to user
+  // Determine if you are from or to user
   const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
 
   const div = document.createElement("div");

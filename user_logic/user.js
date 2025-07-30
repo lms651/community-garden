@@ -1,8 +1,8 @@
 import { MyPlant } from "../garden/myPlant.js";
 class User {
-    constructor(id, username, email, street, city, state, zip, country, password) {
-        this.username = username;
+    constructor(id, username, email, street, city, state, zip, country, password, hasNewRequest = false, hasNewMessage = false) {
         this.id = id;
+        this.username = username;
         this.email = email;
         this.street = street;
         this.city = city;
@@ -11,6 +11,8 @@ class User {
         this.country = country;
         this.password = password;
         this.gardenMap = new Map(); // empty garden
+        this.hasNewRequest = hasNewRequest;
+        this.hasNewMessage = hasNewMessage;
     }
     static getNextId() {
         const stored = localStorage.getItem("userNextId");
@@ -32,7 +34,7 @@ class User {
         return new Map(Object.entries(obj));
     }
     static fromJson(obj) {
-        const user = new User(obj.id, obj.username, obj.email, obj.street, obj.city, obj.state, obj.zip, obj.country, obj.password);
+        const user = new User(obj.id, obj.username, obj.email, obj.street, obj.city, obj.state, obj.zip, obj.country, obj.password, obj.hasNewRequest || false, obj.hasNewMessage || false);
         if (obj.garden) {
             user.gardenMap = new Map(obj.garden.map(([key, value]) => [key, MyPlant.fromJson(value)]));
         }
@@ -50,6 +52,8 @@ class User {
             country: this.country,
             password: this.password,
             garden: Array.from(this.gardenMap.entries()).map(([key, plant]) => [key, plant.toJson()]),
+            hasNewRequest: this.hasNewRequest,
+            hasNewMessage: this.hasNewMessage
         };
     }
 }

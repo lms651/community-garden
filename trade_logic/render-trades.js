@@ -36,7 +36,7 @@ function renderTradeOffer(trade, currentUser) {
     container.appendChild(div);
     const cancelBtn = div.querySelector(".cancel-btn");
     cancelBtn.addEventListener("click", () => {
-        div.remove(); // Simply remove from view
+        div.remove(); // Remove from display
         // update local storage
         trade.status = "canceled";
         removeTrade(trade, allTrades);
@@ -55,7 +55,7 @@ function renderTradeRequest(trade, currentUser) {
       <button class="decline-btn bg-red-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-red-700 transition text-sm">Decline</button>
     </div>`;
     container.appendChild(div);
-    // Now select buttons and add listeners
+    // Button listeners
     const acceptBtn = div.querySelector(".accept-btn");
     const declineBtn = div.querySelector(".decline-btn");
     acceptBtn.addEventListener("click", () => {
@@ -69,7 +69,7 @@ function renderTradeRequest(trade, currentUser) {
     });
     declineBtn.addEventListener("click", () => {
         trade.status = "rejected";
-        div.remove(); // Simply remove from view
+        div.remove(); // Remove from display
         // update local storage
         removeTrade(trade, allTrades);
         saveTrades(allTrades);
@@ -95,7 +95,7 @@ function renderAcceptedTrade(trade, currentUser) {
     container.appendChild(div);
     const cancelBtn = div.querySelector(".cancel-btn");
     cancelBtn.addEventListener("click", () => {
-        div.remove(); // Simply remove from view
+        div.remove(); // Remove from display
         // update local storage
         trade.status = "canceled";
         removeTrade(trade, allTrades);

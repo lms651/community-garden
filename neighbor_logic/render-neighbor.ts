@@ -11,7 +11,7 @@ function render_neighbor_init() {
   // Set the neighbor's name in the title
   const neighborTitle = document.getElementById("neighbor-title");
   if (neighborTitle) {
-    neighborTitle.textContent = `${neighbor.username}'s Garden`;
+    neighborTitle.textContent = `${neighbor.username}'s GARDEN`;
   }
 
   // Render garden
