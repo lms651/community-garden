@@ -46,12 +46,12 @@ function renderAcceptedMessage(trade: Trade, currentUser: User): void {
 
   // 4. Create root container div for this accordion item
   const container = document.createElement("div");
-  container.className = "border border-gray-300 rounded-xl overflow-hidden mb-6";
+  container.className = "border border-green-300 rounded-xl overflow-hidden mb-6";
 
   // 5. Create button header
   const button = document.createElement("button");
   button.type = "button";
-  button.className = "w-full px-4 py-3 text-left font-semibold bg-gray-100 hover:bg-gray-200 transition";
+  button.className = "w-full px-4 py-3 text-left font-semibold bg-green-100 hover:bg-green-200 transition";
   button.textContent = `Trade on ${tradeDate} with ${otherUsername}: ${tradeDetails}`;
   button.addEventListener("click", () => {
     contentDiv.classList.toggle("hidden");

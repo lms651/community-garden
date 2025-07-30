@@ -30,9 +30,9 @@ function renderTradeOffer(trade, currentUser) {
     if (!container)
         return;
     const div = document.createElement("div");
-    div.className = "bg-white shadow p-4 rounded mb-3";
+    div.className = "bg-gray-50 shadow p-4 rounded mb-3";
     div.innerHTML = `📅 ${trade.date} — You offered <strong>${trade.toUser}</strong>: ${trade.offeredPlant} for ${trade.requestedPlant}
-    <button class="cancel-btn bg-red-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-red-700 transition ml-2">Cancel</button>`;
+        <button class="cancel-btn bg-red-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-red-700 transition text-sm">Cancel</button>`;
     container.appendChild(div);
     const cancelBtn = div.querySelector(".cancel-btn");
     cancelBtn.addEventListener("click", () => {
@@ -48,11 +48,11 @@ function renderTradeRequest(trade, currentUser) {
     if (!container)
         return;
     const div = document.createElement("div");
-    div.className = "bg-white shadow p-4 rounded mb-3";
+    div.className = "bg-gray-50 shadow p-4 rounded mb-3";
     div.innerHTML = `📅 ${trade.date} — <strong>${trade.fromUser}</strong> wants to trade ${trade.offeredPlant} for ${trade.requestedPlant}
     <div class="mt-2">
-      <button class="accept-btn bg-green-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-green-700 transition">Accept</button>
-      <button class="decline-btn bg-red-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-red-700 transition ml-2">Decline</button>
+      <button class="accept-btn bg-red-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-red-700 transition text-sm">Accept</button>
+      <button class="decline-btn bg-red-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-red-700 transition text-sm">Decline</button>
     </div>`;
     container.appendChild(div);
     // Now select buttons and add listeners
@@ -82,15 +82,16 @@ function renderAcceptedTrade(trade, currentUser) {
     // Determine if you are from or to user
     const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
     const div = document.createElement("div");
-    div.className = "bg-white shadow p-4 rounded mb-3";
+    div.className = "bg-gray-50 shadow p-4 rounded mb-3";
     div.innerHTML = `
     📅 ${trade.date} — Trade between <strong>${userType}</strong> and you:
     ${trade.offeredPlant} ↔ ${trade.requestedPlant}
-    <div class="mt-2">
-      <button class="complete-btn bg-green-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-green-700 transition">Mark Complete</button>
-      <button class="message-btn bg-blue-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-blue-700 transition">Send Message</button>
-      <button class="cancel-btn bg-red-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-red-700 transition ml-2">Cancel</button>
-      </div>`;
+    <div class="mt-2 flex flex-wrap gap-2 sm:flex-nowrap">
+      <button class="complete-btn bg-green-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-green-700 transition text-sm">Mark Complete</button>
+      <button class="message-btn bg-blue-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-blue-700 transition text-sm">Send Message</button>
+      <button class="cancel-btn bg-red-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-red-700 transition text-sm">Cancel</button>
+    </div>
+  `;
     container.appendChild(div);
     const cancelBtn = div.querySelector(".cancel-btn");
     cancelBtn.addEventListener("click", () => {
@@ -123,7 +124,7 @@ function renderCompletedTrade(trade, currentUser) {
     // Determine if you are from or to user
     const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
     const div = document.createElement("div");
-    div.className = "bg-white shadow p-5 rounded mb-3";
+    div.className = "bg-gray-100 shadow p-4 rounded mb-3";
     div.innerHTML = `
     ✅ ${trade.date} — Trade between <strong>${userType}</strong> and you:
     ${trade.offeredPlant} ↔ ${trade.requestedPlant}

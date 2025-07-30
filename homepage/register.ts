@@ -6,6 +6,13 @@ function register_init(): void {
         })
     }
 
+    const startSharingBtn = document.getElementById("start-button") as HTMLButtonElement | null;
+    if (startSharingBtn) {
+        startSharingBtn.addEventListener('click', () => {
+            showRegisterModal();
+        })
+    }
+
     const exitRegister = document.getElementById("exit-signup-modal") as HTMLButtonElement | null;
     if (exitRegister) {
         exitRegister.addEventListener('click', () => {

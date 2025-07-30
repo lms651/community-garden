@@ -5,6 +5,12 @@ function register_init() {
             showRegisterModal();
         });
     }
+    const startSharingBtn = document.getElementById("start-button");
+    if (startSharingBtn) {
+        startSharingBtn.addEventListener('click', () => {
+            showRegisterModal();
+        });
+    }
     const exitRegister = document.getElementById("exit-signup-modal");
     if (exitRegister) {
         exitRegister.addEventListener('click', () => {
