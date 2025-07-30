@@ -77,7 +77,7 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
     submitTradeBtn.onclick = () => {
         handleTrade(neighborUser, neighborPlantTitle, dropdownInput.value);
         closeTradeModal();
-        window.alert('trade offer sent!');
+        toastr.success("Trade Request Sent!", "Success:");
     };
 }
 // Filter function for trade modal dropdown

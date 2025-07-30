@@ -2,6 +2,7 @@ import { User } from '../user_logic/user.js';
 import { loadCurrentUser } from '../user_logic/user-utils.js';
 import { handleTrade } from '../trade_logic/trades.js';
 
+declare const toastr: any;
 
 // Adds map items to display grid from neighbor's map
 // listeners for flagged veggies that can be clicked on to offer trade will go here
@@ -98,7 +99,7 @@ function showTradeModal(neighborPlantTitle: string, neighborUser: User): void {
   submitTradeBtn.onclick = () => { 
     handleTrade(neighborUser, neighborPlantTitle, dropdownInput.value);
     closeTradeModal();
-    window.alert('trade offer sent!');
+    toastr.success("Trade Request Sent!", "Success:");
   }
 
 }
