@@ -5,6 +5,20 @@ const plantInventory = [
     { title: "Lettuce, Romaine", img: "images/romaine.jpg" },
     { title: "Pepper, Green Bell", img: "images/greenbell.jpg" },
     { title: "Apple, Green", img: "images/greenapple.jpeg" },
+    { title: "Pepper, Banana", img: "images/bananapepper.jpg" },
+    { title: "Pepper, Red Bell", img: "images/redbell.jpg" },
+    { title: "Pepper, Shishito", img: "images/shishito.jpg" },
+    { title: "Tomato, San Marzano", img: "images/sanmarzano.jpg" },
+    { title: "Tomato", img: "images/tomato.jpg" },
+    { title: "Tomato, Cherry", img: "images/cherrytomato.jpg" },
+    { title: "Tomato, Orange Cherry", img: "images/orangecherry.jpg" },
+    { title: "Onion, Red", img: "images/redonions.png" },
+    { title: "Squash, Zucchini", img: "images/zucchini.jpg" },
+    { title: "Squash, Yellow", img: "images/yellowsquash.jpg" },
+    { title: "Onion, Yellow", img: "images/yellowonion.jpg" },
+    { title: "Cucumber", img: "images/cucumber.jpg" },
+    { title: "Apple, Red", img: "images/redapple.jpg" },
+    { title: "Kale, Curly", img: "images/curlykale.jpg" }
 ];
 function findPlant(selectedVeg) {
     const foundPlant = plantInventory.find(item => item.title === selectedVeg);
