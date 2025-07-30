@@ -12,14 +12,19 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barriecito&family=Barrio&family=Englebert&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" href="stylesheet.css">
 
     <title>Community Garden | A new way to grow together</title>
 
     <style>
         body {
-            background-color: rgba(226, 225, 224, 0.748) ;
+            background-color: rgba(255, 255, 255, 0.748) ;
         }
     </style>
 
@@ -27,23 +32,18 @@
 
 <body class="homepage">
 
-    <header class="bg-white">
+    <header style="background-color: rgba(247, 247, 245, 0.637); border-bottom: 1px solid rgba(200, 200, 200, 0.5)">
     <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
         <div class="block text-teal-600">
         <span class="sr-only">Home</span>
-        <svg class="h-8" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-            d="M0.41 10.3847C1.14777 7.4194 2.85643 4.7861 5.2639 2.90424C7.6714 1.02234 10.6393 0 13.695 0C16.7507 0 19.7186 1.02234 22.1261 2.90424C24.5336 4.7861 26.2422 7.4194 26.98 10.3847H25.78C23.7557 10.3549 21.7729 10.9599 20.11 12.1147C20.014 12.1842 19.9138 12.2477 19.81 12.3047H19.67C19.5662 12.2477 19.466 12.1842 19.37 12.1147C17.6924 10.9866 15.7166 10.3841 13.695 10.3841C11.6734 10.3841 9.6976 10.9866 8.02 12.1147C7.924 12.1842 7.8238 12.2477 7.72 12.3047H7.58C7.4762 12.2477 7.376 12.1842 7.28 12.1147C5.6171 10.9599 3.6343 10.3549 1.61 10.3847H0.41ZM23.62 16.6547C24.236 16.175 24.9995 15.924 25.78 15.9447H27.39V12.7347H25.78C24.4052 12.7181 23.0619 13.146 21.95 13.9547C21.3243 14.416 20.5674 14.6649 19.79 14.6649C19.0126 14.6649 18.2557 14.416 17.63 13.9547C16.4899 13.1611 15.1341 12.7356 13.745 12.7356C12.3559 12.7356 11.0001 13.1611 9.86 13.9547C9.2343 14.416 8.4774 14.6649 7.7 14.6649C6.9226 14.6649 6.1657 14.416 5.54 13.9547C4.4144 13.1356 3.0518 12.7072 1.66 12.7347H0V15.9447H1.61C2.39051 15.924 3.154 16.175 3.77 16.6547C4.908 17.4489 6.2623 17.8747 7.65 17.8747C9.0377 17.8747 10.392 17.4489 11.53 16.6547C12.1468 16.1765 12.9097 15.9257 13.69 15.9447C14.4708 15.9223 15.2348 16.1735 15.85 16.6547C16.9901 17.4484 18.3459 17.8738 19.735 17.8738C21.1241 17.8738 22.4799 17.4484 23.62 16.6547ZM23.62 22.3947C24.236 21.915 24.9995 21.664 25.78 21.6847H27.39V18.4747H25.78C24.4052 18.4581 23.0619 18.886 21.95 19.6947C21.3243 20.156 20.5674 20.4049 19.79 20.4049C19.0126 20.4049 18.2557 20.156 17.63 19.6947C16.4899 18.9011 15.1341 18.4757 13.745 18.4757C12.3559 18.4757 11.0001 18.9011 9.86 19.6947C9.2343 20.156 8.4774 20.4049 7.7 20.4049C6.9226 20.4049 6.1657 20.156 5.54 19.6947C4.4144 18.8757 3.0518 18.4472 1.66 18.4747H0V21.6847H1.61C2.39051 21.664 3.154 21.915 3.77 22.3947C4.908 23.1889 6.2623 23.6147 7.65 23.6147C9.0377 23.6147 10.392 23.1889 11.53 22.3947C12.1468 21.9165 12.9097 21.6657 13.69 21.6847C14.4708 21.6623 15.2348 21.9135 15.85 22.3947C16.9901 23.1884 18.3459 23.6138 19.735 23.6138C21.1241 23.6138 22.4799 23.1884 23.62 22.3947Z"
-            fill="currentColor"
-            />
-        </svg>
+        <img src="images/logo5.jpg" alt="Home" class="h-9">
         </div>
 
         <div class="flex flex-1 items-center justify-center md:justify-between">
         <nav aria-label="Global" class="hidden md:block">
             <ul class="flex items-center gap-6 text-sm">
             <li>
-                <a class="text-gray-500 transition hover:text-gray-500/75" href="#sprout"><i>What's sprouting near you?</i></a>
+                <a class="englebert-regular text-gray-500 transition hover:text-gray-500/75" href="#sprout"><i>What's sprouting near you?</i></a>
             </li>
             </ul>
         </nav>
@@ -56,7 +56,7 @@
       </button>
 
       <button
-        class="hidden sm:inline-block rounded-md bg-gray-100 px-4 py-2 text-xs font-medium text-teal-600 transition hover:text-teal-600/75"
+        class="hidden sm:inline-block rounded-md bg-gray-100 px-4 py-2 text-xs font-medium text-teal-600 border border-teal-600 transition hover:text-teal-600/75"
         id="register-button">Register
       </button>
     </div>
@@ -70,11 +70,11 @@
     <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-center md:gap-8">
       <div class="md:col-span-1">
         <div class="max-w-lg md:max-w-none">
-          <h2 class="text-2xl font-semibold text-gray-900 sm:text-3xl">
-            Community Garden
+<h2 class="englebert-regular text-4xl sm:text-5xl md:text-4xl lg:text-6xl font-bold">
+            COMMUNITY GARDEN
           </h2>
 
-          <p class="mt-4 text-gray-700">
+          <p class="englebert-regular font-bold mt-4 text-gray-600">
             Local Roots. Online Branches.
           </p><br>
           <button type="button" id = "start-button" class="btn btn-success">Start Sharing</button><br>
@@ -94,20 +94,21 @@
 </section>
 
 <!--Features Container-->
-  <div class="py-24 sm:py-32" id="app-features" style="background-color:rgba(226, 225, 224, 0.637);">
+  <div class="py-24 sm:py-32 border-t border-b border-gray-300 bg-[rgba(247,247,245,0.637)]">
+
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
         <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-            <dt class="text-base/7 text-gray-600">Maintain your virtual garden</dt>
-            <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">🌱Grow</dd>
+            <dt class="font-semibold text-base/7 text-gray-600">Maintain your virtual garden & see what your neighbors are growing</dt>
+            <dd class="englebert-regular order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">🌱GROW</dd>
         </div>
         <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-            <dt class="text-base/7 text-gray-600">See what your neighbors are growing</dt>
-            <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">🪴Track</dd>
+            <dt class="font-semibold text-base/7 text-gray-600">Update the status of your plants so your neighbors know you're ready to trade📍</dt>
+            <dd class="englebert-regular order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">🪴FLAG</dd>
         </div>
         <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-            <dt class="text-base/7 text-gray-600">Arrange a veggie-swap with your neighbors!</dt>
-            <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">🍅Trade!</dd>
+            <dt class="font-semibold text-base/7 text-gray-600">Arrange a veggie-swap with your neighbors!</dt>
+            <dd class="englebert-regular order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">🍅TRADE!</dd>
         </div>
         </dl>
     </div>
@@ -126,15 +127,16 @@
 
 
 <!-- Map Container -->
-<h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">Dig into your Community</h2>
+<h2 class="englebert-regular text-4xl font-bold text-gray-900 mb-8 text-center">Dig into your Community</h2>
+<p class="text-center font-semibold text-gray-600">Sign up to see who's growing what & start trading today!</p><br>
 
 <div style="max-width: 900px; margin: 0 auto; text-align: center;">
   <div id="map" style="height: 500px; width: 80%; margin: 0 auto; border: 1px solid #ccc;"></div>
 
   <div style="margin-top: 1rem; width: 80%; margin: 1rem auto;">
-    <label for="zip-input" id="sprout" style="display: block; margin-bottom: 0.5rem;"><i>What's sprouting near you?</i></label>
+    <label for="zip-input" id="sprout" style="display: block; margin-bottom: 0.5rem;" class="englebert-regular text-gray-600"><i>What's sprouting near you?</i></label>
     
-    <input id="zip-input" type="text" placeholder="Enter zip..." style="width: 35%; padding: 0.5rem;" />
+    <input id="zip-input" type="text" placeholder="Enter zip..." style="width: 35%; padding: 0.5rem; border: 2px solid rgba(57, 54, 54, 0.773);" />
 
   </div>
 </div>
@@ -208,7 +210,7 @@
 >
   <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
     <div class="flex items-start justify-between">
-      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Login Here</h2>
+      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Welcome Back!</h2>
 
       <button
         type="button"
@@ -251,88 +253,53 @@
   </div>
 </div>
 
-    <footer class="bg-white">
-    <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-4 lg:space-y-8 lg:px-6">
-        <div class="sm:flex sm:items-center sm:justify-between">
-        <div class="text-teal-600">
-            <svg class="h-8" viewBox="0 0 118 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-            d="M0.41 10.3847C1.14777 7.4194 2.85643 4.7861 5.2639 2.90424C7.6714 1.02234 10.6393 0 13.695 0C16.7507 0 19.7186 1.02234 22.1261 2.90424C24.5336 4.7861 26.2422 7.4194 26.98 10.3847H25.78C23.7557 10.3549 21.7729 10.9599 20.11 12.1147C20.014 12.1842 19.9138 12.2477 19.81 12.3047H19.67C19.5662 12.2477 19.466 12.1842 19.37 12.1147C17.6924 10.9866 15.7166 10.3841 13.695 10.3841C11.6734 10.3841 9.6976 10.9866 8.02 12.1147C7.924 12.1842 7.8238 12.2477 7.72 12.3047H7.58C7.4762 12.2477 7.376 12.1842 7.28 12.1147C5.6171 10.9599 3.6343 10.3549 1.61 10.3847H0.41ZM23.62 16.6547C24.236 16.175 24.9995 15.924 25.78 15.9447H27.39V12.7347H25.78C24.4052 12.7181 23.0619 13.146 21.95 13.9547C21.3243 14.416 20.5674 14.6649 19.79 14.6649C19.0126 14.6649 18.2557 14.416 17.63 13.9547C16.4899 13.1611 15.1341 12.7356 13.745 12.7356C12.3559 12.7356 11.0001 13.1611 9.86 13.9547C9.2343 14.416 8.4774 14.6649 7.7 14.6649C6.9226 14.6649 6.1657 14.416 5.54 13.9547C4.4144 13.1356 3.0518 12.7072 1.66 12.7347H0V15.9447H1.61C2.39051 15.924 3.154 16.175 3.77 16.6547C4.908 17.4489 6.2623 17.8747 7.65 17.8747C9.0377 17.8747 10.392 17.4489 11.53 16.6547C12.1468 16.1765 12.9097 15.9257 13.69 15.9447C14.4708 15.9223 15.2348 16.1735 15.85 16.6547C16.9901 17.4484 18.3459 17.8738 19.735 17.8738C21.1241 17.8738 22.4799 17.4484 23.62 16.6547ZM23.62 22.3947C24.236 21.915 24.9995 21.664 25.78 21.6847H27.39V18.4747H25.78C24.4052 18.4581 23.0619 18.886 21.95 19.6947C21.3243 20.156 20.5674 20.4049 19.79 20.4049C19.0126 20.4049 18.2557 20.156 17.63 19.6947C16.4899 18.9011 15.1341 18.4757 13.745 18.4757C12.3559 18.4757 11.0001 18.9011 9.86 19.6947C9.2343 20.156 8.4774 20.4049 7.7 20.4049C6.9226 20.4049 6.1657 20.156 5.54 19.6947C4.4144 18.8757 3.0518 18.4472 1.66 18.4747H0V21.6847H1.61C2.39051 21.664 3.154 21.915 3.77 22.3947C4.908 23.1889 6.2623 23.6147 7.65 23.6147C9.0377 23.6147 10.392 23.1889 11.53 22.3947C12.1468 21.9165 12.9097 21.6657 13.69 21.6847C14.4708 21.6623 15.2348 21.9135 15.85 22.3947C16.9901 23.1884 18.3459 23.6138 19.735 23.6138C21.1241 23.6138 22.4799 23.1884 23.62 22.3947Z"
-            fill="currentColor"
-            />
-        
-            </svg>
-        </div>
+<footer class="bg-white border-t border-gray-200 text-sm">
+  <div class="max-w-screen-xl mx-auto flex justify-between items-center px-4 py-2">
+    
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <img src="images/logo5.jpg" alt="Home" class="h-6">
+      <span class="text-gray-700 hidden md:block">&copy; 2025 Community Garden</span>
+    </div>
 
-        <ul class="mt-8 flex justify-start gap-6 sm:mt-0 sm:justify-end">
-            <li>
-            <a
-                href="#"
-                rel="noreferrer"
-                target="_blank"
-                class="text-gray-700 transition hover:text-green-700 hover:opacity-75"
-            >
-                <span class="sr-only">Facebook</span>
-
-                <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                    fill-rule="evenodd"
-                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                    clip-rule="evenodd"
-                />
-                </svg>
-            </a>
-            </li>
-
-            <li>
-            <a
-                href="#"
-                rel="noreferrer"
-                target="_blank"
-                class="text-gray-700 transition hover:text-green-700 hover:opacity-75"
-            >
-                <span class="sr-only">Instagram</span>
-
-                <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                    fill-rule="evenodd"
-                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                    clip-rule="evenodd"
-                />
-                </svg>
-            </a>
-            </li>
-
-            <li>
-            <a
-                href="https://github.com/lms651/community-garden.git"
-                rel="noreferrer"
-                target="_blank"
-                class="text-gray-700 transition hover:text-green-700 hover:opacity-75"
-            >
-                <span class="sr-only">GitHub</span>
-
-                <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                    fill-rule="evenodd"
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                    clip-rule="evenodd"
-                />
-                </svg>
-            </a>
-            </li>
-        </ul>
-        </div>
-        <p class="text-xs text-gray-500">&copy; 2025. Community Garden. All rights reserved.</p>
-    </footer>
-
+    <!-- Social Links -->
+    <ul class="flex items-center gap-4">
+      <li>
+        <a href="#" target="_blank" rel="noreferrer" class="text-gray-500 hover:text-green-700 transition">
+          <span class="sr-only">Facebook</span>
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="#" target="_blank" rel="noreferrer" class="text-gray-500 hover:text-green-700 transition">
+          <span class="sr-only">Instagram</span>
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/lms651/community-garden.git" target="_blank" rel="noreferrer" class="text-gray-500 hover:text-green-700 transition">
+          <span class="sr-only">GitHub</span>
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>
     
         <!-- Maps -->
     <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
         ({key: "AIzaSyAbXMbdECIT2pMB0FYHsm67E8oVnvwOzpU", v: "weekly", libraries: "places", experimental: "placeautocomplete" });</script>
 
         <script type="module" src="app.js"></script>
-
 
     </body>
 </html>

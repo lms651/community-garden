@@ -14,7 +14,6 @@ function render_messages_init(): void {
     const messagesContainer = document.getElementById("messagesContainer");
     if (!messagesContainer) return;
 
-    // Clear container
     messagesContainer.innerHTML = "";
 
     // Filter accepted trades related to current user
@@ -26,7 +25,7 @@ function render_messages_init(): void {
     // Sort by date descending
     relevantTrades.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-    // Render in sorted order
+    // Render messages
     for (const trade of relevantTrades) {
         renderAcceptedMessage(trade, currentUser);
     }

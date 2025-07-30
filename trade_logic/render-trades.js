@@ -51,7 +51,7 @@ function renderTradeRequest(trade, currentUser) {
     div.className = "bg-gray-50 shadow p-4 rounded mb-3";
     div.innerHTML = `📅 ${trade.date} — <strong>${trade.fromUser}</strong> wants to trade ${trade.offeredPlant} for ${trade.requestedPlant}
     <div class="mt-2">
-      <button class="accept-btn bg-red-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-red-700 transition text-sm">Accept</button>
+      <button class="accept-btn bg-green-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-green-700 transition text-sm">Accept</button>
       <button class="decline-btn bg-red-600 text-white px-3 py-1.5 rounded-2xl shadow hover:bg-red-700 transition text-sm">Decline</button>
     </div>`;
     container.appendChild(div);
