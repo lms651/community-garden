@@ -11,9 +11,6 @@ async function initMap(): Promise<void> {
 
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
   const { Autocomplete } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
-//   await google.maps.importLibrary("places");
-
-
 
   map = new Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 42.3601, lng: -71.0589 }, // Boston
@@ -23,34 +20,6 @@ async function initMap(): Promise<void> {
 
   const users = loadUsers(); // Get all users from localStorage
   await placeAllUserMarkers(users);
-
-  // Autocomplete element logic. Let visitors search zip
-//   const autocompleteEl = document.getElementById("autocomplete") as HTMLElement;
-
-//   autocompleteEl.addEventListener("gmpx-placeautocomplete-placeviewed", (event: any) => {
-//   const place = event.detail.place;
-//   if (place.geometry?.location) {
-//     const loc = place.geometry.location;
-//     map.setCenter({ lat: loc.lat(), lng: loc.lng() });
-//     map.setZoom(12);
-//  }
-// });
-
-// const autocompleteEl = document.getElementById("autocomplete") as HTMLElement;
-
-// autocompleteEl.addEventListener("gmpx-placeautocomplete-placeviewed", (event: any) => {
-//   const place = event.detail.place;
-//   if (place.geometry?.location) {
-//     const location = place.geometry.location;
-//     // Do something with the selected place location
-//     console.log("Selected place location:", location.lat(), location.lng());
-//     // e.g., center your map on this location:
-//     map.setCenter({ lat: location.lat(), lng: location.lng() });
-//     map.setZoom(14);
-//   }
-// });
-
-// }
 
   // Allow visitor to enter zip and see pins nearby
   const zipInput = document.getElementById("zip-input") as HTMLInputElement;

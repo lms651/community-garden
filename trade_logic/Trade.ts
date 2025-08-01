@@ -1,12 +1,11 @@
 class Trade {
     date: string; 
-    fromUser: string; // currentUser.username
-    toUser: string;   // neighborUser.username
+    fromUser: string; // these are currentUser.username or otherUser.username
+    toUser: string;   
     offeredPlant: string;  // from currentUser dropdown input
     requestedPlant: string; // neighborPlantTitle
     status: "pending" | "accepted" | "rejected" | "completed" | "canceled";
     messages: { from: string; text: string }[]; // for messaging about accepted trades
-
 
   constructor(
     fromUser: string,
@@ -50,7 +49,7 @@ class Trade {
       data.offeredPlant,
       data.requestedPlant,
       data.status,
-      data.messages ?? [] // <-- default to [] if missing
+      data.messages ?? [] // default to empty if none
     );
     trade.date = data.date;
     return trade;

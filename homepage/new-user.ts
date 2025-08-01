@@ -31,6 +31,7 @@ function newUser_init() {
 
             const newUser = new User(User.getNextId(), usernameInput, emailInput, streetInput, cityInput, stateInput, zipInput, countryInput, passwordInput)
             saveUser(newUser);
+            toastr.success("Welcome to the Community!", "Success:");
             closeRegisterModal();
     });
     }

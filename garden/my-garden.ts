@@ -54,7 +54,6 @@ function renderGrid(user: User): void {
   gridContainer.innerHTML = "";
 
   // Sort plants so flagged ones come first
-
   const sortedPlants = Array.from(user.gardenMap.values()).sort((a, b) => {
     return (b.forTrade ? 1 : 0) - (a.forTrade ? 1 : 0);
   });
@@ -80,7 +79,7 @@ function renderGrid(user: User): void {
   });
 }
 
-// Modal holds functions on the instance of user's myPlant
+// Modal holds functions on user's myPlant
 // Flag for trade slider
 // Option to delete plant from their map
 

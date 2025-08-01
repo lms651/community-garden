@@ -5,7 +5,7 @@ import { filterForMap } from "../garden/plant-inventory.js";
 /// <reference types="google.maps" />
 
 let map: google.maps.Map;
-// NEW Saves user markers for easy filtering if needed
+// Saves user markers for filtering 
 const userMarkers: { user: User, marker: google.maps.marker.AdvancedMarkerElement }[] = [];
 
 async function init_profile_map(): Promise<void> {
@@ -16,7 +16,6 @@ async function init_profile_map(): Promise<void> {
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
   const { Autocomplete } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
-//   await google.maps.importLibrary("places");
 
 const currentCoords = await geocodeAddress(currentUser.getFullAddress());
 if (!currentCoords) {
@@ -81,7 +80,7 @@ async function addProfileUserMarker(user: User) {
     content: pin.element,
     gmpClickable: !isCurrentUser,
   });
-    // NEW -- FOR SAVING MARKER to filter later
+    // Saves marker for filtering
     userMarkers.push({ user, marker });
 
   if (!isCurrentUser) {
@@ -104,7 +103,7 @@ async function addProfileUserMarker(user: User) {
 
 }
 
-// NEW - TO FILTER FOR DROPDOWN
+// Filter markers by crop presence
 function filterMarkersByCrop(cropTitle: string): void {
   userMarkers.forEach(({ user, marker }) => {
     const hasCrop = Array.from(user.gardenMap.values()).some(
@@ -115,7 +114,7 @@ function filterMarkersByCrop(cropTitle: string): void {
   });
 }
 
-// NEW - LISTENERS FOR MAP FILTER
+// Listener for filter
 function filter_map_init(): void {
   const filterDropDownBtn = document.getElementById("map-dropdown");
   const filterDropDownMenu = document.getElementById("filter-map-dropdown");

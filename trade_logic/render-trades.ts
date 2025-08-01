@@ -145,16 +145,38 @@ function renderCompletedTrade(trade: Trade, currentUser: User): void {
   // Determine if you are from or to user
   const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
 
+  // Create trade div container with relative positioning
   const div = document.createElement("div");
-  div.className = "bg-gray-100 shadow p-4 rounded mb-3";
+  div.className = "bg-gray-100 shadow p-4 rounded mb-3 relative";
 
+  // Set inner HTML for the trade text content
   div.innerHTML = `
     ✅ ${trade.date} — Trade between <strong>${userType}</strong> and you:
     ${trade.offeredPlant} ↔ ${trade.requestedPlant}
-    `;
+  `;
+
+  // Create the clear button element
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "clear-complete-trade absolute top-2 right-2 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none";
+  button.setAttribute("aria-label", "Close");
+
+  button.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  `;
+
+  div.appendChild(button);
 
   container.appendChild(div);
+
+  const clearBtn = div.querySelector(".clear-complete-trade") as HTMLButtonElement;
+      clearBtn.addEventListener("click", () => {
+          div.remove(); // Remove from display but persists in localstorage
+      })
 }
+
 
 export {
   render_trades_init

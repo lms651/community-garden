@@ -3,7 +3,7 @@ import { geocodeAddress } from "./map.js";
 import { filterForMap } from "../garden/plant-inventory.js";
 /// <reference types="google.maps" />
 let map;
-// NEW Saves user markers for easy filtering if needed
+// Saves user markers for filtering 
 const userMarkers = [];
 async function init_profile_map() {
     const result = loadCurrentUser();
@@ -13,7 +13,6 @@ async function init_profile_map() {
     const { Map } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
     const { Autocomplete } = await google.maps.importLibrary("places");
-    //   await google.maps.importLibrary("places");
     const currentCoords = await geocodeAddress(currentUser.getFullAddress());
     if (!currentCoords) {
         console.warn("Could not get location for current user");
@@ -63,7 +62,7 @@ async function addProfileUserMarker(user) {
         content: pin.element,
         gmpClickable: !isCurrentUser,
     });
-    // NEW -- FOR SAVING MARKER to filter later
+    // Saves marker for filtering
     userMarkers.push({ user, marker });
     if (!isCurrentUser) {
         pin.element.style.cursor = "pointer";
@@ -81,14 +80,14 @@ async function addProfileUserMarker(user) {
         });
     }
 }
-// NEW - TO FILTER FOR DROPDOWN
+// Filter markers by crop presence
 function filterMarkersByCrop(cropTitle) {
     userMarkers.forEach(({ user, marker }) => {
         const hasCrop = Array.from(user.gardenMap.values()).some(plant => plant.title === cropTitle);
         marker.map = hasCrop ? map : null;
     });
 }
-// NEW - LISTENERS FOR MAP FILTER
+// Listener for filter
 function filter_map_init() {
     const filterDropDownBtn = document.getElementById("map-dropdown");
     const filterDropDownMenu = document.getElementById("filter-map-dropdown");

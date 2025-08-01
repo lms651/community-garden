@@ -11,13 +11,11 @@ import { render_messages_init } from "./messages_logic/render-messages.js";
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
 
-
     if (body.classList.contains("homepage")) {
         initMap();
         login_init();
         register_init();
         newUser_init();
-
     }
     
     if (body.classList.contains("profile-page")) {
@@ -37,6 +35,4 @@ document.addEventListener("DOMContentLoaded", () => {
         if (body.classList.contains("messages-page")) {
         render_messages_init();
     }
-
-
 })

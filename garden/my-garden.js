@@ -58,7 +58,7 @@ function renderGrid(user) {
         button.addEventListener("click", () => showPlantModal(plant.title, user));
     });
 }
-// Modal holds functions on the instance of user's myPlant
+// Modal holds functions on user's myPlant
 // Flag for trade slider
 // Option to delete plant from their map
 function showPlantModal(title, user) {

@@ -40,12 +40,12 @@ function renderAcceptedMessage(trade: Trade, currentUser: User): void {
 
   // create container for accordian div
   const container = document.createElement("div");
-  container.className = "border border-green-300 rounded-xl overflow-hidden mb-6";
+  container.className = "border border-blue-300 rounded-xl overflow-hidden mb-6";
 
   // button header
   const button = document.createElement("button");
   button.type = "button";
-  button.className = "w-full px-4 py-3 text-left font-semibold bg-green-100 hover:bg-green-200 transition";
+  button.className = "w-full px-4 py-3 text-left font-semibold bg-blue-100 hover:bg-green-100 transition";
   button.textContent = `Trade on ${tradeDate} with ${otherUsername}: ${tradeDetails}`;
   button.addEventListener("click", () => {
     contentDiv.classList.toggle("hidden");
@@ -88,10 +88,9 @@ function renderAcceptedMessage(trade: Trade, currentUser: User): void {
     trade.messages.push({ from: currentUser.username, text });
     
     // Display message
-    const date = new Date().toLocaleString();
     const newMsgLi = document.createElement("li");
     newMsgLi.className = "text-sm bg-gray-50 p-2 rounded";
-    newMsgLi.textContent = `${date} ${currentUser.username}: ${text}`;
+    newMsgLi.textContent = `${currentUser.username}: ${text}`;
     messageList.appendChild(newMsgLi);
 
     input.value = "";

@@ -17,17 +17,29 @@ function handleTrade (currentNeighbor: User, requestedPlantNeighbor: string, off
     console.log('trade saved');
 }
 
-function loadTrades(): Trade[] {
+// function loadTrades(): Trade[] {
+//   const tradesRaw = localStorage.getItem("trades");
+//   if (!tradesRaw) return [];
+
+//   const tradesArray = JSON.parse(tradesRaw);
+//   return tradesArray.map((trade: any) => Trade.fromJSON(trade));
+// }
+
+// function saveTrades(trades: Trade[]): void {
+//   localStorage.setItem("trades", JSON.stringify(trades));
+// }
+
+const loadTrades = (): Trade[] => {
   const tradesRaw = localStorage.getItem("trades");
   if (!tradesRaw) return [];
 
   const tradesArray = JSON.parse(tradesRaw);
   return tradesArray.map((trade: any) => Trade.fromJSON(trade));
-}
+};
 
-function saveTrades(trades: Trade[]): void {
+const saveTrades = (trades: Trade[]): void => {
   localStorage.setItem("trades", JSON.stringify(trades));
-}
+};
 
 function removeTrade(trade: Trade, allTrades: Trade[]): void {
 

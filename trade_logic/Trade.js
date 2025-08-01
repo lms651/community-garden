@@ -25,7 +25,7 @@ class Trade {
     }
     static fromJSON(data) {
         var _a;
-        const trade = new Trade(data.fromUser, data.toUser, data.offeredPlant, data.requestedPlant, data.status, (_a = data.messages) !== null && _a !== void 0 ? _a : [] // <-- default to [] if missing
+        const trade = new Trade(data.fromUser, data.toUser, data.offeredPlant, data.requestedPlant, data.status, (_a = data.messages) !== null && _a !== void 0 ? _a : [] // default to empty if none
         );
         trade.date = data.date;
         return trade;
