@@ -1,5 +1,6 @@
 import { filter, findPlant } from './plant-inventory.js';
 import { MyPlant } from './myPlant.js';
+import { refreshCurrentUserMarker } from '../maps/profile-map.js';
 // listeners for dropdown menu functions on profile page
 // to be implemented on render-profile.ts 
 // user gets passed in in hopes it will get updated in memory correctly
@@ -92,6 +93,7 @@ function handleFlag(title, user) {
         plant.forTrade = toggle.checked;
         saveGarden(user);
         renderGrid(user);
+        refreshCurrentUserMarker();
     }
 }
 // Deletes map entry from current user's map

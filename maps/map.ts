@@ -40,7 +40,6 @@ autocomplete.addListener("place_changed", () => {
 });
 }
 
-
 // Function to geocode user address
 async function geocodeAddress(address: string): Promise<google.maps.LatLngLiteral | null> {
   const geocoder = new google.maps.Geocoder();

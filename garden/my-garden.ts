@@ -1,6 +1,7 @@
 import { filter, findPlant } from './plant-inventory.js';
 import { MyPlant } from './myPlant.js';
 import { User } from '../user_logic/user.js';
+import { refreshCurrentUserMarker } from '../maps/profile-map.js';
 
 
 // listeners for dropdown menu functions on profile page
@@ -121,6 +122,7 @@ function handleFlag(title: string, user: User): void {
     plant.forTrade = toggle.checked;
     saveGarden(user);
     renderGrid(user);
+    refreshCurrentUserMarker();
   }
 }
 

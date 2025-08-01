@@ -139,7 +139,27 @@ function filter_map_init(): void {
   });
 }
 
+// To be called after trade status on vegetables are updated
+async function refreshCurrentUserMarker(): Promise<void> {
+  const result = loadCurrentUser();
+  if (!result) return;
+
+  const currentUser = result.user;
+
+  // Remove the old marker from the map and userMarkers array
+  const existing = userMarkers.find(entry => entry.user.username === currentUser.username);
+  if (existing) {
+    existing.marker.map = null; // removes it from the map
+    const index = userMarkers.indexOf(existing);
+    if (index !== -1) userMarkers.splice(index, 1);
+  }
+
+  // Re-add with updated info (color, glyph, etc.)
+  await addProfileUserMarker(currentUser);
+}
+
 export {
     init_profile_map,
-    filter_map_init
+    filter_map_init,
+    refreshCurrentUserMarker
 }
