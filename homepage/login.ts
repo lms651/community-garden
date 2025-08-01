@@ -1,6 +1,8 @@
 import { closeRegisterModal } from "./register";
 import { User } from "../user_logic/user.js";
 
+declare const toastr: any;
+
 function login_init(): void {
     const loginBtn = document.getElementById("login-button") as HTMLButtonElement | null;
     if (loginBtn) {
@@ -29,13 +31,17 @@ function login_init(): void {
         if (success) {
             window.location.href = "profile.html";
         } else {
-            alert("Invalid username or password.");
+            toastr.error("Invalid username/password", "Error");
             closeLoginModal();
         }
 
     })
-
     }
+
+    const forgotPass = document.getElementById("forgot-password")!;
+    forgotPass.addEventListener("click", () => {
+    toastr.info("Password reset is not implemented yet.");
+});
 }
 
 function showLoginModal(): void {

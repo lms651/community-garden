@@ -4,7 +4,7 @@ class Trade {
     toUser: string;   
     offeredPlant: string;  // from currentUser dropdown input
     requestedPlant: string; // neighborPlantTitle
-    status: "pending" | "accepted" | "rejected" | "completed" | "canceled";
+    status: "pending" | "accepted" | "rejected" | "completed" | "canceled" | "archived";
     messages: { from: string; text: string }[]; // for messaging about accepted trades
 
   constructor(
@@ -12,7 +12,7 @@ class Trade {
     toUser: string,
     offeredPlant: string,
     requestedPlant: string,
-    status: "pending" | "accepted" | "rejected" | "completed" | "canceled",
+    status: "pending" | "accepted" | "rejected" | "completed" | "canceled" | "archived",
     messages: { from: string; text: string }[] = [] 
   )
   {

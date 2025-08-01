@@ -17,18 +17,6 @@ function handleTrade (currentNeighbor: User, requestedPlantNeighbor: string, off
     console.log('trade saved');
 }
 
-// function loadTrades(): Trade[] {
-//   const tradesRaw = localStorage.getItem("trades");
-//   if (!tradesRaw) return [];
-
-//   const tradesArray = JSON.parse(tradesRaw);
-//   return tradesArray.map((trade: any) => Trade.fromJSON(trade));
-// }
-
-// function saveTrades(trades: Trade[]): void {
-//   localStorage.setItem("trades", JSON.stringify(trades));
-// }
-
 const loadTrades = (): Trade[] => {
   const tradesRaw = localStorage.getItem("trades");
   if (!tradesRaw) return [];
@@ -48,7 +36,7 @@ function removeTrade(trade: Trade, allTrades: Trade[]): void {
 
   if (index !== -1) {
     allTrades.splice(index, 1);
-    localStorage.setItem("trades", JSON.stringify(allTrades));
+    saveTrades(allTrades);
     console.log("Trade removed, new length:", allTrades.length);
   } else {
     console.warn("Trade not found for deletion:", trade);

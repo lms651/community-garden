@@ -1,6 +1,7 @@
 var _a;
 import { loadCurrentUser } from "../user_logic/user-utils.js";
 import { loadTrades, saveTrades, removeTrade } from "./trades.js";
+import { saveGarden } from "../garden/my-garden.js";
 const allTrades = (_a = loadTrades()) !== null && _a !== void 0 ? _a : [];
 function render_trades_init() {
     const result = loadCurrentUser();
@@ -146,6 +147,10 @@ function renderCompletedTrade(trade, currentUser) {
     const clearBtn = div.querySelector(".clear-complete-trade");
     clearBtn.addEventListener("click", () => {
         div.remove(); // Remove from display but persists in localstorage
+        trade.status = "archived";
+        currentUser.archiveTrade(trade);
+        console.log("User archivedTrades:", currentUser.archivedTrades);
+        saveGarden(currentUser);
     });
 }
 export { render_trades_init };

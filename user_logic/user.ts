@@ -1,4 +1,7 @@
+import { saveGarden } from "../garden/my-garden.js";
 import { MyPlant } from "../garden/myPlant.js";
+import { Trade } from "../trade_logic/Trade.js";
+import { loadTrades, removeTrade, saveTrades } from "../trade_logic/trades.js";
 
 class User {
   id: number;
@@ -11,8 +14,8 @@ class User {
   country: string;
   password: string;
   gardenMap: Map<string, MyPlant>;
-  hasNewRequest: boolean;
-  hasNewMessage: boolean;
+  archivedTrades: Trade[] = [];
+
 
   constructor(
     id: number,
@@ -23,9 +26,7 @@ class User {
     state: string,
     zip: string,
     country: string,
-    password: string,
-    hasNewRequest = false,
-    hasNewMessage = false
+    password: string
   ) {
     this.id = id;
     this.username = username;
@@ -36,9 +37,9 @@ class User {
     this.zip = zip;
     this.country = country;
     this.password = password;
-    this.gardenMap = new Map(); // empty garden
-    this.hasNewRequest = hasNewRequest;
-    this.hasNewMessage = hasNewMessage;
+    this.gardenMap = new Map();
+    this.archivedTrades = [];
+
   }
 
   static getNextId(): number {
@@ -75,9 +76,7 @@ static fromJson(obj: any): User {
     obj.state,
     obj.zip,
     obj.country,
-    obj.password,
-    obj.hasNewRequest || false,
-    obj.hasNewMessage || false
+    obj.password
   );
 
   if (obj.garden) {
@@ -86,7 +85,20 @@ static fromJson(obj: any): User {
     );
   }
 
+  if (obj.archivedTrades) {
+    user.archivedTrades = obj.archivedTrades.map((t: any) => Trade.fromJSON(t));
+  } else {
+    user.archivedTrades = [];
+  }
+
   return user;
+}
+
+archiveTrade(trade: Trade) {
+  const allTrades = loadTrades();
+  removeTrade(trade, allTrades);
+  trade.status = "archived";
+  this.archivedTrades.push(trade);
 }
 
   toJSON() {
@@ -101,8 +113,7 @@ static fromJson(obj: any): User {
       country: this.country,
       password: this.password,
       garden: Array.from(this.gardenMap.entries()).map(([key, plant]) => [key, plant.toJson()]),
-      hasNewRequest: this.hasNewRequest,
-      hasNewMessage: this.hasNewMessage
+      archivedTrades: this.archivedTrades.map(trade => trade.toJSON())
     };
   }
 
