@@ -26,10 +26,10 @@
     <!--Toastr CDN-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
-    <title>My Garden</title>
+    <title>Settings</title>
 </head>
 
-<body class="neighbor-page">
+<body class="settings-page">
 
     <header style="background-color: rgba(247, 247, 245, 0.637); border-bottom: 1px solid rgba(200, 200, 200, 0.5)">
     <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -93,83 +93,66 @@
     </header>
 
 
-  <h2 class="englebert-regular text-4xl font-bold text-gray-900 mb-4 mt-10 flex justify-center" id="neighbor-title">Neighbor's Garden</h2><br>
-  <p class="font-semibold text-gray-600 flex justify-center">Click a crop to trade!</p><br>
+<div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
+  <h2 class="englebert-regular text-4xl font-bold text-gray-900 mb-4 mt-10 flex justify-center">MY SETTINGS</h2>
+  <p class="font-medium text-gray-600 flex justify-center">Update Settings Here!</p><br>
+</div>
 
-<!--Empty Garden Grid Container-->
-<section class="bg-white">
-  <div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
-    <div id="neighbor-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
-  </div>
-</section>
 
-<!--Trade Modal-->
-<div
-  id="trade-modal"
-  class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="modalTitle"
->
-  <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-    <div class="flex items-start justify-between">
-      <h2 id="trade-modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Set up a trade!</h2><br><br>
+<div id="settings-panel" class="w-full max-w-3xl mx-auto mt-0 my-6 p-6 bg-white rounded-lg shadow border border-gray-300" style="background-color: rgba(247, 247, 245, 0.637)">
 
+    <!-- Update Form -->
+
+    <form id="update-form" class="space-y-4">
+      <div>
+      <label for="signup-username" class="block mb-0">Username</label>
+      <input type="text" id="signup-username" name="username" autocomplete="Username" placeholder="Username" readonly class="mt-0 w-full border border-gray-300 text-gray-400 p-2 rounded"/>
+      </div>
+      <div>
+      <label for="form-email">Email</label>
+      <input type="email" id="form-email" name="email" autocomplete="email" placeholder="Email" class="w-full border border-gray-300 p-2 rounded"/>
+      </div>
+      <div>
+      <label for="form-password">Password</label>
+      <input type="password" id="form-password" name="password" placeholder="Password" class="w-full border border-gray-300 p-2 rounded"/>
+      </div>
+      <div>
+      <label for="form-street">Street Address</label>
+      <input type="text" id="form-street" name="street" placeholder="Street Address" class="w-full border border-gray-300 p-2 rounded"/>
+      </div>
+      <div>
+      <label for="form-city">City</label>
+      <input type="text" id="form-city" name="city" placeholder="City" pattern="[A-Za-z\s]+" class="w-full border border-gray-300 p-2 rounded"/>
+      </div>
+      <div>
+      <label for="form-state">State</label>
+      <input type="text" id="form-state" name="state" autocapitalize="characters" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" class="w-full border border-gray-300 p-2 rounded"/>
+      </div>
+      <div>
+      <label for="form-zip">Zip Code</label>  
+      <input type="text" id="form-zip" name="zip" placeholder="5-digits" pattern="\d{5}" maxlength="5" class="w-full border border-gray-300 p-2 rounded" />
+      </div>
+      <div>
+      <label for="form-country">Country</label>
+      <input type="text" id="form-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" placeholder="3-Letter Code (e.g. USA)" class="w-full border border-gray-300 p-2 rounded"/>
+      </div>
+      <!-- Submit Button -->
       <button
-        type="button"
-        id="exit-trade-modal"
-        class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none"
-        aria-label="Close"
+        type="submit"
+        id="update-submit"
+        class="w-full rounded bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
+        Submit
       </button>
-    </div>
+    </form>
 
-    <!-- Trade Dropdown -->
-<div class="trade-dropdown-container relative w-full max-w-xs mx-auto mt-4">
-  <p>Choose one of your plants to offer:</p><br>
-
-  <input 
-    type="text" 
-    placeholder="Start typing your crop..." 
-    id="trade-dropdown-input" 
-    class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-  />
-
-  <div 
-    id="trade-dropdown-content" 
-    class="trade-dropdown-content mt-1 border border-gray-200 rounded-md shadow bg-white max-h-60 overflow-y-auto z-50"
-    style="position: absolute; width: 100%;"
-  >
-    <!-- <button class="block w-full text-left px-4 py-2 hover:bg-gray-100">Test Veg 1</button> -->
   </div>
 </div>
-    <br><br>
 
-    
 
-    <div id="offer-trade">
-      <button
-      type="button"
-      id="submit-trade"
-      class="rounded bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800"
-      >Submit Trade Offer</button>
-    </div>
-  </div>
-</div>
+
+<script type="module" src="app.js"></script>
+
 
 <!--JQuery-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

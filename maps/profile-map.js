@@ -107,6 +107,7 @@ function filter_map_init() {
         });
     });
 }
+// To be called after trade status on vegetables are updated
 async function refreshCurrentUserMarker() {
     const result = loadCurrentUser();
     if (!result)
