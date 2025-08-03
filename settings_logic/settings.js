@@ -1,5 +1,4 @@
-import { saveGarden } from "../garden/my-garden.js";
-import { loadCurrentUser } from "../user_logic/user-utils.js";
+import { loadCurrentUser, updateUser } from "../user_logic/user-utils.js";
 function settings_init() {
     preFillFields();
     const updateForm = document.getElementById("update-form");
@@ -67,7 +66,7 @@ function saveSettings() {
     user.zip = zipInput.value;
     const countryInput = document.getElementById("form-country");
     user.country = countryInput.value;
-    saveGarden(user);
+    updateUser(user);
     toastr.success("Settings Saved!", "Success");
 }
 export { settings_init };

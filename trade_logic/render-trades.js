@@ -1,9 +1,6 @@
 var _a;
-import { loadCurrentUser } from "../user_logic/user-utils.js";
+import { loadCurrentUser, updateUser, hasMessages, hasRequests } from "../user_logic/user-utils.js";
 import { loadTrades, saveTrades, removeTrade } from "./trades.js";
-import { saveGarden } from "../garden/my-garden.js";
-import { hasMessages } from "../user_logic/user-utils.js";
-import { hasRequests } from "../user_logic/user-utils.js";
 const allTrades = (_a = loadTrades()) !== null && _a !== void 0 ? _a : [];
 function render_trades_init() {
     const result = loadCurrentUser();
@@ -170,7 +167,7 @@ function renderCompletedTrade(trade, currentUser) {
         trade.status = "archived";
         currentUser.archiveTrade(trade);
         console.log("User archivedTrades:", currentUser.archivedTrades);
-        saveGarden(currentUser);
+        updateUser(currentUser);
     });
 }
 export { render_trades_init };

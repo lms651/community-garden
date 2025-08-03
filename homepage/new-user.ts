@@ -31,7 +31,7 @@ function newUser_init() {
             const passwordInput = (document.getElementById("signup-password") as HTMLInputElement).value.trim();
 
             const newUser = new User(User.getNextId(), usernameInput, emailInput, streetInput, cityInput, stateInput, zipInput, countryInput, passwordInput)
-            saveUser(newUser);
+            saveNewUser(newUser);
             toastr.success("Welcome to the Community!", "Success:");
             closeRegisterModal();
             initMap();
@@ -39,9 +39,8 @@ function newUser_init() {
     }
 }
 
-function saveUser(newUser: User): void {
-    console.log(newUser);
-    let users = JSON.parse(localStorage.getItem("users") || "[]");
+function saveNewUser(newUser: User): void {
+    let users = loadUsers();    
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
 }

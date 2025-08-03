@@ -22,16 +22,15 @@ function newUser_init() {
             const countryInput = document.getElementById("signup-country").value.trim();
             const passwordInput = document.getElementById("signup-password").value.trim();
             const newUser = new User(User.getNextId(), usernameInput, emailInput, streetInput, cityInput, stateInput, zipInput, countryInput, passwordInput);
-            saveUser(newUser);
+            saveNewUser(newUser);
             toastr.success("Welcome to the Community!", "Success:");
             closeRegisterModal();
             initMap();
         });
     }
 }
-function saveUser(newUser) {
-    console.log(newUser);
-    let users = JSON.parse(localStorage.getItem("users") || "[]");
+function saveNewUser(newUser) {
+    let users = loadUsers();
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
 }

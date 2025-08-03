@@ -2,6 +2,7 @@ import { filter, findPlant } from './plant-inventory.js';
 import { MyPlant } from './myPlant.js';
 import { User } from '../user_logic/user.js';
 import { refreshCurrentUserMarker } from '../maps/profile-map.js';
+import { updateUser } from '../user_logic/user-utils.js';
 
 
 // listeners for dropdown menu functions on profile page
@@ -41,7 +42,7 @@ function addVegToGrid(title: string, user: User): void {
     const myPlant = new MyPlant(basePlant.title, basePlant.img);
     user.gardenMap.set(title, myPlant);
 
-    saveGarden(user);
+    updateUser(user);
     renderGrid(user);
   }
 }
@@ -120,7 +121,7 @@ function handleFlag(title: string, user: User): void {
   const toggle = document.getElementById("toggle") as HTMLInputElement;
   if (plant && toggle) {
     plant.forTrade = toggle.checked;
-    saveGarden(user);
+    updateUser(user);
     renderGrid(user);
     refreshCurrentUserMarker();
   }
@@ -131,28 +132,12 @@ function handleFlag(title: string, user: User): void {
 
 function handleDelete(title: string, user: User): void {
   user.gardenMap.delete(title);
-  saveGarden(user);
+  updateUser(user);
   renderGrid(user);
   closePlantModal();
 }
 
-function saveGarden(user: User): void {
-  const usersRaw = localStorage.getItem("users");
-  if (!usersRaw) return;
-
-  const userIndex = localStorage.getItem("currentUserIndex");
-  console.log(userIndex)
-  const parsedUserIndex = parseInt(userIndex as string);
-
-  const usersArray = JSON.parse(usersRaw);
-
-  usersArray[parsedUserIndex] = user;
-  console.log(user.toJSON())
-  localStorage.setItem("users", JSON.stringify(usersArray));
-}
-
 export {
   garden_init,
-  renderGrid,
-  saveGarden
+  renderGrid
 };

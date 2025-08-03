@@ -12,7 +12,7 @@ const loadCurrentUser = () => {
     const rawUser = users[index];
     if (!rawUser)
         return null;
-    const user = User.fromJson(rawUser); // This will restore gardenMap
+    const user = User.fromJson(rawUser);
     return { user, index };
 };
 const loadNeighbor = () => {
@@ -57,4 +57,16 @@ function hasRequests() {
     return trades.some(trade => trade.status === "pending" &&
         trade.toUser === currentUser.username);
 }
-export { loadCurrentUser, loadNeighbor, loadUsers, hasMessages, hasRequests };
+function updateUser(user) {
+    const usersRaw = localStorage.getItem("users");
+    if (!usersRaw)
+        return;
+    const userIndex = localStorage.getItem("currentUserIndex");
+    console.log(userIndex);
+    const parsedUserIndex = parseInt(userIndex);
+    const usersArray = JSON.parse(usersRaw);
+    usersArray[parsedUserIndex] = user;
+    console.log(user.toJSON());
+    localStorage.setItem("users", JSON.stringify(usersArray));
+}
+export { loadCurrentUser, loadNeighbor, loadUsers, hasMessages, hasRequests, updateUser };

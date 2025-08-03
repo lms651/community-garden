@@ -25,15 +25,6 @@ class User {
     getFullAddress() {
         return `${this.street}, ${this.city}, ${this.state}, ${this.zip} ${this.country}`;
     }
-    // Convert garden map to object for saving to localstorage
-    mapToObj(map) {
-        return Object.fromEntries(map);
-    }
-    objToMap(obj) {
-        if (!obj)
-            return new Map(); // Return empty map if null/undefined
-        return new Map(Object.entries(obj));
-    }
     static fromJson(obj) {
         const user = new User(obj.id, obj.username, obj.email, obj.street, obj.city, obj.state, obj.zip, obj.country, obj.password);
         if (obj.garden) {

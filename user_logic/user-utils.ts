@@ -13,9 +13,9 @@ const loadCurrentUser = (): { user: User, index: number } | null => {
   const rawUser = users[index];
   if (!rawUser) return null;
 
-  const user = User.fromJson(rawUser); // This will restore gardenMap
+  const user = User.fromJson(rawUser);
   return { user, index };
-};
+}
 
 const loadNeighbor = (): { user: User, index: number } | null => {
   const params = new URLSearchParams(window.location.search);
@@ -31,28 +31,28 @@ const loadNeighbor = (): { user: User, index: number } | null => {
 
   const user = User.fromJson(users[index]);
   return { user, index };
-};
+}
 
   const loadUsers = (): User[] => {
-  const usersRaw = localStorage.getItem("users");
-  if (!usersRaw) return [];
+    const usersRaw = localStorage.getItem("users");
+    if (!usersRaw) return [];
 
-  const parsed = JSON.parse(usersRaw);
-  return parsed.map((rawUser: any) => User.fromJson(rawUser));
-  };
+    const parsed = JSON.parse(usersRaw);
+    return parsed.map((rawUser: any) => User.fromJson(rawUser));
+  }
 
   function hasMessages(): boolean {
-  const trades = loadTrades();
-  const result = loadCurrentUser();
-  if (!result) return false;
+    const trades = loadTrades();
+    const result = loadCurrentUser();
+    if (!result) return false;
 
-  const currentUser = result.user;
+    const currentUser = result.user;
 
-  return trades.some(trade =>
-  trade.status === "accepted" &&
-  (trade.fromUser === currentUser.username || trade.toUser === currentUser.username) &&
-  trade.messages && trade.messages.length > 0
-  );
+    return trades.some(trade =>
+    trade.status === "accepted" &&
+    (trade.fromUser === currentUser.username || trade.toUser === currentUser.username) &&
+    trade.messages && trade.messages.length > 0
+    );
   }
 
 function hasRequests(): boolean {
@@ -68,11 +68,27 @@ function hasRequests(): boolean {
   );
 }
 
+function updateUser(user: User): void {
+  const usersRaw = localStorage.getItem("users");
+  if (!usersRaw) return;
+
+  const userIndex = localStorage.getItem("currentUserIndex");
+  console.log(userIndex)
+  const parsedUserIndex = parseInt(userIndex as string);
+
+  const usersArray = JSON.parse(usersRaw);
+
+  usersArray[parsedUserIndex] = user;
+  console.log(user.toJSON())
+  localStorage.setItem("users", JSON.stringify(usersArray));
+}
+
 export {
     loadCurrentUser,
     loadNeighbor,
     loadUsers,
     hasMessages,
-    hasRequests
+    hasRequests,
+    updateUser
 }
 

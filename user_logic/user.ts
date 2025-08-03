@@ -1,7 +1,6 @@
-import { saveGarden } from "../garden/my-garden.js";
 import { MyPlant } from "../garden/myPlant.js";
 import { Trade } from "../trade_logic/Trade.js";
-import { loadTrades, removeTrade, saveTrades } from "../trade_logic/trades.js";
+import { loadTrades, removeTrade } from "../trade_logic/trades.js";
 
 class User {
   id: number;
@@ -51,16 +50,6 @@ class User {
   // For Geocoding
   getFullAddress(): string {
     return `${this.street}, ${this.city}, ${this.state}, ${this.zip} ${this.country}`;
-  }
-
-  // Convert garden map to object for saving to localstorage
-  mapToObj(map: Map<string, MyPlant>): Record<string, MyPlant> {
-    return Object.fromEntries(map);
-  }
-
-  objToMap(obj: Record<string, MyPlant> | null | undefined): Map<string, MyPlant> {
-    if (!obj) return new Map(); // Return empty map if null/undefined
-    return new Map(Object.entries(obj));
   }
     
 

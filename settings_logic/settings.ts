@@ -1,5 +1,4 @@
-import { saveGarden } from "../garden/my-garden.js";
-import { loadCurrentUser } from "../user_logic/user-utils.js"
+import { loadCurrentUser, updateUser } from "../user_logic/user-utils.js"
 
 declare const toastr: any;
 
@@ -88,7 +87,7 @@ function saveSettings() {
     const countryInput = document.getElementById("form-country") as HTMLInputElement;
     user.country = countryInput.value;
 
-    saveGarden(user);
+    updateUser(user);
     toastr.success("Settings Saved!", "Success");
 }
 

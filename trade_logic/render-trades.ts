@@ -1,10 +1,7 @@
-import { loadCurrentUser } from "../user_logic/user-utils.js";
+import { loadCurrentUser, updateUser, hasMessages, hasRequests } from "../user_logic/user-utils.js";
 import { Trade } from "./Trade.js";
 import { loadTrades, saveTrades, removeTrade } from "./trades.js";
 import { User } from "../user_logic/user.js";
-import { saveGarden } from "../garden/my-garden.js";
-import { hasMessages } from "../user_logic/user-utils.js";
-import { hasRequests } from "../user_logic/user-utils.js";
 
 const allTrades = loadTrades() ?? [];
 
@@ -206,7 +203,7 @@ function renderCompletedTrade(trade: Trade, currentUser: User): void {
           currentUser.archiveTrade(trade);
           console.log("User archivedTrades:", currentUser.archivedTrades);
 
-          saveGarden(currentUser);
+          updateUser(currentUser);
       })
 }
 
