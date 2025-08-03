@@ -1,6 +1,8 @@
 import { saveGarden } from "../garden/my-garden.js";
 import { loadCurrentUser } from "../user_logic/user-utils.js"
 
+declare const toastr: any;
+
 function settings_init() {
     preFillFields();
 
@@ -87,6 +89,7 @@ function saveSettings() {
     user.country = countryInput.value;
 
     saveGarden(user);
+    toastr.success("Settings Saved!", "Success");
 }
 
 

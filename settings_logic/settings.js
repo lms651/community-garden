@@ -68,5 +68,6 @@ function saveSettings() {
     const countryInput = document.getElementById("form-country");
     user.country = countryInput.value;
     saveGarden(user);
+    toastr.success("Settings Saved!", "Success");
 }
 export { settings_init };
