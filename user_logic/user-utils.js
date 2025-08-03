@@ -1,4 +1,5 @@
 import { User } from "./user.js";
+import { loadTrades } from "../trade_logic/trades.js";
 const loadCurrentUser = () => {
     const indexRaw = localStorage.getItem("currentUserIndex");
     if (indexRaw === null)
@@ -36,4 +37,24 @@ const loadUsers = () => {
     const parsed = JSON.parse(usersRaw);
     return parsed.map((rawUser) => User.fromJson(rawUser));
 };
-export { loadCurrentUser, loadNeighbor, loadUsers };
+function hasMessages() {
+    const trades = loadTrades();
+    const result = loadCurrentUser();
+    if (!result)
+        return false;
+    const currentUser = result.user;
+    return trades.some(trade => trade.status === "accepted" &&
+        (trade.fromUser === currentUser.username || trade.toUser === currentUser.username) &&
+        trade.messages && trade.messages.length > 0);
+}
+function hasRequests() {
+    var _a;
+    const trades = (_a = loadTrades()) !== null && _a !== void 0 ? _a : [];
+    const result = loadCurrentUser();
+    if (!result)
+        return false;
+    const currentUser = result.user;
+    return trades.some(trade => trade.status === "pending" &&
+        trade.toUser === currentUser.username);
+}
+export { loadCurrentUser, loadNeighbor, loadUsers, hasMessages, hasRequests };

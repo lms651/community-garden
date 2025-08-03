@@ -1,6 +1,7 @@
 import { loadNeighbor } from "../user_logic/user-utils.js";
 import { renderNeighborGrid } from "./neighbor-garden.js";
-
+import { hasMessages } from "../user_logic/user-utils.js";
+import { hasRequests } from "../user_logic/user-utils.js";
 
 function render_neighbor_init() {
   const result = loadNeighbor();
@@ -16,6 +17,21 @@ function render_neighbor_init() {
 
   // Render garden
   renderNeighborGrid(neighbor);
+
+  // Render any notifications
+    if (hasRequests()) {
+    const requestsBtn = document.getElementById("neighbor-new-requests-button");
+    if (requestsBtn) {
+      requestsBtn.classList.remove("hidden");
+    }
+  }
+
+  if (hasMessages()) {
+    const messagesBtn = document.getElementById("neighbor-new-chat-button");
+    if (messagesBtn) {
+      messagesBtn.classList.remove("hidden");
+    }
+  }
 
 }
 

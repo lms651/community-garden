@@ -3,6 +3,8 @@ import { Trade } from "./Trade.js";
 import { loadTrades, saveTrades, removeTrade } from "./trades.js";
 import { User } from "../user_logic/user.js";
 import { saveGarden } from "../garden/my-garden.js";
+import { hasMessages } from "../user_logic/user-utils.js";
+import { hasRequests } from "../user_logic/user-utils.js";
 
 const allTrades = loadTrades() ?? [];
 
@@ -18,16 +20,41 @@ function render_trades_init(): void {
 
     // Loop through sorted trades
     for (const trade of sortedTrades) {
-        if (trade.status === "completed") {
-            renderCompletedTrade(trade, currentUser);
-        } else if (trade.status === "accepted") {
-            renderAcceptedTrade(trade, currentUser);
-        } else if (trade.fromUser === currentUser.username) {
-            renderTradeOffer(trade, currentUser);
+      const isCurrentUserInvolved = 
+        trade.fromUser === currentUser.username || trade.toUser === currentUser.username;
+
+      if (!isCurrentUserInvolved) continue;
+
+      if (trade.status === "completed") {
+        renderCompletedTrade(trade, currentUser);
+      }
+
+      if (trade.status === "accepted") {
+        renderAcceptedTrade(trade, currentUser);
+      }
+
+      if (trade.status === "pending") {
+        if (trade.fromUser === currentUser.username) {
+          renderTradeOffer(trade, currentUser);
         } else if (trade.toUser === currentUser.username) {
-            renderTradeRequest(trade, currentUser);
+          renderTradeRequest(trade, currentUser);
         }
+      }
     }
+    // Render any notifications
+    if (hasRequests()) {
+    const requestsBtn = document.getElementById("trades-new-requests-button");
+    if (requestsBtn) {
+      requestsBtn.classList.remove("hidden");
+    }
+  }
+
+  if (hasMessages()) {
+    const messagesBtn = document.getElementById("trades-new-chat-button");
+    if (messagesBtn) {
+      messagesBtn.classList.remove("hidden");
+    }
+  }
 }
 
 function renderTradeOffer(trade: Trade, currentUser: User): void {

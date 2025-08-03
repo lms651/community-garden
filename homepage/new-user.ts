@@ -1,3 +1,4 @@
+import { initMap } from "../maps/map.js";
 import { loadUsers } from "../user_logic/user-utils.js";
 import { User } from "../user_logic/user.js";
 import { closeRegisterModal } from "./register.js";
@@ -33,6 +34,7 @@ function newUser_init() {
             saveUser(newUser);
             toastr.success("Welcome to the Community!", "Success:");
             closeRegisterModal();
+            initMap();
     });
     }
 }

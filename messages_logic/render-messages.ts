@@ -2,6 +2,8 @@ import { loadTrades, saveTrades } from "../trade_logic/trades.js";
 import { loadCurrentUser } from "../user_logic/user-utils.js";
 import { Trade } from "../trade_logic/Trade.js";
 import { User } from "../user_logic/user.js";
+import { hasMessages } from "../user_logic/user-utils.js";
+import { hasRequests } from "../user_logic/user-utils.js";
 
 const allTrades = loadTrades() ?? [];
 
@@ -29,6 +31,21 @@ function render_messages_init(): void {
     for (const trade of relevantTrades) {
         renderAcceptedMessage(trade, currentUser);
     }
+
+    // Render any notifications
+    if (hasRequests()) {
+    const requestsBtn = document.getElementById("messages-new-requests-button");
+    if (requestsBtn) {
+      requestsBtn.classList.remove("hidden");
+    }
+  }
+
+  if (hasMessages()) {
+    const messagesBtn = document.getElementById("messages-new-chat-button");
+    if (messagesBtn) {
+      messagesBtn.classList.remove("hidden");
+    }
+  }
 }
 
 // each rendered as accordian collapsible panel
