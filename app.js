@@ -7,6 +7,7 @@ import { render_trades_init } from "./trade_logic/render-trades.js";
 import { initMap } from "./maps/map.js";
 import { filter_map_init, init_profile_map } from "./maps/profile-map.js";
 import { render_messages_init } from "./messages_logic/render-messages.js";
+import { settings_init } from "./settings_logic/settings.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
@@ -32,7 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
         render_trades_init();
     }
 
-        if (body.classList.contains("messages-page")) {
+    if (body.classList.contains("messages-page")) {
         render_messages_init();
     }
+
+    if (body.classList.contains("settings-page")) {
+        settings_init();
+    }
+
+
 })

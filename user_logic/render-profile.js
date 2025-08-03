@@ -1,7 +1,8 @@
 import { loadCurrentUser } from "./user-utils.js";
 import { garden_init } from "../garden/my-garden.js";
 import { renderGrid } from "../garden/my-garden.js";
-import { loadTrades } from "../trade_logic/trades.js";
+import { hasRequests } from "./user-utils.js";
+import { hasMessages } from "./user-utils.js";
 function render_profile_init() {
     const result = loadCurrentUser();
     if (!result)
@@ -21,25 +22,5 @@ function render_profile_init() {
             messagesBtn.classList.remove("hidden");
         }
     }
-    function hasMessages() {
-        const trades = loadTrades();
-        const result = loadCurrentUser();
-        if (!result)
-            return false;
-        const currentUser = result.user;
-        return trades.some(trade => trade.status === "accepted" &&
-            (trade.fromUser === currentUser.username || trade.toUser === currentUser.username) &&
-            trade.messages && trade.messages.length > 0);
-    }
-}
-function hasRequests() {
-    var _a;
-    const trades = (_a = loadTrades()) !== null && _a !== void 0 ? _a : [];
-    const result = loadCurrentUser();
-    if (!result)
-        return false;
-    const currentUser = result.user;
-    return trades.some(trade => trade.status === "pending" &&
-        trade.toUser === currentUser.username);
 }
 export { render_profile_init };

@@ -2,6 +2,8 @@ var _a;
 import { loadCurrentUser } from "../user_logic/user-utils.js";
 import { loadTrades, saveTrades, removeTrade } from "./trades.js";
 import { saveGarden } from "../garden/my-garden.js";
+import { hasMessages } from "../user_logic/user-utils.js";
+import { hasRequests } from "../user_logic/user-utils.js";
 const allTrades = (_a = loadTrades()) !== null && _a !== void 0 ? _a : [];
 function render_trades_init() {
     const result = loadCurrentUser();
@@ -12,17 +14,35 @@ function render_trades_init() {
     const sortedTrades = [...allTrades].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     // Loop through sorted trades
     for (const trade of sortedTrades) {
+        const isCurrentUserInvolved = trade.fromUser === currentUser.username || trade.toUser === currentUser.username;
+        if (!isCurrentUserInvolved)
+            continue;
         if (trade.status === "completed") {
             renderCompletedTrade(trade, currentUser);
         }
-        else if (trade.status === "accepted") {
+        if (trade.status === "accepted") {
             renderAcceptedTrade(trade, currentUser);
         }
-        else if (trade.fromUser === currentUser.username) {
-            renderTradeOffer(trade, currentUser);
+        if (trade.status === "pending") {
+            if (trade.fromUser === currentUser.username) {
+                renderTradeOffer(trade, currentUser);
+            }
+            else if (trade.toUser === currentUser.username) {
+                renderTradeRequest(trade, currentUser);
+            }
         }
-        else if (trade.toUser === currentUser.username) {
-            renderTradeRequest(trade, currentUser);
+    }
+    // Render any notifications
+    if (hasRequests()) {
+        const requestsBtn = document.getElementById("trades-new-requests-button");
+        if (requestsBtn) {
+            requestsBtn.classList.remove("hidden");
+        }
+    }
+    if (hasMessages()) {
+        const messagesBtn = document.getElementById("trades-new-chat-button");
+        if (messagesBtn) {
+            messagesBtn.classList.remove("hidden");
         }
     }
 }
