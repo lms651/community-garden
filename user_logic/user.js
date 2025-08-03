@@ -17,12 +17,11 @@ class User {
         this.archivedTrades = [];
     }
     static getNextId() {
-        const stored = localStorage.getItem("userNextId");
-        return stored ? parseInt(stored) + 1 : 1;
+        const usersRaw = localStorage.getItem("users");
+        const users = usersRaw ? JSON.parse(usersRaw) : [];
+        return users.length + 1;
     }
-    static saveNextId(id) {
-        localStorage.setItem("userNextId", id.toString());
-    }
+    // For Geocoding
     getFullAddress() {
         return `${this.street}, ${this.city}, ${this.state}, ${this.zip} ${this.country}`;
     }
