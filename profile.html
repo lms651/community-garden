@@ -9,7 +9,6 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    
     <link rel="stylesheet" href="stylesheet.css">
 
     <!--Google Font-->
@@ -25,55 +24,51 @@
 
 <body class="profile-page">
 
-    <header class="user-header">
-  <div class="user-header-container">
-    
-    <!-- Logo -->
-    <div class="user-logo">
-      <a href="index.html">
-        <img src="images/logo5.jpg" alt="Home">
-      </a>
-    </div>
-
-    <!-- Tagline (hidden on small screens) -->
-    <nav aria-label="Global" class="user-tagline">
-      <p>Local Roots. Online Branches.</p>
-    </nav>
-
-    <!-- Right-side icons -->
-    <div class="user-actions">
-      
-      <!-- Notification Icon -->
-      <a href="trades.html">
-        <button type="button" id="new-requests-button" class="icon-button hidden">
-          <span class="sr-only">View notifications</span>
-          <img src="images/new-notification.png" alt="Notification">
-        </button>
-      </a>
-
-      <!-- Chat Icon -->
-      <a href="messages.html">
-        <button type="button" id="new-chat-button" class="icon-button hidden">
-          <span class="sr-only">View messages</span>
-          <img src="images/new-chat.png" alt="Chat">
-        </button>
-      </a>
-
-      <!-- Profile dropdown -->
-      <div class="profile-dropdown">
-        <button type="button" id="user-menu-button">
-          <span class="sr-only">Open user menu</span>
-          <img src="images/lori_ai.png" alt="profile-pic" class="profile-img">
-        </button>
-
-        <div id="user-menu-dropdown" class="user-menu-dropdown hidden">
-          <a href="profile.html" role="menuitem">My Garden</a>
-          <a href="trades.html" role="menuitem">My Trades</a>
-          <a href="messages.html" role="menuitem">My Messages</a>
-          <a href="settings.html" role="menuitem">Settings</a>
-          <a href="index.html" role="menuitem">Sign out</a>
-        </div>
+  <header class="user-header">
+    <div class="user-header-container">   
+      <!-- Logo -->
+      <div class="user-logo">
+        <a href="index.html">
+          <img src="images/logo5.jpg" alt="Home">
+        </a>
       </div>
+      <!-- Tagline (hidden on small screens) -->
+      <nav aria-label="Global" class="user-tagline">
+        <p>Local Roots. Online Branches.</p>
+      </nav>
+      <!-- Right-side icons -->
+      <div class="user-actions">
+      <!-- Notification Icon -->
+        <a href="trades.html">
+          <button type="button" id="new-requests-button" class="icon-button hidden">
+            <span class="sr-only">View notifications</span>
+            <img src="images/new-notification.png" alt="Notification">
+          </button>
+        </a>
+
+        <!-- Chat Icon -->
+        <a href="messages.html">
+          <button type="button" id="new-chat-button" class="icon-button hidden">
+            <span class="sr-only">View messages</span>
+            <img src="images/new-chat.png" alt="Chat">
+          </button>
+        </a>
+
+        <!-- Profile dropdown -->
+        <div class="profile-dropdown">
+          <button type="button" id="user-menu-button">
+            <span class="sr-only">Open user menu</span>
+            <img src="images/lori_ai.png" alt="profile-pic" class="profile-img">
+          </button>
+
+          <div id="user-menu-dropdown" class="user-menu-dropdown hidden">
+            <a href="profile.html" role="menuitem">My Garden</a>
+            <a href="trades.html" role="menuitem">My Trades</a>
+            <a href="messages.html" role="menuitem">My Messages</a>
+            <a href="settings.html" role="menuitem">Settings</a>
+            <a href="index.html" role="menuitem">Sign out</a>
+          </div>
+        </div>
     </div>
   </div>
 </header>
@@ -83,34 +78,33 @@
 
   <!--Add Vegetable-->
   <div class="flex justify-center">
-
-  <div class="dropdown relative">
-  <button id="add-dropdown" class="dropbtn rounded-full">Add a Crop</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Start typing your crop.." id="myInput">
-    <button>Apple, Green</button>
-    <button>Apple, Red</button>
-    <button>Cucumber</button>
-    <button>Eggplant, Japanese</button>
-    <button>Kale, Curly</button>
-    <button>Lettuce, Romaine</button>
-    <button>Onion, Yellow</button>
-    <button>Onion, Red</button>
-    <button>Pepper, Banana</button>
-    <button>Pepper, Green Bell</button>
-    <button>Pepper, Red Bell</button>
-    <button>Pepper, Shishito</button>
-    <button>Squash, Butternut</button>
-    <button>Squash, Yellow</button>
-    <button>Squash, Zucchini</button>
-    <button>Tomato</button>
-    <button>Tomato, Cherry</button>
-    <button>Tomato, Heirloom</button>
-    <button>Tomato, Orange Cherry</button>
-    <button>Tomato, San Marzano</button>
+    <div class="dropdown relative">
+      <button id="add-dropdown" class="dropbtn rounded-full">Add a Crop</button>
+      <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Start typing your crop.." id="myInput">
+        <button>Apple, Green</button>
+        <button>Apple, Red</button>
+        <button>Cucumber</button>
+        <button>Eggplant, Japanese</button>
+        <button>Kale, Curly</button>
+        <button>Lettuce, Romaine</button>
+        <button>Onion, Yellow</button>
+        <button>Onion, Red</button>
+        <button>Pepper, Banana</button>
+        <button>Pepper, Green Bell</button>
+        <button>Pepper, Red Bell</button>
+        <button>Pepper, Shishito</button>
+        <button>Squash, Butternut</button>
+        <button>Squash, Yellow</button>
+        <button>Squash, Zucchini</button>
+        <button>Tomato</button>
+        <button>Tomato, Cherry</button>
+        <button>Tomato, Heirloom</button>
+        <button>Tomato, Orange Cherry</button>
+        <button>Tomato, San Marzano</button>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 
 <!--Empty Garden Grid Container-->
 <section class="bg-white">
@@ -124,102 +118,99 @@
     <h2 class="englebert-regular text-4xl font-bold text-gray-900 mb-4 flex justify-center">MY COMMUNITY</h2>
     <p class="font-semibold text-gray-600 mb-4 justify-center">Green means available to trade!</p>
 
-      <!--Filter Map by Veg-->
-<div class="flex justify-center my-6">
-<div class="dropdownmap relative">
-  <button id="map-dropdown" class="dropbtnmap rounded-full">Find a Crop</button>
-  <div id="filter-map-dropdown" class="map-dropdown-content">
-    <input type="text" placeholder="Start typing your crop.." id="myMapInput">
-    <button>Apple, Green</button>
-    <button>Apple, Red</button>
-    <button>Cucumber</button>
-    <button>Eggplant, Japanese</button>
-    <button>Kale, Curly</button>
-    <button>Lettuce, Romaine</button>
-    <button>Onion, Yellow</button>
-    <button>Onion, Red</button>
-    <button>Pepper, Banana</button>
-    <button>Pepper, Green Bell</button>
-    <button>Pepper, Red Bell</button>
-    <button>Pepper, Shishito</button>
-    <button>Squash, Butternut</button>
-    <button>Squash, Yellow</button>
-    <button>Squash, Zucchini</button>
-    <button>Tomato</button>
-    <button>Tomato, Cherry</button>
-    <button>Tomato, Heirloom</button>
-    <button>Tomato, Orange Cherry</button>
-    <button>Tomato, San Marzano</button>
+  <!--Filter Map by Veg-->
+  <div class="flex justify-center my-6">
+    <div class="dropdownmap relative">
+      <button id="map-dropdown" class="dropbtnmap rounded-full">Find a Crop</button>
+      <div id="filter-map-dropdown" class="map-dropdown-content">
+        <input type="text" placeholder="Start typing your crop.." id="myMapInput">
+        <button>Apple, Green</button>
+        <button>Apple, Red</button>
+        <button>Cucumber</button>
+        <button>Eggplant, Japanese</button>
+        <button>Kale, Curly</button>
+        <button>Lettuce, Romaine</button>
+        <button>Onion, Yellow</button>
+        <button>Onion, Red</button>
+        <button>Pepper, Banana</button>
+        <button>Pepper, Green Bell</button>
+        <button>Pepper, Red Bell</button>
+        <button>Pepper, Shishito</button>
+        <button>Squash, Butternut</button>
+        <button>Squash, Yellow</button>
+        <button>Squash, Zucchini</button>
+        <button>Tomato</button>
+        <button>Tomato, Cherry</button>
+        <button>Tomato, Heirloom</button>
+        <button>Tomato, Orange Cherry</button>
+        <button>Tomato, San Marzano</button>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 
   <div id="map-profile" style="height: 500px; width: 80%; margin: 0 auto 2.5rem; border: 1px solid #ccc;"></div>
-</div>
+  </div>
 
+  <!--Edit Modal-->
+  <div
+    id="edit-modal"
+    class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle">
+    <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+      <div class="flex items-start justify-between">
+        <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Update Plant</h2><br><br>
 
-
-<!--Edit Modal-->
-<div
-  id="edit-modal"
-  class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="modalTitle"
->
-  <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-    <div class="flex items-start justify-between">
-      <h2 id="modal-title" class="text-xl font-bold text-green-900 sm:text-2xl">Update Plant</h2><br><br>
-
-      <button
-        type="button"
-        id="exit-edit-modal"
-        class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none"
-        aria-label="Close"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+        <button
+          type="button"
+          id="exit-edit-modal"
+          class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none"
+          aria-label="Close"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-    </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
 
-    <div id="flag-trade">
-    <p>Flag for trade:</p>
-    <input type="checkbox" class="peer sr-only opacity-0" id="toggle" />
-    <label for="toggle" class="relative flex h-6 w-11 cursor-pointer items-center rounded-full bg-gray-400 px-0.5 outline-gray-400 transition-colors before:h-5 before:w-5 before:rounded-full before:bg-white before:shadow before:transition-transform before:duration-300 peer-checked:bg-green-500 peer-checked:before:translate-x-full peer-focus-visible:outline peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gray-400 peer-checked:peer-focus-visible:outline-green-500">
-          <span class="sr-only">Enable</span>
-    </label>
-    </div>
-    <br>
+      <div id="flag-trade">
+      <p>Flag for trade:</p>
+      <input type="checkbox" class="peer sr-only opacity-0" id="toggle" />
+      <label for="toggle" class="relative flex h-6 w-11 cursor-pointer items-center rounded-full bg-gray-400 px-0.5 outline-gray-400 transition-colors before:h-5 before:w-5 before:rounded-full before:bg-white before:shadow before:transition-transform before:duration-300 peer-checked:bg-green-500 peer-checked:before:translate-x-full peer-focus-visible:outline peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gray-400 peer-checked:peer-focus-visible:outline-green-500">
+            <span class="sr-only">Enable</span>
+      </label>
+      </div>
+      <br>
 
-    <div id="delete-btn">
-      <button
-      type="button"
-      id="save-edit"
-      class="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-800"
-      >Delete Plant</button>
+      <div id="delete-btn">
+        <button
+        type="button"
+        id="save-edit"
+        class="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-800"
+        >Delete Plant</button>
+      </div>
     </div>
   </div>
-</div>
 
 <!--Google Map-->
  <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
         ({key: "AIzaSyAbXMbdECIT2pMB0FYHsm67E8oVnvwOzpU", v: "weekly", libraries: "places", experimental: "placeautocomplete" });</script>
 
 
-<script type="module" src="app.js"></script>
+  <script type="module" src="app.js"></script>
 
 
-</body>
+  </body>
 </html>

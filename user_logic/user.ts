@@ -80,7 +80,7 @@ static fromJson(obj: any): User {
 
   return user;
 }
-
+// Saves completed trades to user
 archiveTrade(trade: Trade) {
   const allTrades = loadTrades();
   removeTrade(trade, allTrades);

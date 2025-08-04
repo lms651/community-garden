@@ -13,7 +13,7 @@ const loadCurrentUser = (): { user: User, index: number } | null => {
   const rawUser = users[index];
   if (!rawUser) return null;
 
-  const user = User.fromJson(rawUser); // This will restore gardenMap
+  const user = User.fromJson(rawUser);
   return { user, index };
 };
 
@@ -41,19 +41,19 @@ const loadNeighbor = (): { user: User, index: number } | null => {
   return parsed.map((rawUser: any) => User.fromJson(rawUser));
   };
 
-  function hasMessages(): boolean {
-    const trades = loadTrades();
-    const result = loadCurrentUser();
-    if (!result) return false;
+function hasMessages(): boolean {
+  const trades = loadTrades();
+  const result = loadCurrentUser();
+  if (!result) return false;
 
-    const currentUser = result.user;
+  const currentUser = result.user;
 
-    return trades.some(trade =>
-      trade.status === "accepted" &&
-      (trade.fromUser === currentUser.username || trade.toUser === currentUser.username) &&
-      trade.messages && trade.messages.length > 0
-      );
-  }
+  return trades.some(trade =>
+    trade.status === "accepted" &&
+    (trade.fromUser === currentUser.username || trade.toUser === currentUser.username) &&
+    trade.messages && trade.messages.length > 0
+    );
+}
 
 function hasRequests(): boolean {
   const trades = loadTrades() ?? [];

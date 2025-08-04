@@ -1,4 +1,4 @@
-import { User } from "../user_logic/user.js";
+import { User } from "../user_logic/User.js";
 function login_init() {
     const loginBtn = document.getElementById("login-button");
     if (loginBtn) {
@@ -44,18 +44,16 @@ function closeLoginModal() {
 function tryLoginUser(username, password) {
     const usersRaw = localStorage.getItem("users") || "[]";
     const rawUsers = JSON.parse(usersRaw);
-    // Find user index first
+    // Find user index
     const userIndex = rawUsers.findIndex((u) => u.username === username && u.password === password);
     if (userIndex !== -1) {
         // Convert raw user object to User instance
         const user = User.fromJson(rawUsers[userIndex]);
-        // Save current user index for session
+        // Save current user index in localstorage
         localStorage.setItem("currentUserIndex", userIndex.toString());
-        console.log("Login successful:", user);
         return true;
     }
     else {
-        console.log("Login failed: invalid credentials");
         return false;
     }
 }

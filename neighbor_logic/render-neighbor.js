@@ -14,6 +14,14 @@ function render_neighbor_init() {
     }
     // Render garden
     renderNeighborGrid(neighbor);
+    // Nav listeners
+    const menuButton = document.getElementById("user-menu-button");
+    const userMenuDropdown = document.getElementById('user-menu-dropdown');
+    if (menuButton && userMenuDropdown) {
+        menuButton.addEventListener('click', () => {
+            userMenuDropdown.classList.toggle('hidden');
+        });
+    }
     // Render any notifications
     if (hasRequests()) {
         const requestsBtn = document.getElementById("neighbor-new-requests-button");

@@ -1,5 +1,4 @@
-import { closeRegisterModal } from "./register";
-import { User } from "../user_logic/user.js";
+import { User } from "../user_logic/User.js";
 
 declare const toastr: any;
 
@@ -20,7 +19,7 @@ function login_init(): void {
 
     const loginForm = document.getElementById("login-form") as HTMLFormElement | null;
     if (loginForm) {
-    loginForm.addEventListener("submit", (event) => {
+        loginForm.addEventListener("submit", (event) => {
         event.preventDefault();
         
         const usernameInput = (document.getElementById("login-username") as HTMLInputElement).value.trim();
@@ -35,13 +34,13 @@ function login_init(): void {
             closeLoginModal();
         }
 
-    })
+        })
     }
 
     const forgotPass = document.getElementById("forgot-password")!;
     forgotPass.addEventListener("click", () => {
-    toastr.info("Password reset is not implemented yet.");
-});
+        toastr.info("Password reset is not implemented yet.");
+    });
 }
 
 function showLoginModal(): void {
@@ -58,23 +57,18 @@ function tryLoginUser(username: string, password: string): boolean {
   const usersRaw = localStorage.getItem("users") || "[]";
   const rawUsers = JSON.parse(usersRaw);
 
-  // Find user index first
+  // Find user index
   const userIndex = rawUsers.findIndex((u: any) => u.username === username && u.password === password);
   if (userIndex !== -1) {
     // Convert raw user object to User instance
     const user = User.fromJson(rawUsers[userIndex]);
-
-    // Save current user index for session
+    // Save current user index in localstorage
     localStorage.setItem("currentUserIndex", userIndex.toString());
-
-    console.log("Login successful:", user);
     return true;
   } else {
-    console.log("Login failed: invalid credentials");
     return false;
   }
 }
-
 
 export {
     login_init

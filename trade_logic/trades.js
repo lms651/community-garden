@@ -22,7 +22,7 @@ const saveTrades = (trades) => {
     localStorage.setItem("trades", JSON.stringify(trades));
 };
 function removeTrade(trade, allTrades) {
-    // Find index by unique date (if unique)
+    // Find index by unique date/time
     const index = allTrades.findIndex(t => t.date === trade.date);
     if (index !== -1) {
         allTrades.splice(index, 1);

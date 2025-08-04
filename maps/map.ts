@@ -2,15 +2,11 @@ import { User } from "../user_logic/User.js";
 import { loadUsers } from "../user_logic/user-utils.js";
 /// <reference types="google.maps" />
 
-
-
 let map: google.maps.Map;
+declare const toastr: any;
 
 async function initMap(): Promise<void> {
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-  const { Autocomplete } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
 
   map = new Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 42.3601, lng: -71.0589 }, // Boston
@@ -18,7 +14,7 @@ async function initMap(): Promise<void> {
     mapId: 'c767aa2e29c36d1539b917d8'
   });
 
-  const users = loadUsers(); // Get all users from localStorage
+  const users = loadUsers();
   await placeAllUserMarkers(users);
 
   // Allow visitor to enter zip and see pins nearby
@@ -27,20 +23,20 @@ async function initMap(): Promise<void> {
     types: ["(regions)"], 
   });
 
-// When a place is selected
+// When a place is selected center map on location
 autocomplete.addListener("place_changed", () => {
   const place = autocomplete.getPlace();
   if (place.geometry && place.geometry.location) {
     const location = place.geometry.location;
-    map.setCenter(location); // Center the map
-    map.setZoom(10);         // Optional: zoom in
+    map.setCenter(location);
+    map.setZoom(10);         
   } else {
-    console.error("No geometry found for that place");
+    toastr.error("No geometry found for that location", "Error");
   }
 });
 }
 
-// Function to geocode user address
+// Geocode user address for long/lat
 async function geocodeAddress(address: string): Promise<google.maps.LatLngLiteral | null> {
   const geocoder = new google.maps.Geocoder();
   return new Promise((resolve, reject) => {
@@ -49,8 +45,8 @@ async function geocodeAddress(address: string): Promise<google.maps.LatLngLitera
         const location = results[0].geometry.location;
         resolve({ lat: location.lat(), lng: location.lng() });
       } else {
-        console.error("Geocoding failed:", status);
-        resolve(null); // fallback to null
+        toastr.error("Geocoding failed", "Error")
+        resolve(null);
       }
     });
   });
@@ -92,7 +88,6 @@ async function addUserMarker(user: User) {
     content: pin.element,
   });
 }
-
 
 export {
     initMap,

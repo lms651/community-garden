@@ -1,7 +1,7 @@
 import { loadCurrentUser, updateUser, hasMessages, hasRequests } from "../user_logic/user-utils.js";
 import { Trade } from "./Trade.js";
 import { loadTrades, saveTrades, removeTrade } from "./trades.js";
-import { User } from "../user_logic/user.js";
+import { User } from "../user_logic/User.js";
 
 const allTrades = loadTrades() ?? [];
 
@@ -10,7 +10,7 @@ function render_trades_init(): void {
     if (!result) return;
     const currentUser = result.user;
 
-    // Sort allTrades by descending date
+    // Sort trades by descending date
     const sortedTrades = [...allTrades].sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
@@ -38,6 +38,17 @@ function render_trades_init(): void {
         }
       }
     }
+
+    // Nav listeners
+    const menuButton = document.getElementById("user-menu-button") as HTMLButtonElement;
+    const userMenuDropdown = document.getElementById('user-menu-dropdown') as HTMLElement;
+
+    if (menuButton && userMenuDropdown) {
+        menuButton.addEventListener('click', () => {
+        userMenuDropdown.classList.toggle('hidden');
+        });
+    }
+
     // Render any notifications
     if (hasRequests()) {
     const requestsBtn = document.getElementById("trades-new-requests-button");
@@ -69,7 +80,7 @@ function renderTradeOffer(trade: Trade, currentUser: User): void {
   cancelBtn.addEventListener("click", () => {
 
     div.remove(); // Remove from display
-    // update local storage
+    // update trades and save state
     trade.status = "canceled";
     removeTrade(trade, allTrades);
     saveTrades(allTrades);
@@ -95,19 +106,17 @@ function renderTradeRequest(trade: Trade, currentUser: User): void {
   const declineBtn = div.querySelector(".decline-btn") as HTMLButtonElement;
 
   acceptBtn.addEventListener("click", () => {
-    // Mark as accepted — update trade object
+    // update trades and save state
     trade.status = "accepted"; 
-    div.remove(); // Remove from current list
-    // Add to Accepted section
+    div.remove();
     renderAcceptedTrade(trade, currentUser); 
-    // update local storage
     saveTrades(allTrades);
   });
 
   declineBtn.addEventListener("click", () => {
+    // update trades and save state
     trade.status = "rejected";
-    div.remove(); // Remove from display
-    // update local storage
+    div.remove(); 
     removeTrade(trade, allTrades);
     saveTrades(allTrades);
   });
@@ -117,7 +126,7 @@ function renderAcceptedTrade(trade: Trade, currentUser: User): void {
   const container = document.getElementById("accepted-trades");
   if (!container) return;
 
-  // Determine if you are from or to user
+  // Determine if user is 'from' or 'to' user
   const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
 
   const div = document.createElement("div");
@@ -138,8 +147,8 @@ function renderAcceptedTrade(trade: Trade, currentUser: User): void {
   const cancelBtn = div.querySelector(".cancel-btn") as HTMLButtonElement;
   cancelBtn.addEventListener("click", () => {
 
-    div.remove(); // Remove from display
-    // update local storage
+    div.remove(); 
+    // update trades and save state
     trade.status = "canceled";
     removeTrade(trade, allTrades);
     saveTrades(allTrades);
@@ -152,13 +161,11 @@ function renderAcceptedTrade(trade: Trade, currentUser: User): void {
 
     const completeBtn = div.querySelector(".complete-btn") as HTMLButtonElement;
     completeBtn.addEventListener("click", () => {
-    // Mark as completed — update trade object
+    // update trades and save state
     trade.status = "completed"; 
-    div.remove(); // Remove from current list
-    trade.messages = []; // Remove from active messages
-    // Add to Completed section
+    div.remove(); 
+    trade.messages = [];
     renderCompletedTrade(trade, currentUser); 
-    // update local storage
     saveTrades(allTrades);
   });
 }
@@ -167,20 +174,18 @@ function renderCompletedTrade(trade: Trade, currentUser: User): void {
   const container = document.getElementById("completed-trades");
   if (!container) return;
 
-  // Determine if you are from or to user
+  // Determine if user is 'from' or 'to' user
   const userType = trade.fromUser === currentUser.username ? trade.toUser : trade.fromUser;
 
-  // Create trade div container with relative positioning
   const div = document.createElement("div");
   div.className = "bg-gray-100 shadow p-4 rounded mb-3 relative";
 
-  // Set inner HTML for the trade text content
   div.innerHTML = `
     ✅ ${trade.date} — Trade between <strong>${userType}</strong> and you:
     ${trade.offeredPlant} ↔ ${trade.requestedPlant}
   `;
 
-  // Create the clear button element
+  // Clear button
   const button = document.createElement("button");
   button.type = "button";
   button.className = "clear-complete-trade absolute top-2 right-2 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none";
@@ -198,7 +203,8 @@ function renderCompletedTrade(trade: Trade, currentUser: User): void {
 
   const clearBtn = div.querySelector(".clear-complete-trade") as HTMLButtonElement;
       clearBtn.addEventListener("click", () => {
-          div.remove(); // Remove from display but persists in localstorage
+          // update trades and save state
+          div.remove(); 
           trade.status = "archived";
           currentUser.archiveTrade(trade);
           console.log("User archivedTrades:", currentUser.archivedTrades);
@@ -206,7 +212,6 @@ function renderCompletedTrade(trade: Trade, currentUser: User): void {
           updateUser(currentUser);
       })
 }
-
 
 export {
   render_trades_init

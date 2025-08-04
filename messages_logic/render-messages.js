@@ -22,6 +22,14 @@ function render_messages_init() {
     for (const trade of relevantTrades) {
         renderAcceptedMessage(trade, currentUser);
     }
+    // Profile dropdown
+    const menuButton = document.getElementById("user-menu-button");
+    const userMenuDropdown = document.getElementById('user-menu-dropdown');
+    if (menuButton && userMenuDropdown) {
+        menuButton.addEventListener('click', () => {
+            userMenuDropdown.classList.toggle('hidden');
+        });
+    }
     // Render any notifications
     if (hasRequests()) {
         const requestsBtn = document.getElementById("messages-new-requests-button");
@@ -36,12 +44,12 @@ function render_messages_init() {
         }
     }
 }
-// each rendered as accordian collapsible panel
+// Each message rendered as accordian collapsible
 function renderAcceptedMessage(trade, currentUser) {
     const otherUsername = (trade.fromUser === currentUser.username) ? trade.toUser : trade.fromUser;
     const tradeDate = new Date(trade.date).toLocaleDateString();
     const tradeDetails = `${trade.offeredPlant} ↔ ${trade.requestedPlant}`;
-    // create container for accordian div
+    // creates container 
     const container = document.createElement("div");
     container.className = "border border-blue-300 rounded-xl overflow-hidden mb-6";
     // button header

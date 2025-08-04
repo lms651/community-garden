@@ -5,7 +5,7 @@ class Trade {
     offeredPlant: string;  // from currentUser dropdown input
     requestedPlant: string; // neighborPlantTitle
     status: "pending" | "accepted" | "rejected" | "completed" | "canceled" | "archived";
-    messages: { from: string; text: string }[]; // for messaging about accepted trades
+    messages: { from: string; text: string }[]; // holds messages about accepted trades
 
   constructor(
     fromUser: string,
@@ -30,7 +30,6 @@ class Trade {
   }
 
   toJSON(): object {
-    // To support JSON.stringify
     return {
       date: this.date,
       fromUser: this.fromUser,
@@ -49,7 +48,7 @@ class Trade {
       data.offeredPlant,
       data.requestedPlant,
       data.status,
-      data.messages ?? [] // default to empty if none
+      data.messages ?? [] // default to empty
     );
     trade.date = data.date;
     return trade;

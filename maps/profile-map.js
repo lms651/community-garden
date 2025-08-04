@@ -3,7 +3,7 @@ import { geocodeAddress } from "./map.js";
 import { PlantInventory } from "../garden/PlantInventory.js";
 /// <reference types="google.maps" />
 let map;
-// Saves user markers for filtering 
+// Save user markers for filtering 
 const userMarkers = [];
 async function init_profile_map() {
     const result = loadCurrentUser();
@@ -11,11 +11,9 @@ async function init_profile_map() {
         return;
     const currentUser = result.user;
     const { Map } = await google.maps.importLibrary("maps");
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-    const { Autocomplete } = await google.maps.importLibrary("places");
     const currentCoords = await geocodeAddress(currentUser.getFullAddress());
     if (!currentCoords) {
-        console.warn("Could not get location for current user");
+        toastr.error("Could not get coordinates for user", "Error");
         return;
     }
     map = new Map(document.getElementById("map-profile"), {
@@ -23,7 +21,7 @@ async function init_profile_map() {
         zoom: 8,
         mapId: 'c767aa2e29c36d1539b917d8'
     });
-    const users = loadUsers(); // Get all users from localStorage
+    const users = loadUsers();
     await placeAllUserMarkers(users);
 }
 // Add marker for all users for profile page
@@ -42,7 +40,7 @@ async function addProfileUserMarker(user) {
     const address = user.getFullAddress();
     const coords = await geocodeAddress(address);
     if (!coords) {
-        console.warn(`Could not place marker for ${user.username}`);
+        toastr.error("Could not place coordinates for user", "Error");
         return;
     }
     const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
@@ -53,7 +51,7 @@ async function addProfileUserMarker(user) {
         glyph: isCurrentUser ? "★" : user.username[0].toUpperCase(),
         glyphColor: "#fff",
         borderColor: hasTradePlant ? "#0a773f" : "#8b0000",
-        scale: isCurrentUser ? 1.5 : 1.0, // make current user’s marker slightly bigger
+        scale: isCurrentUser ? 1.5 : 1.0, // enlarge user's marker
     });
     const marker = new AdvancedMarkerElement({
         map,
@@ -80,7 +78,7 @@ async function addProfileUserMarker(user) {
         });
     }
 }
-// Filter markers by crop presence
+// Filter markers by plant presence
 function filterMarkersByCrop(cropTitle) {
     userMarkers.forEach(({ user, marker }) => {
         const hasCrop = Array.from(user.gardenMap.values()).some(plant => plant.title === cropTitle);
@@ -107,7 +105,7 @@ function filter_map_init() {
         });
     });
 }
-// To be called after trade status on vegetables are updated
+// To be called after trade status on vegetables is updated
 async function refreshCurrentUserMarker() {
     const result = loadCurrentUser();
     if (!result)
@@ -116,12 +114,12 @@ async function refreshCurrentUserMarker() {
     // Remove the old marker from the map and userMarkers array
     const existing = userMarkers.find(entry => entry.user.username === currentUser.username);
     if (existing) {
-        existing.marker.map = null; // removes it from the map
+        existing.marker.map = null;
         const index = userMarkers.indexOf(existing);
         if (index !== -1)
             userMarkers.splice(index, 1);
     }
-    // Re-add with updated info (color, glyph, etc.)
+    // Re-add with updates
     await addProfileUserMarker(currentUser);
 }
 export { init_profile_map, filter_map_init, refreshCurrentUserMarker };

@@ -1,4 +1,6 @@
 import { loadCurrentUser, updateUser } from "../user_logic/user-utils.js"
+import { hasMessages } from "../user_logic/user-utils.js";
+import { hasRequests } from "../user_logic/user-utils.js";
 
 declare const toastr: any;
 
@@ -12,6 +14,31 @@ function settings_init() {
             saveSettings();
         });
     }
+
+    // Nav listeners
+    const menuButton = document.getElementById("user-menu-button") as HTMLButtonElement;
+    const userMenuDropdown = document.getElementById('user-menu-dropdown') as HTMLElement;
+
+    if (menuButton && userMenuDropdown) {
+        menuButton.addEventListener('click', () => {
+        userMenuDropdown.classList.toggle('hidden');
+        });
+    }
+
+    // Render any notifications
+    if (hasRequests()) {
+    const requestsBtn = document.getElementById("settings-new-requests-button");
+    if (requestsBtn) {
+      requestsBtn.classList.remove("hidden");
+    }
+  }
+
+  if (hasMessages()) {
+    const messagesBtn = document.getElementById("settings-new-chat-button");
+    if (messagesBtn) {
+      messagesBtn.classList.remove("hidden");
+    }
+  }
 }
 
 function preFillFields() {
@@ -90,7 +117,6 @@ function saveSettings() {
     updateUser(user);
     toastr.success("Settings Saved!", "Success");
 }
-
 
 export {
     settings_init

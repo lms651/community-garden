@@ -9,7 +9,6 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    
     <link rel="stylesheet" href="stylesheet.css">
 
     <!--Google Font-->
@@ -31,137 +30,116 @@
 
 <body class="settings-page">
 
-    <header style="background-color: rgba(247, 247, 245, 0.637); border-bottom: 1px solid rgba(200, 200, 200, 0.5)">
-    <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-        <div class="block text-teal-600">
-        <span class="sr-only">Home</span>
-        <a href="index.html"><img src="images/logo5.jpg" alt="Home" class="h-9"></a>
+  <header class="user-header">
+    <div class="user-header-container">   
+      <!-- Logo -->
+      <div class="user-logo">
+        <a href="index.html">
+          <img src="images/logo5.jpg" alt="Home">
+        </a>
+      </div>
+      <!-- Tagline-->
+      <nav aria-label="Global" class="user-tagline">
+        <p>Local Roots. Online Branches.</p>
+      </nav>
 
-        </div>
-
-        <div class="flex flex-1 items-center justify-center md:justify-between">
-        <nav aria-label="Global" class="hidden md:block">
-            <ul class="flex items-center gap-6 text-sm">
-            <li>
-                <p class="englebert-regular text-gray-500 whitespace-nowrap">Local Roots. Online Branches.</p>
-            </li>
-            </ul>
-        </nav>
+    <!-- Right-side icons -->
+    <div class="user-actions">
+      <!-- Notification Icon -->
+      <a href="trades.html">
+        <button type="button" id="settings-new-requests-button" class="icon-button hidden">
+          <span class="sr-only">View notifications</span>
+          <img src="images/new-notification.png" alt="Notification">
+        </button>
+      </a>
+      <!-- Chat Icon -->
+      <a href="messages.html">
+        <button type="button" id="settings-new-chat-button" class="icon-button hidden">
+          <span class="sr-only">View messages</span>
+          <img src="images/new-chat.png" alt="Chat">
+        </button>
+      </a>
+      <!-- Profile dropdown -->
+      <div class="profile-dropdown">
+        <button type="button" id="user-menu-button">
+          <span class="sr-only">Open user menu</span>
+          <img src="images/lori_ai.png" alt="profile-pic" class="profile-img">
+        </button>
         
-    <!--Icons on right side of header)-->
-    <div class="flex items-center justify-end w-full px-2">
-        
-        <!--Notifications-->
-    <div class="static flex items-center pr-2 sm:ml-6 sm:pr-0">
-
-        <!-- Profile dropdown -->
-        <div class="relative ml-3">
-          <div>
-            <button
-              type="button"
-              class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800"
-              id="user-menu-button"
-              aria-expanded="false"
-              aria-haspopup="true"
-              onclick="document.getElementById('user-dropdown').classList.toggle('hidden')"
-            >
-              <span class="sr-only">Open user menu</span>
-              <img class="size-8 rounded-full" src="images/lori_ai.png" alt="profile-pic" />
-            </button>
-          </div>
-
-          <div
-            id="user-dropdown"
-            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 hidden"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="user-menu-button"
-            tabindex="-1"
-          >
-            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">My Garden</a>
-            <a href="trades.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">My Trades</a>
-            <a href="messages.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">My Messages</a>
-            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">Settings</a>
-            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">Sign out</a>
-          </div>
+        <div id="user-menu-dropdown" class="user-menu-dropdown hidden">
+          <a href="profile.html" role="menuitem">My Garden</a>
+          <a href="trades.html" role="menuitem">My Trades</a>
+          <a href="messages.html" role="menuitem">My Messages</a>
+          <a href="settings.html" role="menuitem">Settings</a>
+          <a href="index.html" role="menuitem">Sign out</a>
         </div>
-
       </div>
-      </div>
-      </div>
-      </div>
-    </header>
+    </div>
+    </div>
+  </header>
 
 
-<div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
-  <h2 class="englebert-regular text-4xl font-bold text-gray-900 mb-4 mt-10 flex justify-center">MY SETTINGS</h2>
-  <p class="font-medium text-gray-600 flex justify-center">Update Settings Here!</p><br>
-</div>
-
-
-<div id="settings-panel" class="w-full max-w-3xl mx-auto mt-0 my-6 p-6 bg-white rounded-lg shadow border border-gray-300" style="background-color: rgba(247, 247, 245, 0.637)">
-
-    <!-- Update Form -->
-
-    <form id="update-form" class="space-y-4">
-      <div>
-      <label for="signup-username" class="block mb-0">Username</label>
-      <input type="text" id="signup-username" name="username" autocomplete="Username" placeholder="Username" readonly class="mt-0 w-full border border-gray-300 text-gray-400 p-2 rounded"/>
-      </div>
-      <div>
-      <label for="form-email">Email</label>
-      <input type="email" id="form-email" name="email" autocomplete="email" placeholder="Email" class="w-full border border-gray-300 p-2 rounded"/>
-      </div>
-      <div>
-      <label for="form-password">Password</label>
-      <input type="password" id="form-password" name="password" placeholder="Password" class="w-full border border-gray-300 p-2 rounded"/>
-      </div>
-      <div>
-      <label for="form-street">Street Address</label>
-      <input type="text" id="form-street" name="street" placeholder="Street Address" class="w-full border border-gray-300 p-2 rounded"/>
-      </div>
-      <div>
-      <label for="form-city">City</label>
-      <input type="text" id="form-city" name="city" placeholder="City" pattern="[A-Za-z\s]+" class="w-full border border-gray-300 p-2 rounded"/>
-      </div>
-      <div>
-      <label for="form-state">State</label>
-      <input type="text" id="form-state" name="state" autocapitalize="characters" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" class="w-full border border-gray-300 p-2 rounded"/>
-      </div>
-      <div>
-      <label for="form-zip">Zip Code</label>  
-      <input type="text" id="form-zip" name="zip" placeholder="5-digits" pattern="\d{5}" maxlength="5" class="w-full border border-gray-300 p-2 rounded" />
-      </div>
-      <div>
-      <label for="form-country">Country</label>
-      <input type="text" id="form-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" placeholder="3-Letter Code (e.g. USA)" class="w-full border border-gray-300 p-2 rounded"/>
-      </div>
-      <!-- Submit Button -->
-      <button
-        type="submit"
-        id="update-submit"
-        class="w-full rounded bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800"
-      >
-        Submit
-      </button>
-    </form>
-
+  <div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
+    <h2 class="englebert-regular text-4xl font-bold text-gray-900 mb-4 mt-10 flex justify-center">MY SETTINGS</h2>
+    <p class="font-medium text-gray-600 flex justify-center">Update Settings Here!</p><br>
   </div>
-</div>
 
 
+  <div id="settings-panel" class="w-full max-w-3xl mx-auto mt-0 my-6 p-6 bg-white rounded-lg shadow border border-gray-300" style="background-color: rgba(247, 247, 245, 0.637)">
+      <!-- Update Form -->
+      <form id="update-form" class="space-y-4">
+        <div>
+        <label for="signup-username" class="block mb-0">Username</label>
+        <input type="text" id="signup-username" name="username" autocomplete="Username" placeholder="Username" readonly class="mt-0 w-full border border-gray-300 text-gray-400 p-2 rounded"/>
+        </div>
+        <div>
+        <label for="form-email">Email</label>
+        <input type="email" id="form-email" name="email" autocomplete="email" placeholder="Email" class="w-full border border-gray-300 p-2 rounded"/>
+        </div>
+        <div>
+        <label for="form-password">Password</label>
+        <input type="password" id="form-password" name="password" placeholder="Password" class="w-full border border-gray-300 p-2 rounded"/>
+        </div>
+        <div>
+        <label for="form-street">Street Address</label>
+        <input type="text" id="form-street" name="street" placeholder="Street Address" class="w-full border border-gray-300 p-2 rounded"/>
+        </div>
+        <div>
+        <label for="form-city">City</label>
+        <input type="text" id="form-city" name="city" placeholder="City" pattern="[A-Za-z\s]+" class="w-full border border-gray-300 p-2 rounded"/>
+        </div>
+        <div>
+        <label for="form-state">State</label>
+        <input type="text" id="form-state" name="state" autocapitalize="characters" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" class="w-full border border-gray-300 p-2 rounded"/>
+        </div>
+        <div>
+        <label for="form-zip">Zip Code</label>  
+        <input type="text" id="form-zip" name="zip" placeholder="5-digits" pattern="\d{5}" maxlength="5" class="w-full border border-gray-300 p-2 rounded" />
+        </div>
+        <div>
+        <label for="form-country">Country</label>
+        <input type="text" id="form-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" placeholder="3-Letter Code (e.g. USA)" class="w-full border border-gray-300 p-2 rounded"/>
+        </div>
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          id="update-submit"
+          class="w-full rounded bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800"
+        >Submit</button>
+      </form>
+    </div>
+  </div>
 
-<script type="module" src="app.js"></script>
+  <script type="module" src="app.js"></script>
+
+  <!--JQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!--Toastr CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <script type="module" src="app.js"></script>
 
 
-<!--JQuery-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<!--Toastr CDN-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-<script type="module" src="app.js"></script>
-
-
-</body>
+  </body>
 </html>

@@ -27,13 +27,13 @@ class PlantInventory {
     { title: "Kale, Curly", img: "images/curlykale.jpg" }
   ];
 
-  // Matches the original function name/behavior
+  // for adding plant to user's grid/garden
   static findPlant(selectedVeg: string): Plant | null {
     const foundPlant = this.plantInventory.find(item => item.title === selectedVeg);
     return foundPlant ? { title: foundPlant.title, img: foundPlant.img } : null;
   }
 
-  // Matches the original function name/behavior
+  // for typing input into dropdown
   static filter(): void {
     const userInput = document.getElementById("myInput") as HTMLInputElement;
     const userInputLowerCase = userInput.value.toLowerCase();
@@ -46,7 +46,7 @@ class PlantInventory {
     });
   }
 
-  // Matches the original function name/behavior
+  // For find plant on user's garden page
   static filterForMap(): void {
     const userInput = document.getElementById("myMapInput") as HTMLInputElement;
     const userInputLowerCase = userInput.value.toLowerCase();

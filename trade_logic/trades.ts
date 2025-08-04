@@ -29,7 +29,7 @@ const saveTrades = (trades: Trade[]): void => {
 
 function removeTrade(trade: Trade, allTrades: Trade[]): void {
 
-  // Find index by unique date (if unique)
+  // Find index by unique date/time
   const index = allTrades.findIndex(t => t.date === trade.date);
 
   if (index !== -1) {

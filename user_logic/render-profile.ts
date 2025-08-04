@@ -13,6 +13,7 @@ function render_profile_init() {
   garden_init(user);
   renderGrid(user);
 
+  // Nav listeners
   const menuButton = document.getElementById("user-menu-button") as HTMLButtonElement;
   const userMenuDropdown = document.getElementById('user-menu-dropdown') as HTMLElement;
 
@@ -22,6 +23,7 @@ function render_profile_init() {
   });
   }
 
+  // Render any notifications
   if (hasRequests()) {
     const requestsBtn = document.getElementById("new-requests-button");
     if (requestsBtn) {

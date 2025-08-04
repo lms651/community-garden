@@ -1,7 +1,7 @@
 import { loadCurrentUser } from '../user_logic/user-utils.js';
 import { handleTrade } from '../trade_logic/trades.js';
 // Adds map items to display grid from neighbor's map
-// listeners for flagged veggies that can be clicked on to offer trade will go here
+// listeners for clickable flagged plants
 function renderNeighborGrid(neighborUser) {
     const gridContainer = document.getElementById("neighbor-grid");
     if (!gridContainer)
@@ -37,7 +37,6 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
     const plant = neighborUser.gardenMap.get(neighborPlantTitle);
     if (!plant)
         return;
-    // Load the current user
     const result = loadCurrentUser();
     if (!result)
         return;
@@ -52,7 +51,7 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
     const dropdownContent = document.getElementById("trade-dropdown-content");
     const dropdownInput = document.getElementById("trade-dropdown-input");
     dropdownContent.innerHTML = "";
-    dropdownContent.classList.add("hidden"); // Start hidden
+    dropdownContent.classList.add("hidden");
     currentUser.gardenMap.forEach((plant) => {
         if (plant.forTrade) {
             const button = document.createElement("button");
@@ -60,7 +59,7 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
             dropdownContent.appendChild(button);
             button.addEventListener("click", () => {
                 dropdownInput.value = plant.title;
-                dropdownContent.classList.add("hidden"); // Hide after selection
+                dropdownContent.classList.add("hidden");
             });
         }
     });
@@ -84,8 +83,7 @@ function showTradeModal(neighborPlantTitle, neighborUser) {
 function filterTradeDropdown() {
     const userInput = document.getElementById("trade-dropdown-input");
     if (!userInput) {
-        console.error("Input element not found!");
-        return; // or handle gracefully
+        return;
     }
     const userInputLowerCase = userInput.value.toLowerCase();
     const dropDownList = document.getElementById("trade-dropdown-content");

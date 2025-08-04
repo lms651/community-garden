@@ -18,6 +18,16 @@ function render_neighbor_init() {
   // Render garden
   renderNeighborGrid(neighbor);
 
+  // Nav listeners
+  const menuButton = document.getElementById("user-menu-button") as HTMLButtonElement;
+  const userMenuDropdown = document.getElementById('user-menu-dropdown') as HTMLElement;
+
+  if (menuButton && userMenuDropdown) {
+    menuButton.addEventListener('click', () => {
+    userMenuDropdown.classList.toggle('hidden');
+  });
+  }
+
   // Render any notifications
     if (hasRequests()) {
     const requestsBtn = document.getElementById("neighbor-new-requests-button");
@@ -32,7 +42,6 @@ function render_neighbor_init() {
       messagesBtn.classList.remove("hidden");
     }
   }
-
 }
 
 export {

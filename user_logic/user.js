@@ -38,6 +38,7 @@ class User {
         }
         return user;
     }
+    // Saves completed trades to user
     archiveTrade(trade) {
         const allTrades = loadTrades();
         removeTrade(trade, allTrades);

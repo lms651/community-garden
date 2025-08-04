@@ -9,7 +9,6 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    
     <link rel="stylesheet" href="stylesheet.css">
 
     <!--Google Font-->
@@ -21,121 +20,84 @@
     <title>My Trades</title>
   </head>
 
-<body class="trades-page">
+  <body class="trades-page">
 
-<header style="background-color: rgba(247, 247, 245, 0.637); border-bottom: 1px solid rgba(200, 200, 200, 0.5)">
-    <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-        <div class="block text-teal-600">
-        <span class="sr-only">Home</span>
-        <a href="index.html"><img src="images/logo5.jpg" alt="Home" class="h-9"></a>
+    <header class="user-header">
+      <div class="user-header-container">   
+        <!-- Logo -->
+        <div class="user-logo">
+          <a href="index.html">
+            <img src="images/logo5.jpg" alt="Home">
+          </a>
         </div>
-
-        <div class="flex flex-1 items-center justify-center md:justify-between">
-        <nav aria-label="Global" class="hidden md:block">
-            <ul class="flex items-center gap-6 text-sm">
-            <li>
-                <p class="englebert-regular text-gray-500 whitespace-nowrap">Local Roots. Online Branches.</p>
-            </li>
-            </ul>
+        <!-- Tagline-->
+        <nav aria-label="Global" class="user-tagline">
+          <p>Local Roots. Online Branches.</p>
         </nav>
-        
-    <!--Icons on right side of header)-->
-    <div class="flex items-center justify-end w-full px-2">
-        
-        <!--Notifications-->
-    <div class="static flex items-center pr-2 sm:ml-6 sm:pr-0">
 
-      <a href="trades.html">
-      <button
-      type="button"
-      id="trades-new-requests-button"
-      class="relative rounded-full bg-yellow-100 p-1 text-gray-700 hover:text-teal-600 focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:outline-none hidden">
-      
-      <span class="absolute -inset-1.5"></span>
-      <span class="sr-only">View notifications</span>
-      <img src="images/new-notification.png" alt="Chat" class="h-8">
-      </button>
-      </a>
-
-      <a href="messages.html">
-      <button
-      type="button"
-      id="trades-new-chat-button"
-      class="relative rounded-full bg-green-100 p-1 text-gray-700 hover:text-teal-600 focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:outline-none hidden">
-      
-      <span class="absolute -inset-1.5"></span>
-      <span class="sr-only">View notifications</span>
-      <img src="images/new-chat.png" alt="Chat" class="h-9">
-      </button>
-      </a>
-
+      <!-- Right-side icons -->
+      <div class="user-actions">
+        <!-- Notification Icon -->
+        <a href="trades.html">
+          <button type="button" id="trades-new-requests-button" class="icon-button hidden">
+            <span class="sr-only">View notifications</span>
+            <img src="images/new-notification.png" alt="Notification">
+          </button>
+        </a>
+        <!-- Chat Icon -->
+        <a href="messages.html">
+          <button type="button" id="trades-new-chat-button" class="icon-button hidden">
+            <span class="sr-only">View messages</span>
+            <img src="images/new-chat.png" alt="Chat">
+          </button>
+        </a>
         <!-- Profile dropdown -->
-        <div class="relative ml-3">
-          <div>
-            <button
-              type="button"
-              class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800"
-              id="user-menu-button"
-              aria-expanded="false"
-              aria-haspopup="true"
-              onclick="document.getElementById('user-dropdown').classList.toggle('hidden')"
-            >
-              <span class="sr-only">Open user menu</span>
-              <img class="size-8 rounded-full" src="images/lori_ai.png" alt="profile-pic" />
-            </button>
-          </div>
-
-          <div
-            id="user-dropdown"
-            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 hidden"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="user-menu-button"
-            tabindex="-1"
-          >
-            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">My Garden</a>
-            <a href="trades.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">My Trades</a>
-            <a href="messages.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">My Messages</a>
-            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">Settings</a>
-            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">Sign out</a>
+        <div class="profile-dropdown">
+          <button type="button" id="user-menu-button">
+            <span class="sr-only">Open user menu</span>
+            <img src="images/lori_ai.png" alt="profile-pic" class="profile-img">
+          </button>
+          
+          <div id="user-menu-dropdown" class="user-menu-dropdown hidden">
+            <a href="profile.html" role="menuitem">My Garden</a>
+            <a href="trades.html" role="menuitem">My Trades</a>
+            <a href="messages.html" role="menuitem">My Messages</a>
+            <a href="settings.html" role="menuitem">Settings</a>
+            <a href="index.html" role="menuitem">Sign out</a>
           </div>
         </div>
-
       </div>
-      </div>
-      </div>
-      </div>
+    </div>
     </header>
 
-<div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
-  <h2 class="englebert-regular text-4xl font-bold text-gray-900 mb-4 mt-10 flex justify-center">MY TRADES</h2>
-  <p class="font-medium text-gray-600 flex justify-center">Accept Offers | Track Trades | View History</p><br>
-</div>
+  <div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
+    <h2 class="englebert-regular text-4xl font-bold text-gray-900 mb-4 mt-10 flex justify-center">MY TRADES</h2>
+    <p class="font-medium text-gray-600 flex justify-center">Accept Offers | Track Trades | View History</p><br>
+  </div>
 
   <div class="w-full max-w-3xl mx-auto my-4">
-  <section class="my-6">
-    <h2 class="englebert-regular text-xl font-semibold mb-4 bg-green-100 border border-green-300 px-4 py-2 rounded-md shadow-sm">INCOMING REQUESTS</h2>
-    <div id="current-requests"></div>
-  </section>
+    <section class="my-6">
+      <h2 class="englebert-regular text-xl font-semibold mb-4 bg-green-100 border border-green-300 px-4 py-2 rounded-md shadow-sm">INCOMING REQUESTS</h2>
+      <div id="current-requests"></div>
+    </section>
 
-  <section class="my-6">
-    <h2 class="englebert-regular text-xl font-semibold mb-4 bg-green-100 border border-green-300 px-4 py-2 rounded-md shadow-sm">CURRENT OFFERS</h2>
-    <div id="current-offers"></div>
-  </section>
+    <section class="my-6">
+      <h2 class="englebert-regular text-xl font-semibold mb-4 bg-green-100 border border-green-300 px-4 py-2 rounded-md shadow-sm">CURRENT OFFERS</h2>
+      <div id="current-offers"></div>
+    </section>
 
-  <section class="my-6">
-    <h2 class="englebert-regular text-xl font-semibold mb-4 bg-green-100 border border-green-300 px-4 py-2 rounded-md shadow-sm">ACCEPTED TRADES</h2>
-    <div id="accepted-trades"></div>
-  </section>
+    <section class="my-6">
+      <h2 class="englebert-regular text-xl font-semibold mb-4 bg-green-100 border border-green-300 px-4 py-2 rounded-md shadow-sm">ACCEPTED TRADES</h2>
+      <div id="accepted-trades"></div>
+    </section>
 
-  <section class="my-6">
-    <h2 class="englebert-regular text-xl font-semibold mb-4 bg-green-100 border border-green-300 px-4 py-2 rounded-md shadow-sm">COMPLETED TRADES</h2>
-    <div id="completed-trades"></div>
-  </section>
-</div>
+    <section class="my-6">
+      <h2 class="englebert-regular text-xl font-semibold mb-4 bg-green-100 border border-green-300 px-4 py-2 rounded-md shadow-sm">COMPLETED TRADES</h2>
+      <div id="completed-trades"></div>
+    </section>
+  </div>
 
-<script type="module" src="app.js"></script>
+  <script type="module" src="app.js"></script>
 
-
-</body>
+  </body>
 </html>

@@ -10,6 +10,7 @@ function render_profile_init() {
     const user = result.user;
     garden_init(user);
     renderGrid(user);
+    // Nav listeners
     const menuButton = document.getElementById("user-menu-button");
     const userMenuDropdown = document.getElementById('user-menu-dropdown');
     if (menuButton && userMenuDropdown) {
@@ -17,6 +18,7 @@ function render_profile_init() {
             userMenuDropdown.classList.toggle('hidden');
         });
     }
+    // Render any notifications
     if (hasRequests()) {
         const requestsBtn = document.getElementById("new-requests-button");
         if (requestsBtn) {

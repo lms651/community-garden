@@ -12,7 +12,7 @@ const loadCurrentUser = () => {
     const rawUser = users[index];
     if (!rawUser)
         return null;
-    const user = User.fromJson(rawUser); // This will restore gardenMap
+    const user = User.fromJson(rawUser);
     return { user, index };
 };
 const loadNeighbor = () => {

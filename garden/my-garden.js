@@ -1,11 +1,10 @@
-// import { filter, findPlant } from './plant-inventory.js';
 import { PlantInventory } from './PlantInventory.js';
 import { MyPlant } from './myPlant.js';
 import { refreshCurrentUserMarker } from '../maps/profile-map.js';
 import { updateUser } from '../user_logic/user-utils.js';
-// listeners for dropdown menu functions on profile page
+// listeners for dropdown menu functions on user garden page
 // to be implemented on render-profile.ts 
-// user gets passed in in hopes it will get updated in memory correctly
+// user gets passed in so memory is updated accordingly
 function garden_init(user) {
     const dropDownBtn = document.getElementById("add-dropdown");
     const dropDownMenu = document.getElementById("myDropdown");
@@ -20,7 +19,6 @@ function garden_init(user) {
         btn.addEventListener("click", () => {
             const title = btn.textContent;
             addVegToGrid(title, user);
-            // Close the dropdown modal
             dropDownMenu.classList.remove("show");
         });
     });
@@ -35,7 +33,7 @@ function addVegToGrid(title, user) {
         renderGrid(user);
     }
 }
-// Adds map items to display grid from currentuser's map
+// Adds plants to display grid from currentuser's map
 function renderGrid(user) {
     const gridContainer = document.getElementById("myGrid");
     if (!gridContainer)

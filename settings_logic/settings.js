@@ -1,4 +1,6 @@
 import { loadCurrentUser, updateUser } from "../user_logic/user-utils.js";
+import { hasMessages } from "../user_logic/user-utils.js";
+import { hasRequests } from "../user_logic/user-utils.js";
 function settings_init() {
     preFillFields();
     const updateForm = document.getElementById("update-form");
@@ -7,6 +9,27 @@ function settings_init() {
             event.preventDefault();
             saveSettings();
         });
+    }
+    // Nav listeners
+    const menuButton = document.getElementById("user-menu-button");
+    const userMenuDropdown = document.getElementById('user-menu-dropdown');
+    if (menuButton && userMenuDropdown) {
+        menuButton.addEventListener('click', () => {
+            userMenuDropdown.classList.toggle('hidden');
+        });
+    }
+    // Render any notifications
+    if (hasRequests()) {
+        const requestsBtn = document.getElementById("settings-new-requests-button");
+        if (requestsBtn) {
+            requestsBtn.classList.remove("hidden");
+        }
+    }
+    if (hasMessages()) {
+        const messagesBtn = document.getElementById("settings-new-chat-button");
+        if (messagesBtn) {
+            messagesBtn.classList.remove("hidden");
+        }
     }
 }
 function preFillFields() {

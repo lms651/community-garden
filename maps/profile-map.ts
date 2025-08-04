@@ -5,7 +5,9 @@ import { PlantInventory } from "../garden/PlantInventory.js";
 /// <reference types="google.maps" />
 
 let map: google.maps.Map;
-// Saves user markers for filtering 
+declare const toastr: any;
+
+// Save user markers for filtering 
 const userMarkers: { user: User, marker: google.maps.marker.AdvancedMarkerElement }[] = [];
 
 async function init_profile_map(): Promise<void> {
@@ -14,14 +16,12 @@ async function init_profile_map(): Promise<void> {
   const currentUser = result.user;
 
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-  const { Autocomplete } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
 
-const currentCoords = await geocodeAddress(currentUser.getFullAddress());
-if (!currentCoords) {
-  console.warn("Could not get location for current user");
-  return;
-}
+  const currentCoords = await geocodeAddress(currentUser.getFullAddress());
+  if (!currentCoords) {
+    toastr.error("Could not get coordinates for user", "Error");
+    return;
+  }
 
   map = new Map(document.getElementById("map-profile") as HTMLElement, {
     center: currentCoords, // Current User's address
@@ -29,7 +29,7 @@ if (!currentCoords) {
     mapId: 'c767aa2e29c36d1539b917d8'
   });
 
-  const users = loadUsers(); // Get all users from localStorage
+  const users = loadUsers();
   await placeAllUserMarkers(users);
 
 }
@@ -55,7 +55,7 @@ async function addProfileUserMarker(user: User) {
   const coords = await geocodeAddress(address);
 
   if (!coords) {
-    console.warn(`Could not place marker for ${user.username}`);
+    toastr.error("Could not place coordinates for user", "Error");
     return;
   }
 
@@ -70,7 +70,7 @@ async function addProfileUserMarker(user: User) {
     glyph: isCurrentUser ? "★" : user.username[0].toUpperCase(),
     glyphColor: "#fff",
     borderColor: hasTradePlant ? "#0a773f" : "#8b0000",
-    scale: isCurrentUser ? 1.5 : 1.0,  // make current user’s marker slightly bigger
+    scale: isCurrentUser ? 1.5 : 1.0,  // enlarge user's marker
   });
 
   const marker = new AdvancedMarkerElement({
@@ -80,8 +80,9 @@ async function addProfileUserMarker(user: User) {
     content: pin.element,
     gmpClickable: !isCurrentUser,
   });
-    // Saves marker for filtering
-    userMarkers.push({ user, marker });
+    
+  // Saves marker for filtering
+  userMarkers.push({ user, marker });
 
   if (!isCurrentUser) {
     pin.element.style.cursor = "pointer";
@@ -103,7 +104,7 @@ async function addProfileUserMarker(user: User) {
 
 }
 
-// Filter markers by crop presence
+// Filter markers by plant presence
 function filterMarkersByCrop(cropTitle: string): void {
   userMarkers.forEach(({ user, marker }) => {
     const hasCrop = Array.from(user.gardenMap.values()).some(
@@ -139,7 +140,8 @@ function filter_map_init(): void {
   });
 }
 
-// To be called after trade status on vegetables are updated
+// To be called after trade status on vegetables is updated
+
 async function refreshCurrentUserMarker(): Promise<void> {
   const result = loadCurrentUser();
   if (!result) return;
@@ -149,12 +151,11 @@ async function refreshCurrentUserMarker(): Promise<void> {
   // Remove the old marker from the map and userMarkers array
   const existing = userMarkers.find(entry => entry.user.username === currentUser.username);
   if (existing) {
-    existing.marker.map = null; // removes it from the map
+    existing.marker.map = null; 
     const index = userMarkers.indexOf(existing);
     if (index !== -1) userMarkers.splice(index, 1);
   }
-
-  // Re-add with updated info (color, glyph, etc.)
+  // Re-add with updates
   await addProfileUserMarker(currentUser);
 }
 

@@ -1,7 +1,7 @@
 import { loadTrades, saveTrades } from "../trade_logic/trades.js";
 import { loadCurrentUser } from "../user_logic/user-utils.js";
 import { Trade } from "../trade_logic/Trade.js";
-import { User } from "../user_logic/user.js";
+import { User } from "../user_logic/User.js";
 import { hasMessages } from "../user_logic/user-utils.js";
 import { hasRequests } from "../user_logic/user-utils.js";
 
@@ -32,6 +32,16 @@ function render_messages_init(): void {
         renderAcceptedMessage(trade, currentUser);
     }
 
+    // Profile dropdown
+    const menuButton = document.getElementById("user-menu-button") as HTMLButtonElement;
+    const userMenuDropdown = document.getElementById('user-menu-dropdown') as HTMLElement;
+
+    if (menuButton && userMenuDropdown) {
+        menuButton.addEventListener('click', () => {
+        userMenuDropdown.classList.toggle('hidden');
+        });
+    }
+
     // Render any notifications
     if (hasRequests()) {
     const requestsBtn = document.getElementById("messages-new-requests-button");
@@ -48,14 +58,15 @@ function render_messages_init(): void {
   }
 }
 
-// each rendered as accordian collapsible panel
+// Each message rendered as accordian collapsible
+
 function renderAcceptedMessage(trade: Trade, currentUser: User): void {
 
   const otherUsername = (trade.fromUser === currentUser.username) ? trade.toUser : trade.fromUser;
   const tradeDate = new Date(trade.date).toLocaleDateString();
   const tradeDetails = `${trade.offeredPlant} ↔ ${trade.requestedPlant}`;
 
-  // create container for accordian div
+  // creates container 
   const container = document.createElement("div");
   container.className = "border border-blue-300 rounded-xl overflow-hidden mb-6";
 
@@ -128,8 +139,6 @@ function renderAcceptedMessage(trade: Trade, currentUser: User): void {
   const messagesContainer = document.getElementById("messagesContainer");
   messagesContainer?.appendChild(container);
 }
-
-
 
 export {
     render_messages_init

@@ -31,7 +31,6 @@ function closeRegisterModal(): void {
     registerModal.classList.add("hidden");
 }
 
-
 export {
     register_init,
     closeRegisterModal

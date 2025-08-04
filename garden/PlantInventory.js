@@ -1,10 +1,10 @@
 class PlantInventory {
-    // Matches the original function name/behavior
+    // for adding plant to user's grid/garden
     static findPlant(selectedVeg) {
         const foundPlant = this.plantInventory.find(item => item.title === selectedVeg);
         return foundPlant ? { title: foundPlant.title, img: foundPlant.img } : null;
     }
-    // Matches the original function name/behavior
+    // for typing input into dropdown
     static filter() {
         const userInput = document.getElementById("myInput");
         const userInputLowerCase = userInput.value.toLowerCase();
@@ -16,7 +16,7 @@ class PlantInventory {
             item.style.display = txtValue.toLowerCase().includes(userInputLowerCase) ? "" : "none";
         });
     }
-    // Matches the original function name/behavior
+    // For find plant on user's garden page
     static filterForMap() {
         const userInput = document.getElementById("myMapInput");
         const userInputLowerCase = userInput.value.toLowerCase();
