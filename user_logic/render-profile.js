@@ -10,6 +10,13 @@ function render_profile_init() {
     const user = result.user;
     garden_init(user);
     renderGrid(user);
+    const menuButton = document.getElementById("user-menu-button");
+    const userMenuDropdown = document.getElementById('user-menu-dropdown');
+    if (menuButton && userMenuDropdown) {
+        menuButton.addEventListener('click', () => {
+            userMenuDropdown.classList.toggle('hidden');
+        });
+    }
     if (hasRequests()) {
         const requestsBtn = document.getElementById("new-requests-button");
         if (requestsBtn) {
