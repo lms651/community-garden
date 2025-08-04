@@ -1,6 +1,7 @@
-import { filter, findPlant } from './plant-inventory.js';
+// import { filter, findPlant } from './plant-inventory.js';
+import { PlantInventory } from './PlantInventory.js';
 import { MyPlant } from './myPlant.js';
-import { User } from '../user_logic/user.js';
+import { User } from '../user_logic/User.js';
 import { refreshCurrentUserMarker } from '../maps/profile-map.js';
 import { updateUser } from '../user_logic/user-utils.js';
 
@@ -21,7 +22,7 @@ function garden_init(user: User): void {
     dropDownMenu.classList.toggle("show");
   });
 
-  input.addEventListener("keyup", filter);
+  input.addEventListener("keyup", PlantInventory.filter);
 
   document.querySelectorAll(".dropdown-content button").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -36,7 +37,7 @@ function garden_init(user: User): void {
 
 // Adds a new plant to the user's garden
 function addVegToGrid(title: string, user: User): void {
-  const basePlant = findPlant(title);
+  const basePlant = PlantInventory.findPlant(title);
 
   if (basePlant && !user.gardenMap.has(title)) {
     const myPlant = new MyPlant(basePlant.title, basePlant.img);

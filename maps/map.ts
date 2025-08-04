@@ -1,4 +1,4 @@
-import { User } from "../user_logic/user.js";
+import { User } from "../user_logic/User.js";
 import { loadUsers } from "../user_logic/user-utils.js";
 /// <reference types="google.maps" />
 

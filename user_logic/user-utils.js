@@ -1,4 +1,4 @@
-import { User } from "./user.js";
+import { User } from "./User.js";
 import { loadTrades } from "../trade_logic/trades.js";
 const loadCurrentUser = () => {
     const indexRaw = localStorage.getItem("currentUserIndex");
@@ -12,7 +12,7 @@ const loadCurrentUser = () => {
     const rawUser = users[index];
     if (!rawUser)
         return null;
-    const user = User.fromJson(rawUser);
+    const user = User.fromJson(rawUser); // This will restore gardenMap
     return { user, index };
 };
 const loadNeighbor = () => {

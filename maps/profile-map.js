@@ -1,6 +1,6 @@
 import { loadUsers, loadCurrentUser } from "../user_logic/user-utils.js";
 import { geocodeAddress } from "./map.js";
-import { filterForMap } from "../garden/plant-inventory.js";
+import { PlantInventory } from "../garden/PlantInventory.js";
 /// <reference types="google.maps" />
 let map;
 // Saves user markers for filtering 
@@ -97,7 +97,7 @@ function filter_map_init() {
     filterDropDownBtn.addEventListener("click", () => {
         filterDropDownMenu.classList.toggle("show");
     });
-    mapInput.addEventListener("keyup", filterForMap);
+    mapInput.addEventListener("keyup", PlantInventory.filterForMap);
     document.querySelectorAll(".map-dropdown-content button").forEach(btn => {
         btn.addEventListener("click", () => {
             const title = btn.textContent;

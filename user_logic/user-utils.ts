@@ -1,4 +1,4 @@
-import { User } from "./user.js";
+import { User } from "./User.js";
 import { loadTrades } from "../trade_logic/trades.js";
 
 const loadCurrentUser = (): { user: User, index: number } | null => {
@@ -13,9 +13,9 @@ const loadCurrentUser = (): { user: User, index: number } | null => {
   const rawUser = users[index];
   if (!rawUser) return null;
 
-  const user = User.fromJson(rawUser);
+  const user = User.fromJson(rawUser); // This will restore gardenMap
   return { user, index };
-}
+};
 
 const loadNeighbor = (): { user: User, index: number } | null => {
   const params = new URLSearchParams(window.location.search);
@@ -31,15 +31,15 @@ const loadNeighbor = (): { user: User, index: number } | null => {
 
   const user = User.fromJson(users[index]);
   return { user, index };
-}
+};
 
   const loadUsers = (): User[] => {
-    const usersRaw = localStorage.getItem("users");
-    if (!usersRaw) return [];
+  const usersRaw = localStorage.getItem("users");
+  if (!usersRaw) return [];
 
-    const parsed = JSON.parse(usersRaw);
-    return parsed.map((rawUser: any) => User.fromJson(rawUser));
-  }
+  const parsed = JSON.parse(usersRaw);
+  return parsed.map((rawUser: any) => User.fromJson(rawUser));
+  };
 
   function hasMessages(): boolean {
     const trades = loadTrades();
@@ -49,10 +49,10 @@ const loadNeighbor = (): { user: User, index: number } | null => {
     const currentUser = result.user;
 
     return trades.some(trade =>
-    trade.status === "accepted" &&
-    (trade.fromUser === currentUser.username || trade.toUser === currentUser.username) &&
-    trade.messages && trade.messages.length > 0
-    );
+      trade.status === "accepted" &&
+      (trade.fromUser === currentUser.username || trade.toUser === currentUser.username) &&
+      trade.messages && trade.messages.length > 0
+      );
   }
 
 function hasRequests(): boolean {

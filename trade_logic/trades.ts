@@ -1,6 +1,6 @@
 import { loadCurrentUser } from '../user_logic/user-utils.js';
 import { Trade } from './Trade.js';
-import { User } from '../user_logic/user.js';
+import { User } from '../user_logic/User.js';
 
 function handleTrade (currentNeighbor: User, requestedPlantNeighbor: string, offerPlantCurrentUser: string) {
     const result = loadCurrentUser();
