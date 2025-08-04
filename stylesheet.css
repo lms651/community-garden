@@ -1,30 +1,200 @@
-/* @media (max-width: 639px) {
-  .header-padding-adjust {
-    padding-left: 1rem; 
-    padding-right: 2rem; 
-  }
+body.homepage {
+  background-color: rgba(255, 255, 255, 0.748);
 }
 
-@media (max-width: 639px) {
-  .notification-user-wrapper {
-    position: static !important;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 0.5rem;
-  }
-} */
-
-.barriecito-regular {
-  font-family: "Barriecito", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
 .englebert-regular {
   font-family: "Englebert", cursive;
   font-weight: 400;
   font-style: normal;
 }
+
+/* Homepage Header */
+
+.homepage-header {
+  background-color: rgba(247, 247, 245, 0.637);
+  border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+  /* padding top and bottom */
+  padding: 0 1rem; /* horizontal padding */
+}
+
+.header-container {
+  max-width: 1280px; /* max-w-screen-xl equivalent */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* gap-8 in Tailwind is 2rem */
+  height: 4rem; /* h-16 = 4rem */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.logo img {
+  height: 2.25rem; /* h-9 = 2.25rem */
+  justify-content: flex-start;
+}
+
+.nav-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.global-nav {
+  display: none; /* hidden by default on mobile */
+}
+
+.global-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem; /* gap-6 = 1.5rem */
+  padding: 0;
+  margin: 0;
+}
+
+.global-nav a {
+  font-family: 'Englebert';
+  font-weight: 500;
+  font-size: 0.875rem; /* text-sm */
+  color: #6b7280; /* text-gray-500 */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  justify-content: space-between;
+}
+
+.global-nav a:hover {
+  color: rgba(107, 114, 128, 0.75); /* hover:text-gray-500/75 */
+}
+
+/* Show nav on md and up */
+@media screen and (min-width: 768px) {
+  .global-nav {
+    display: block;
+  }
+}
+
+/* Auth buttons container */
+.auth-buttons {
+  display: flex;
+  gap: 0.5rem; /* gap-2 = 0.5rem */
+}
+
+@media (max-width: 640px) {
+  .nav-wrapper {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  .auth-buttons {
+    justify-content: flex-end;
+  }
+}
+
+/* Login button */
+#login-button {
+  background-color: #12a090db; /* teal-600 */
+  color: white;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500;
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  border-radius: 0.375rem; /* rounded-md */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#login-button:hover {
+  background-color: #0f766e; /* teal-700 */
+}
+
+/* Register button */
+#register-button {
+  display: none; /* hidden on small screens */
+  background-color: #f3f4f6; /* gray-100 */
+  color: #14b8a6; /* teal-600 */
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #14b8a6;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+#register-button:hover {
+  color: rgba(20, 184, 166, 0.75); /* teal-600/75 */
+}
+
+/* Show register button from small screens and up */
+@media screen and (min-width: 640px) {
+  #register-button {
+    display: inline-block;
+  }
+}
+
+/* Footer */
+.site-footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb; /* Tailwind’s gray-200 */
+  font-size: 0.875rem; /* text-sm */
+  padding: 0.5rem 0;
+}
+
+.footer-container {
+  max-width: 1280px; /* similar to max-w-screen-xl */
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-logo img {
+  height: 1.5rem; /* matches h-6 */
+}
+
+.footer-logo span {
+  color: #374151; /* Tailwind's gray-700 */
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .footer-logo span {
+    display: inline;
+  }
+}
+
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.social-links a {
+  color: #6b7280; /* Tailwind's gray-500 */
+  transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+  color: #047857; /* Tailwind’s green-700 */
+}
+
+.icon {
+  height: 1.25rem; /* h-5 */
+  width: 1.25rem;
+}
+
 
 /* DROPDOWN TO ADD GARDEN VEG */
 .dropbtn {

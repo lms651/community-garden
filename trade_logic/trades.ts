@@ -12,9 +12,7 @@ function handleTrade (currentNeighbor: User, requestedPlantNeighbor: string, off
     // Save trade to local storage
     const trades = JSON.parse(localStorage.getItem("trades") || "[]");
     trades.push(currentTrade.toJSON());
-    localStorage.setItem("trades", JSON.stringify(trades));
-    console.log(trades);
-    console.log('trade saved');
+    saveTrades(trades);
 }
 
 const loadTrades = (): Trade[] => {
@@ -37,9 +35,6 @@ function removeTrade(trade: Trade, allTrades: Trade[]): void {
   if (index !== -1) {
     allTrades.splice(index, 1);
     saveTrades(allTrades);
-    console.log("Trade removed, new length:", allTrades.length);
-  } else {
-    console.warn("Trade not found for deletion:", trade);
   }
 }
 
