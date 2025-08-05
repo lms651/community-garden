@@ -36,7 +36,7 @@
     <div class="header-container">
       <div class="logo">
         <span class="sr-only">Home</span>
-        <img src="images/logo5.jpg" alt="Home" />
+        <img src="images/logo5.jpg" alt="Home">
       </div>
 
       <div class="nav-wrapper">
@@ -76,7 +76,7 @@
             id="koopa-garden"
             class="rounded opacity-95"
             alt="landing-page"
-          />
+          >
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@
     <div style="margin-top: 1rem; width: 80%; margin: 1rem auto;">
       <label for="zip-input" id="sprout" style="display: block; margin-bottom: 0.5rem;" class="englebert-regular text-gray-600">What's sprouting near you?</label>
       
-      <input id="zip-input" type="text" placeholder="Enter zip..." style="width: 35%; padding: 0.5rem; border: 2px solid rgba(57, 54, 54, 0.773);" />
+      <input id="zip-input" type="text" placeholder="Enter zip..." style="width: 35%; padding: 0.5rem; border: 2px solid rgba(57, 54, 54, 0.773);">
 
     </div>
   </div>
@@ -124,7 +124,7 @@
     class="fixed inset-0 z-50 overflow-y-auto bg-black/50 p-4 flex items-start justify-center hidden"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="modalTitle"
+    aria-labelledby="signup-modal"
   >
     <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
       <div class="flex items-start justify-between">
@@ -156,21 +156,21 @@
     <!-- Signup Form -->
     <form id="signup-form" class="mt-6 space-y-4">
       <label for="signup-username" class="mb-0">Username</label>
-      <input type="text" id="signup-username" name="username" autocomplete="Username" placeholder="Username"required class="w-full border p-2 rounded mt-0"/>
-      <label for="email">Email</label>
-      <input type="email" id="signup-email" name="email" autocomplete="email" placeholder="Email" required class="w-full border p-2 rounded mt-0"/>
-      <label for="password">Password</label>
-      <input type="password" id="signup-password" name="password" placeholder="Password" required class="w-full border p-2 rounded mt-0"/>
+      <input type="text" id="signup-username" name="username" autocomplete="Username" placeholder="Username" required class="w-full border p-2 rounded mt-0">
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" name="email" autocomplete="email" placeholder="Email" required class="w-full border p-2 rounded mt-0">
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" name="password" placeholder="Password" required class="w-full border p-2 rounded mt-0">
       <label for="signup-street">Street Address</label>
-      <input type="text" id="signup-street" name="street" placeholder="Street Address" required class="w-full border p-2 rounded mt-0"/>
+      <input type="text" id="signup-street" name="street" placeholder="Street Address" required class="w-full border p-2 rounded mt-0">
       <label for="signup-city">City</label>
-      <input type="text" id="signup-city" name="city" placeholder="City" pattern="[A-Za-z\s]+" required class="w-full border p-2 rounded mt-0"/>
+      <input type="text" id="signup-city" name="city" placeholder="City" pattern="[A-Za-z\s]+" required class="w-full border p-2 rounded mt-0">
       <label for="signup-state">State</label>
-      <input type="text" id="signup-state" name="state" autocapitalize="characters" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" required class="w-full border p-2 rounded mt-0"/>
+      <input type="text" id="signup-state" name="state" autocapitalize="characters" placeholder="State (e.g. NY)" pattern="[A-Z]{2}" maxlength="2" required class="w-full border p-2 rounded mt-0">
       <label for="signup-zip">Zip Code</label>
-      <input type="text" id="signup-zip" name="zip" placeholder="5-digits" pattern="\d{5}" maxlength="5" required class="w-full border p-2 rounded mt-0" />
+      <input type="text" id="signup-zip" name="zip" placeholder="5-digits" pattern="\d{5}" maxlength="5" required class="w-full border p-2 rounded mt-0">
       <label for="signup-country">Country</label>
-      <input type="text" id="signup-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" placeholder="3-Letter Code (e.g. USA)" required class="w-full border p-2 rounded mt-0"/>
+      <input type="text" id="signup-country" name="country" autocomplete="country" pattern="[A-Za-z\s]+" maxlength="3" placeholder="3-Letter Code (e.g. USA)" required class="w-full border p-2 rounded mt-0">
 
       <!-- Submit Button -->
       <button
@@ -190,11 +190,11 @@
     class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="modalTitle"
+    aria-labelledby="login-modal"
   >
     <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
       <div class="flex items-start justify-between">
-        <h2 id="modal-title" class="englebert-regular text-xl font-bold text-green-900 sm:text-2xl">Welcome Back!</h2>
+        <h2 id="login-modal-title" class="englebert-regular text-xl font-bold text-green-900 sm:text-2xl">Welcome Back!</h2>
 
         <button
           type="button"
@@ -221,8 +221,8 @@
 
       <!-- Login Form -->
       <form id="login-form" class="mt-6 space-y-4">
-        <input type="text" id="login-username" name="username" autocomplete="Username" placeholder="Username"required class="w-full border p-2 rounded" />
-        <input type="password" id="login-password" name="password" placeholder="Password" required class="w-full border p-2 rounded" />
+        <input type="text" id="login-username" name="username" autocomplete="Username" placeholder="Username" required class="w-full border p-2 rounded">
+        <input type="password" id="login-password" name="password" placeholder="Password" required class="w-full border p-2 rounded">
         <p id="forgot-password" class="text-center cursor-pointer hover:underline">
           Forgot password?
         </p>      

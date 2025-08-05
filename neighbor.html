@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Englebert&display=swap" rel="stylesheet">
 
     <!--Font awesome star-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
      <!--JQuery for Toastr-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -47,19 +47,15 @@
       <!-- Right-side icons -->
       <div class="user-actions">
         <!-- Notification Icon -->
-        <a href="trades.html">
-          <button type="button" id="new-requests-button" class="icon-button hidden">
-            <span class="sr-only">View notifications</span>
-            <img src="images/new-notification.png" alt="Notification">
-          </button>
+        <a href="trades.html" id="neighbor-new-requests-button" class="icon-button hidden" aria-label="View notifications">
+        <img src="images/new-notification.png" alt="Notification">
         </a>
+
         <!-- Chat Icon -->
-        <a href="messages.html">
-          <button type="button" id="new-chat-button" class="icon-button hidden">
-            <span class="sr-only">View messages</span>
-            <img src="images/new-chat.png" alt="Chat">
-          </button>
+         <a href="messages.html" id="neighbor-new-chat-button" class="icon-button hidden" aria-label="View messages">
+        <img src="images/new-chat.png" alt="Chat">
         </a>
+
         <!-- Profile dropdown -->
         <div class="profile-dropdown">
           <button type="button" id="user-menu-button">
@@ -68,11 +64,11 @@
           </button>
           
           <div id="user-menu-dropdown" class="user-menu-dropdown hidden">
-            <a href="profile.html" role="menuitem">My Garden</a>
-            <a href="trades.html" role="menuitem">My Trades</a>
-            <a href="messages.html" role="menuitem">My Messages</a>
-            <a href="settings.html" role="menuitem">Settings</a>
-            <a href="index.html" role="menuitem">Sign out</a>
+            <a href="profile.html">My Garden</a>
+            <a href="trades.html">My Trades</a>
+            <a href="messages.html">My Messages</a>
+            <a href="settings.html">Settings</a>
+            <a href="index.html">Sign out</a>
           </div>
         </div>
       </div>
@@ -83,11 +79,11 @@
   <p class="font-semibold text-gray-600 flex justify-center">Click a crop to trade!</p><br>
 
   <!--Empty Garden Grid Container-->
-  <section class="bg-white">
+  <div class="bg-white">
     <div class="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
       <div id="neighbor-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
     </div>
-  </section>
+  </div>
 
   <!--Trade Modal-->
   <div
@@ -95,7 +91,7 @@
     class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4 hidden"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="modalTitle"
+    aria-labelledby="trade-modal"
   >
     <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
       <div class="flex items-start justify-between">
@@ -133,7 +129,7 @@
           placeholder="Start typing your crop..." 
           id="trade-dropdown-input" 
           class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-          />
+        >
 
         <div 
           id="trade-dropdown-content" 

@@ -38,19 +38,15 @@
       <!-- Right-side icons -->
       <div class="user-actions">
         <!-- Notification Icon -->
-        <a href="trades.html">
-          <button type="button" id="messages-new-requests-button" class="icon-button hidden">
-            <span class="sr-only">View notifications</span>
-            <img src="images/new-notification.png" alt="Notification">
-          </button>
+        <a href="trades.html" id="messages-new-requests-button" class="icon-button hidden" aria-label="View notifications">
+        <img src="images/new-notification.png" alt="Notification">
         </a>
+
         <!-- Chat Icon -->
-        <a href="messages.html">
-          <button type="button" id="messages-new-chat-button" class="icon-button hidden">
-            <span class="sr-only">View messages</span>
-            <img src="images/new-chat.png" alt="Chat">
-          </button>
+         <a href="messages.html" id="messages-new-chat-button" class="icon-button hidden" aria-label="View messages">
+        <img src="images/new-chat.png" alt="Chat">
         </a>
+        
         <!-- Profile dropdown -->
         <div class="profile-dropdown">
           <button type="button" id="user-menu-button">
@@ -59,11 +55,11 @@
           </button>
           
           <div id="user-menu-dropdown" class="user-menu-dropdown hidden">
-            <a href="profile.html" role="menuitem">My Garden</a>
-            <a href="trades.html" role="menuitem">My Trades</a>
-            <a href="messages.html" role="menuitem">My Messages</a>
-            <a href="settings.html" role="menuitem">Settings</a>
-            <a href="index.html" role="menuitem">Sign out</a>
+            <a href="profile.html">My Garden</a>
+            <a href="trades.html">My Trades</a>
+            <a href="messages.html">My Messages</a>
+            <a href="settings.html">Settings</a>
+            <a href="index.html">Sign out</a>
           </div>
         </div>
       </div>
